@@ -1,0 +1,13 @@
+version: '3'
+services:
+  history:
+    image: history
+    ports:
+      - "8080:8888"
+      - "3856:3856"
+    expose:
+      - "3856"
+      - "8888"
+    environment:
+      HOST: "${HOST}"
+

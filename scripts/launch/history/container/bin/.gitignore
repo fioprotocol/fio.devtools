@@ -1,0 +1,8 @@
+clio*
+eosio-blocklog*
+eosio-launcher*
+keosd*
+nodeos*
+cmake*
+cpack*
+ctest*

@@ -1,0 +1,214 @@
+version: '3'
+services:
+  producer1:
+    image: producer-swarm
+    expose:
+      - "3856"
+      - "8888"
+    environment:
+      ACCOUNT: "${ACT1}"
+      PUBKEY: "${PUB1}"
+      PRIVKEY: "${PRIV1}"
+      HOST: "${HOST}"
+  producer2:
+    image: producer-swarm
+    expose:
+      - "3856"
+      - "8888"
+    environment:
+      ACCOUNT: "${ACT2}"
+      PUBKEY: "${PUB2}"
+      PRIVKEY: "${PRIV2}"
+      HOST: "${HOST}"
+  producer3:
+    image: producer-swarm
+    expose:
+      - "3856"
+      - "8888"
+    environment:
+      ACCOUNT: "${ACT3}"
+      PUBKEY: "${PUB3}"
+      PRIVKEY: "${PRIV3}"
+      HOST: "${HOST}"
+  producer4:
+    image: producer-swarm
+    expose:
+      - "3856"
+      - "8888"
+    environment:
+      ACCOUNT: "${ACT4}"
+      PUBKEY: "${PUB4}"
+      PRIVKEY: "${PRIV4}"
+      HOST: "${HOST}"
+  producer5:
+    image: producer-swarm
+    expose:
+      - "3856"
+      - "8888"
+    environment:
+      ACCOUNT: "${ACT5}"
+      PUBKEY: "${PUB5}"
+      PRIVKEY: "${PRIV5}"
+      HOST: "${HOST}"
+  producer6:
+    image: producer-swarm
+    expose:
+      - "3856"
+      - "8888"
+    environment:
+      ACCOUNT: "${ACT6}"
+      PUBKEY: "${PUB6}"
+      PRIVKEY: "${PRIV6}"
+      HOST: "${HOST}"
+  producer7:
+    image: producer-swarm
+    expose:
+      - "3856"
+      - "8888"
+    environment:
+      ACCOUNT: "${ACT7}"
+      PUBKEY: "${PUB7}"
+      PRIVKEY: "${PRIV7}"
+      HOST: "${HOST}"
+  producer8:
+    image: producer-swarm
+    expose:
+      - "3856"
+      - "8888"
+    environment:
+      ACCOUNT: "${ACT8}"
+      PUBKEY: "${PUB8}"
+      PRIVKEY: "${PRIV8}"
+      HOST: "${HOST}"
+  producer9:
+    image: producer-swarm
+    expose:
+      - "3856"
+      - "8888"
+    environment:
+      ACCOUNT: "${ACT9}"
+      PUBKEY: "${PUB9}"
+      PRIVKEY: "${PRIV9}"
+      HOST: "${HOST}"
+  producer10:
+    image: producer-swarm
+    expose:
+      - "3856"
+      - "8888"
+    environment:
+      ACCOUNT: "${ACT10}"
+      PUBKEY: "${PUB10}"
+      PRIVKEY: "${PRIV10}"
+      HOST: "${HOST}"
+  producer11:
+    image: producer-swarm
+    expose:
+      - "3856"
+      - "8888"
+    environment:
+      ACCOUNT: "${ACT11}"
+      PUBKEY: "${PUB11}"
+      PRIVKEY: "${PRIV11}"
+      HOST: "${HOST}"
+  producer12:
+    image: producer-swarm
+    expose:
+      - "3856"
+      - "8888"
+    environment:
+      ACCOUNT: "${ACT12}"
+      PUBKEY: "${PUB12}"
+      PRIVKEY: "${PRIV12}"
+      HOST: "${HOST}"
+  producer13:
+    image: producer-swarm
+    expose:
+      - "3856"
+      - "8888"
+    environment:
+      ACCOUNT: "${ACT13}"
+      PUBKEY: "${PUB13}"
+      PRIVKEY: "${PRIV13}"
+      HOST: "${HOST}"
+  producer14:
+    image: producer-swarm
+    expose:
+      - "3856"
+      - "8888"
+    environment:
+      ACCOUNT: "${ACT14}"
+      PUBKEY: "${PUB14}"
+      PRIVKEY: "${PRIV14}"
+      HOST: "${HOST}"
+  producer15:
+    image: producer-swarm
+    expose:
+      - "3856"
+      - "8888"
+    environment:
+      ACCOUNT: "${ACT15}"
+      PUBKEY: "${PUB15}"
+      PRIVKEY: "${PRIV15}"
+      HOST: "${HOST}"
+  producer16:
+    image: producer-swarm
+    expose:
+      - "3856"
+      - "8888"
+    environment:
+      ACCOUNT: "${ACT16}"
+      PUBKEY: "${PUB16}"
+      PRIVKEY: "${PRIV16}"
+      HOST: "${HOST}"
+  producer17:
+    image: producer-swarm
+    expose:
+      - "3856"
+      - "8888"
+    environment:
+      ACCOUNT: "${ACT17}"
+      PUBKEY: "${PUB17}"
+      PRIVKEY: "${PRIV17}"
+      HOST: "${HOST}"
+  producer18:
+    image: producer-swarm
+    expose:
+      - "3856"
+      - "8888"
+    environment:
+      ACCOUNT: "${ACT18}"
+      PUBKEY: "${PUB18}"
+      PRIVKEY: "${PRIV18}"
+      HOST: "${HOST}"
+  producer19:
+    image: producer-swarm
+    expose:
+      - "3856"
+      - "8888"
+    environment:
+      ACCOUNT: "${ACT19}"
+      PUBKEY: "${PUB19}"
+      PRIVKEY: "${PRIV19}"
+      HOST: "${HOST}"
+  producer20:
+    image: producer-swarm
+    expose:
+      - "3856"
+      - "8888"
+    environment:
+      ACCOUNT: "${ACT20}"
+      PUBKEY: "${PUB20}"
+      PRIVKEY: "${PRIV20}"
+      HOST: "${HOST}"
+  producer21:
+    image: producer-swarm
+    expose:
+      - "3856"
+      - "8888"
+    environment:
+      ACCOUNT: "${ACT21}"
+      PUBKEY: "${PUB21}"
+      PRIVKEY: "${PRIV21}"
+      HOST: "${HOST}"
+
+
