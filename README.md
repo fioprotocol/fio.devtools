@@ -1,6 +1,6 @@
-# FIO Test Cave (fio.devtools)
+# FIO Development Cave (fio.devtools)
 
-Automated FIO testing framework.
+Automated FIO development framework.
 
 ## Dependencies
 
@@ -8,9 +8,13 @@ The test runner requires `jq`.
 
 ## Instructions
 
-Place `fio.tools` inside the same directory as `fio`
+Place `fio.tools` inside the same directory as `fio` source. 
 
     ./start.sh
+    
+For quicker startups, use the current version when executing script:
+
+    ./start.sh 2.0
 
 ## Contributors
 
