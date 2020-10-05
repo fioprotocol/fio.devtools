@@ -30,7 +30,7 @@ host='localhost:8889'
 ./clio -u http://$host push action eosio addaction '{"action":"bundlevote","contract":"fio.fee","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"setfeevote","contract":"fio.fee","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"bytemandfee","contract":"fio.fee","actor":"eosio"}' --permission eosio
-./clio -u http://$host push action eosio addaction '{"action":"updatefees","contract":"fio.fee","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"computefees","contract":"fio.fee","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"mandatoryfee","contract":"fio.fee","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"tpidclaim","contract":"fio.treasury","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"bpclaim","contract":"fio.treasury","actor":"eosio"}' --permission eosio
