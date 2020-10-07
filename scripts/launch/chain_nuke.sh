@@ -4,10 +4,10 @@ killall -9 nodeos
 
 pwd
 echo $'Deleting Logs...\n'
-rm -rf scripts/node1.txt
-rm -rf scripts/node2.txt
-rm -rf scripts/node3.txt
-rm -rf scripts/walletkey.ini
+rm -rf node1.txt
+rm -rf node2.txt
+rm -rf node3.txt
+rm -rf walletkey.ini
 
 cd ~/fio/$vChoice/bin
 echo $'Deleting Node Data...\n'
