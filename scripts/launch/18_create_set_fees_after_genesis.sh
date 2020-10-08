@@ -3,6 +3,9 @@
 ./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"register_fio_address","type":"0","suf_amount":"40000000000"}' --permission fio.fee@active
 ./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"renew_fio_domain","type":"0","suf_amount":"800000000000"}' --permission fio.fee@active
 ./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"renew_fio_address","type":"0","suf_amount":"40000000000"}' --permission fio.fee@active
+./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"submit_fee_ratios","type":"0","suf_amount":"1000000000"}' --permission fio.fee@active
+./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"submit_fee_multiplier","type":"0","suf_amount":"1000000000"}' --permission fio.fee@active
+./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"submit_bundled_transaction","type":"0","suf_amount":"1000000000"}' --permission fio.fee@active
 ./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"add_bundled_transactions","type":"0","suf_amount":"40000000000"}' --permission fio.fee@active
 ./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"transfer_tokens_fio_add","type":"1","suf_amount":"3000000000"}' --permission fio.fee@active
 ./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"add_pub_address","type":"1","suf_amount":"600000000"}' --permission fio.fee@active
@@ -24,7 +27,6 @@
 ./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"unregister_producer","type":"0","suf_amount":"400000000"}' --permission fio.fee@active
 ./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"proxy_vote","type":"1","suf_amount":"600000000"}' --permission fio.fee@active
 ./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"vote_producer","type":"1","suf_amount":"600000000"}' --permission fio.fee@active
-./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"submit_bundled_transaction","type":"0","suf_amount":"0"}' --permission fio.fee@active
 ./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"auth_delete","type":"0","suf_amount":"400000000"}' --permission fio.fee@active
 ./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"auth_link","type":"0","suf_amount":"400000000"}' --permission fio.fee@active
 ./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"auth_update","type":"0","suf_amount":"1000000000"}' --permission fio.fee@active
