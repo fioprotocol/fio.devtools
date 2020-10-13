@@ -280,6 +280,8 @@ if [ $mChoice == 1 ]; then
     sleep 0.5
 
     # LOCKED TESTING STARTS HERE
+    $oldpath/launch/15_create_locked_token_holder_test_accounts.sh
+    $oldpath/launch/17_emplace_test_grants_into_locked_tokens.sh
     # $oldpath/launch/14_create_locked_token_holder_accounts.sh
 #$oldpath/launch/15_create_locked_token_holder_test_accounts.sh
     # $oldpath/launch/16_emplace_grants_into_locked_tokens.sh
