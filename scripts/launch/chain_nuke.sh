@@ -2,7 +2,16 @@
 
 killall -9 nodeos
 
-pwd
+echo "Preparing and clearing..."
+
+#Remove default wallets files in ~/fio-wallet folder (to clean test)
+if [ -d ~/fio-wallet ]; then rm -r ~/fio-wallet/*; fi
+
+# Remove logs from last testing
+if [ ! -d $GLOBALPATH/log ]; then mkdir $GLOBALPATH/log; fi
+if [ -n "$(find $GLOBALPATH/log -name '*.dat')" ]; then rm -r $GLOBALPATH/log/*.dat; fi
+if [ -n "$(find $GLOBALPATH/log -name '*.log')" ]; then rm -r $GLOBALPATH/log/*.log; fi
+
 echo $'Deleting Logs...\n'
 rm -rf node1.txt
 rm -rf node2.txt
