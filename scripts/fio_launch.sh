@@ -281,9 +281,11 @@ if [ $mChoice == 1 ]; then
 
     # LOCKED TESTING STARTS HERE
     # $oldpath/launch/14_create_locked_token_holder_accounts.sh
-#$oldpath/launch/15_create_locked_token_holder_test_accounts.sh
+#uncomment this for testing of the register domain with accounts having locked and unlocked funds.
+$oldpath/launch/15_create_locked_token_holder_test_accounts.sh
     # $oldpath/launch/16_emplace_grants_into_locked_tokens.sh
-# $oldpath/launch/17_emplace_test_grants_into_locked_tokens.sh
+#uncomment this for testing of the register domain with accounts having locked and unlocked funds.
+$oldpath/launch/17_emplace_test_grants_into_locked_tokens.sh
     sleep 2
 #uncomment these next 3 lines to test the genesis scripts, warning this takes around 30 minutes to execute.
 #after these run you can run validate_locked_token_holder.sh

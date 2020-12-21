@@ -56,6 +56,19 @@
 #FIO Public Address (actor name): o3jvcxorf4qu
 ./clio wallet import --private-key 5JqfyvSXXoXT7h6tHbFLwNznAAriLKRWPhUNAeBLznaMHnaNFG5 -n fio
 
+#Private key: 5KK3HbWJrD1ejXa7tYxo78WAcq2upVRUSjKrZviGTZT1DsZYCoy
+#Public key: FIO5hViAQMMTjhkmyqJE3hN98MxKybXe8jFDgRsbt4Q684BgzeBi4
+#FIO Public Address (actor name): evorvygfnrzk
+#T1u2
+./clio wallet import --private-key 5KK3HbWJrD1ejXa7tYxo78WAcq2upVRUSjKrZviGTZT1DsZYCoy -n fio
+
+
+#Private key: 5JwmDtsJDTY2M3h9bsXZDD2tHPj3UgQf7FVpptaLeC7NzxeXnXu
+#Public key: FIO8WaU8ZT9YLixZZ41uHiYmkoRSZHgCR3anfL3YupC3boQpwvXqG
+#FIO Public Address (actor name): xbfugtkzvowu
+#T1u3
+./clio wallet import --private-key 5JwmDtsJDTY2M3h9bsXZDD2tHPj3UgQf7FVpptaLeC7NzxeXnXu -n fio
+
 #faucet account
 sleep 1s
 ./clio wallet import --private-key 5KF2B21xT5pE5G3LNA6LKJc6AP2pAd2EnfpAUrJH12SFV8NtvCD -n fio
