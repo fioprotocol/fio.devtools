@@ -60,3 +60,16 @@
 sleep 1s
 ./clio wallet import --private-key 5KF2B21xT5pE5G3LNA6LKJc6AP2pAd2EnfpAUrJH12SFV8NtvCD -n fio
 sleep 1s
+
+# blocksmith dev accounts
+./clio wallet import --private-key 5JqfyvSXXoXT7h6tHbFLwNznAAriLKRWPhUNAeBLznaMHnaNFG5 -n fio
+./clio wallet import --private-key 5K7mT9syr4ts3uqQiHsFeyor5Ge6JXvQWBdFtozoupWQHfMJaCE -n fio
+./clio wallet import --private-key 5KAt8KnXaqJSngnY6DKvMmdMfZV6uTZkLQ6kaTRWPzJG6wJV4xo -n fio
+./clio wallet import --private-key 5JFUcXstkgAUyXpkTg8aKdtka89gRAb3xvbeZ21pPyWGBzAXJSE -n fio
+./clio wallet import --private-key 5KePj5qMF7xvXZwY4Tnxy7KbDCdUe7cyZtYv2rsTgaZ7LBuVpUc -n fio
+./clio wallet import --private-key 5Hs6KG9Ky1S194hnxovUUq63CmTvsaCPWcnamPpB4Q5fuZiSzDe -n fio
+./clio wallet import --private-key 5J1oyBREGZS4sqRgzofxXP9t7UL2yQgKBZ6MaHF2XzBEfAH3NH4 -n fio
+
+# fio.escrow
+./clio wallet import --private-key 5JXkawfVHHZuTAdZrVpdkg4mUNfUytuw8uDUBWcAvb8YMK5R4yY -n fio
+sleep 1s

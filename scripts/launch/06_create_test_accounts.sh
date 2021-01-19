@@ -68,3 +68,37 @@ sleep 2
 ./clio -u http://localhost:8879 create account eosio o3jvcxorf4qu FIO5HWLgwpads3f2qAJwgtKPvifevZs5fdaF7LaYEjaPjhHwUZ6K9 FIO5HWLgwpads3f2qAJwgtKPvifevZs5fdaF7LaYEjaPjhHwUZ6K9
 sleep 2
 
+#Public Key: FIO5uoS7DFdG643vCU5Ko5YW4ch8Y8NoJ5HSLCAdxdVP4fw6AAsvx
+#Private Key: 5K7mT9syr4ts3uqQiHsFeyor5Ge6JXvQWBdFtozoupWQHfMJaCE
+#FIO Public Address (actor name): aghsbgzbx3iz
+./clio -u http://localhost:8879 create account eosio aghsbgzbx3iz FIO5uoS7DFdG643vCU5Ko5YW4ch8Y8NoJ5HSLCAdxdVP4fw6AAsvx FIO5uoS7DFdG643vCU5Ko5YW4ch8Y8NoJ5HSLCAdxdVP4fw6AAsvx
+sleep 2
+
+#Public Key: FIO6Ehu1BXZUGkeQS77LC1LKnFVWh1hdwZ3pYFh77819tgpyarQXW
+#Private Key: 5KAt8KnXaqJSngnY6DKvMmdMfZV6uTZkLQ6kaTRWPzJG6wJV4xo
+#FIO Public Address (actor name): ltllcgohc4op
+./clio -u http://localhost:8879 create account eosio ltllcgohc4op FIO6Ehu1BXZUGkeQS77LC1LKnFVWh1hdwZ3pYFh77819tgpyarQXW FIO6Ehu1BXZUGkeQS77LC1LKnFVWh1hdwZ3pYFh77819tgpyarQXW
+sleep 2
+
+#Public Key: FIO7pirtRezD1KF7C3GPGDzYW3ZZn8NtC26wAt8YsBUWg6caLwfrs
+#Private Key: 5JFUcXstkgAUyXpkTg8aKdtka89gRAb3xvbeZ21pPyWGBzAXJSE
+#FIO Public Address (actor name): 2cum4cy1urpj
+./clio -u http://localhost:8879 create account eosio 2cum4cy1urpj FIO7pirtRezD1KF7C3GPGDzYW3ZZn8NtC26wAt8YsBUWg6caLwfrs FIO7pirtRezD1KF7C3GPGDzYW3ZZn8NtC26wAt8YsBUWg6caLwfrs
+sleep 2
+
+#Public Key: FIO77rFFByyLycsrbC5tH1CXqddZdgkDuTYDbCc2BoGp5hdnU59f7
+#Private Key: 5KePj5qMF7xvXZwY4Tnxy7KbDCdUe7cyZtYv2rsTgaZ7LBuVpUc
+#FIO Public Address (actor name): 5ufabtv13hv4
+./clio -u http://localhost:8879 create account eosio 5ufabtv13hv4 FIO77rFFByyLycsrbC5tH1CXqddZdgkDuTYDbCc2BoGp5hdnU59f7 FIO77rFFByyLycsrbC5tH1CXqddZdgkDuTYDbCc2BoGp5hdnU59f7
+sleep 2
+
+#Public Key: FIO6WTy7KBarFzVbhmwDuR1BbV33QVpuEZirvfwsHBUZ1b4aGrJNm
+#Private Key: 5Hs6KG9Ky1S194hnxovUUq63CmTvsaCPWcnamPpB4Q5fuZiSzDe
+#FIO Public Address (actor name): p2yrhsvsvjge
+./clio -u http://localhost:8879 create account eosio p2yrhsvsvjge FIO6WTy7KBarFzVbhmwDuR1BbV33QVpuEZirvfwsHBUZ1b4aGrJNm FIO6WTy7KBarFzVbhmwDuR1BbV33QVpuEZirvfwsHBUZ1b4aGrJNm
+sleep 2
+
+#Public Key: FIO5MDWkM3GRdk4WWdxbNPcGyJev56S5X4cgY3KQNH6EbxQXrcS6Q
+#Private Key: 5J1oyBREGZS4sqRgzofxXP9t7UL2yQgKBZ6MaHF2XzBEfAH3NH4
+#FIO Public Address (actor name): wjeo4abnk4c2
+./clio -u http://localhost:8879 create account eosio wjeo4abnk4c2 FIO5MDWkM3GRdk4WWdxbNPcGyJev56S5X4cgY3KQNH6EbxQXrcS6Q FIO5MDWkM3GRdk4WWdxbNPcGyJev56S5X4cgY3KQNH6EbxQXrcS6Q

@@ -16,3 +16,7 @@ sleep 1.5s
 sleep 1.5s
 ./clio -u http://localhost:8889 set contract -j eosio.wrap $eosio_wrap_base_path eosio.wrap.wasm eosio.wrap.abi --permission eosio.wrap@active
 sleep 1.5s
+
+# escrow contract
+./clio -u http://localhost:8889 set contract -j fio.escrow $fio_escrow_base_path fio.escrow.wasm fio.escrow.abi --permission fio.escrow@active
+sleep 1.5s
