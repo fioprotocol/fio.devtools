@@ -17,5 +17,5 @@ sleep 1.5s
 ./clio -u http://localhost:8889 set contract -j fio.treasury $fio_treasury_name_path fio.treasury.wasm fio.treasury.abi --permission fio.treasury@active
 
 # escrow contract
-./clio -u http://localhost:8889 set contract -j fio.escrow $fio_escrow_base_path fio.escrow.wasm fio.escrow.abi --permission fio.escrow@active
+./clio -u http://localhost:8879 set contract -j fio.escrow $fio_escrow_base_path fio.escrow.wasm fio.escrow.abi --permission fio.escrow@active
 sleep 1.5s

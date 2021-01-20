@@ -42,7 +42,7 @@ fi
 if [ $mChoice == 2 ]; then
     echo Updating Current Base Contracts
     cd ../fio.devtools/bin/baseContract/2.1.x/
-    git clone http://github.com/fioprotocol/fio.contracts -b release/2.1.x
+    git clone http://github.com/tvl83/fio.contracts -b develop
     cd fio.contracts/
     ./build.sh
     cp ./contracts/fio.fee/fio.fee.abi ./build/contracts/fio.fee/fio.fee.abi
@@ -191,7 +191,7 @@ if [ $mChoice == 1 ]; then
 
     # ESCROW
     # DEFINE BASE PATH
-    if [ -f bin/baseContract/2.0.x/fio.contracts/build/contracts/fio.escrow/fio.escrow.wasm ]; then
+    if [ -f bin/baseContract/2.1.x/fio.contracts/build/contracts/fio.escrow/fio.escrow.wasm ]; then
                fio_escrow_base_path="$basepath/fio.contracts/build/contracts/fio.escrow"
             else
                 echo 'No wasm file found at $PWD/build/contracts/fio.escrow'
@@ -227,6 +227,7 @@ if [ $mChoice == 1 ]; then
     export fio_tpid_base_path
     export fio_treasury_base_path
     export eosio_wrap_base_path
+    export fio_escrow_base_path
     export vChoice
 
     sleep 1s
