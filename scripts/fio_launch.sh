@@ -19,7 +19,7 @@ echo $'\n\n                   Welcome to the Local Test Environment'
 
 restartneeded=0
 oldpath=$PWD/scripts
-basepath=$PWD/bin/baseContract/2.1.x
+basepath=$PWD/bin/baseContract/2.2.x
 export oldpath
 export basepath
 
@@ -41,8 +41,8 @@ fi
 
 if [ $mChoice == 2 ]; then
     echo Updating Current Base Contracts
-    cd ../fio.devtools/bin/baseContract/2.1.x/
-    git clone http://github.com/fioprotocol/fio.contracts -b release/2.1.x
+    cd ../fio.devtools/bin/baseContract/2.2.x/
+    git clone http://github.com/fioprotocol/fio.contracts -b release/2.2.x
     cd fio.contracts/
     ./build.sh
     cp ./contracts/fio.fee/fio.fee.abi ./build/contracts/fio.fee/fio.fee.abi
@@ -126,61 +126,61 @@ if [ $mChoice == 1 ]; then
     fi
 
     #FIO Base Directory Check
-    if [ -f bin/baseContract/2.1.x/fio.contracts/build/contracts/eosio.bios/eosio.bios.wasm ]; then
+    if [ -f bin/baseContract/2.2.x/fio.contracts/build/contracts/eosio.bios/eosio.bios.wasm ]; then
         eosio_bios_contract_base_path="$basepath/fio.contracts/build/contracts/eosio.bios"
     else
         echo 'No wasm file found at $PWD/build/contracts/eosio.bios'
     fi
 
-    if [ -f bin/baseContract/2.1.x/fio.contracts/build/contracts/fio.system/fio.system.wasm ]; then
+    if [ -f bin/baseContract/2.2.x/fio.contracts/build/contracts/fio.system/fio.system.wasm ]; then
         fio_system_contract_base_path="$basepath/fio.contracts/build/contracts/fio.system"
     else
         echo 'No wasm file found at $PWD/build/contracts/fio.system'
     fi
 
-    if [ -f bin/baseContract/2.1.x/fio.contracts/build/contracts/eosio.msig/eosio.msig.wasm ]; then
+    if [ -f bin/baseContract/2.2.x/fio.contracts/build/contracts/eosio.msig/eosio.msig.wasm ]; then
         eosio_msig_contract_base_path="$basepath/fio.contracts/build/contracts/eosio.msig"
     else
         echo 'No wasm file found at $PWD/build/contracts/eosio.msig'
     fi
 
-    if [ -f bin/baseContract/2.1.x/fio.contracts/build/contracts/fio.token/fio.token.wasm ]; then
+    if [ -f bin/baseContract/2.2.x/fio.contracts/build/contracts/fio.token/fio.token.wasm ]; then
         fio_token_contract_base_path="$basepath/fio.contracts/build/contracts/fio.token"
     else
         echo 'No wasm file found at $PWD/build/contracts/fio.token'
     fi
     #Fio Name Directory Check
-    if [ -f bin/baseContract/2.1.x/fio.contracts/build/contracts/fio.address/fio.address.wasm ]; then
+    if [ -f bin/baseContract/2.2.x/fio.contracts/build/contracts/fio.address/fio.address.wasm ]; then
         fio_contract_base_path="$basepath/fio.contracts/build/contracts/fio.address"
     else
         echo 'No wasm file found at $PWD/build/contracts/fio.address'
     fi
 
-    if [ -f bin/baseContract/2.1.x/fio.contracts/build/contracts/fio.fee/fio.fee.wasm ]; then
+    if [ -f bin/baseContract/2.2.x/fio.contracts/build/contracts/fio.fee/fio.fee.wasm ]; then
         fio_fee_base_path="$basepath/fio.contracts/build/contracts/fio.fee"
     else
         echo 'No wasm file found at $PWD/build/contracts/fio.fee'
     fi
 
-    if [ -f bin/baseContract/2.1.x/fio.contracts/build/contracts/fio.request.obt/fio.request.obt.wasm ]; then
+    if [ -f bin/baseContract/2.2.x/fio.contracts/build/contracts/fio.request.obt/fio.request.obt.wasm ]; then
             fio_reqobt_base_path="$basepath/fio.contracts/build/contracts/fio.request.obt"
         else
             echo 'No wasm file found at $PWD/build/contracts/fio.request.obt'
     fi
 
-    if [ -f bin/baseContract/2.1.x/fio.contracts/build/contracts/fio.tpid/fio.tpid.wasm ]; then
+    if [ -f bin/baseContract/2.2.x/fio.contracts/build/contracts/fio.tpid/fio.tpid.wasm ]; then
             fio_tpid_base_path="$basepath/fio.contracts/build/contracts/fio.tpid"
         else
             echo 'No wasm file found at $PWD/build/contracts/fio.tpid'
     fi
 
-    if [ -f bin/baseContract/2.1.x/fio.contracts/build/contracts/fio.treasury/fio.treasury.wasm ]; then
+    if [ -f bin/baseContract/2.2.x/fio.contracts/build/contracts/fio.treasury/fio.treasury.wasm ]; then
             fio_treasury_base_path="$basepath/fio.contracts/build/contracts/fio.treasury"
         else
             echo 'No wasm file found at $PWD/build/contracts/fio.treasury'
     fi
 
-    if [ -f bin/baseContract/2.1.x/fio.contracts/build/contracts/eosio.wrap/eosio.wrap.wasm ]; then
+    if [ -f bin/baseContract/2.2.x/fio.contracts/build/contracts/eosio.wrap/eosio.wrap.wasm ]; then
                eosio_wrap_base_path="$basepath/fio.contracts/build/contracts/eosio.wrap"
             else
                 echo 'No wasm file found at $PWD/build/contracts/eosio.wrap'
@@ -331,7 +331,11 @@ elif [ $mChoice == 6 ]; then
     $oldpath/launch/history/20_start_docker_compose.sh "${nodeos_dev_p2p}" "${nodeos_dev_port}"
 
 elif [ $mChoice == 7 ]; then
-  scripts/actions/update_contracts.sh
+    read -p $'1. Update All Contracts\nChoose(#):' bChoice
+
+    if [ $bChoice == 1 ]; then
+      scripts/actions/update_contracts.sh
+    fi
 else
     exit 1
 fi
