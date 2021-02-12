@@ -57,6 +57,7 @@ if [ $mChoice == 2 ]; then
     cp ./contracts/fio.fee/fio.fee.abi ./build/contracts/fio.fee/fio.fee.abi
     cp ./contracts/fio.address/fio.address.abi ./build/contracts/fio.address/fio.address.abi
     cp ./contracts/fio.request.obt/fio.request.obt.abi ./build/contracts/fio.request.obt/fio.request.obt.abi
+    cp ./contracts/fio.oracle/fio.oracle.abi ./build/contracts/fio.oracle/fio.oracle.abi
     echo COMPLETE - READY TO LAUNCH
     exit -1
 fi
@@ -123,6 +124,12 @@ if [ $mChoice == 1 ]; then
                eosio_wrap_name_path="$oldpath/../../fio.contracts/build/contracts/eosio.wrap"
             else
                 echo 'No wasm file found at $PWD/build/contracts/eosio.wrap'
+    fi
+
+    if [ -f ../fio.contracts/build/contracts/fio.oracle/fio.oracle.wasm ]; then
+        fio_oracle_name_path="$oldpath/../../fio.contracts/build/contracts/fio.oracle"
+    else
+        echo 'No wasm file found at $PWD/build/contracts/fio.oralce'
     fi
 
     #FIO Base Directory Check
@@ -196,6 +203,7 @@ if [ $mChoice == 1 ]; then
     export fio_tpid_name_path
     export fio_treasury_name_path
     export eosio_wrap_name_path
+    export fio_escrow_name_path
 
     export eosio_bios_contract_base_path
     export fio_system_contract_base_path
