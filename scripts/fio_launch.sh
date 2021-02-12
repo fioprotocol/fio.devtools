@@ -129,7 +129,7 @@ if [ $mChoice == 1 ]; then
     if [ -f ../fio.contracts/build/contracts/fio.oracle/fio.oracle.wasm ]; then
         fio_oracle_name_path="$oldpath/../../fio.contracts/build/contracts/fio.oracle"
     else
-        echo 'No wasm file found at $PWD/build/contracts/fio.oralce'
+        echo 'No wasm file found at $PWD/build/contracts/fio.oracle'
     fi
 
     #FIO Base Directory Check
@@ -203,7 +203,7 @@ if [ $mChoice == 1 ]; then
     export fio_tpid_name_path
     export fio_treasury_name_path
     export eosio_wrap_name_path
-    export fio_escrow_name_path
+    export fio_oracle_name_path
 
     export eosio_bios_contract_base_path
     export fio_system_contract_base_path
