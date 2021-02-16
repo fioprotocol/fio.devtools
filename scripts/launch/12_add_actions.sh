@@ -53,6 +53,7 @@ host='localhost:8889'
 ./clio -u http://$host push action eosio addaction '{"action":"execute","contract":"eosio.wrap","actor":"eosio"}' --permission eosio
 # fio.oracle:
 ./clio -u http://$host push action eosio addaction '{"action":"wraptokens","contract":"fio.oracle","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"unwraptokens","contract":"fio.oracle","actor":"eosio"}' --permission eosio
 
 
 # USED FOR TESTING:
