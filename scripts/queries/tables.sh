@@ -31,6 +31,6 @@ elif [ $mChoice == 10 ]; then
 elif [ $mChoice == 11 ]; then
     ./clio -u http://localhost:8889 get table fio.fee fio.fee bundlevoters
 elif [ $mChoice == 12 ]; then
-    ./clio -u http://localhost:8889 get table -l -1 fio.reqobt fio.reqobt fiotrxts
+    ./clio -u http://localhost:8889 get table -l -1 fio.reqobt fio.reqobt fiotrxtss
 
 fi
