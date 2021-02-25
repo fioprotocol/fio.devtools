@@ -3,7 +3,7 @@
 cd ~/fio/$vChoice/bin
 
 if [ -z "$1" ]; then
-    read -p $'\n1. fioreqctxts 2. fionames 3. domains 4. accountmap 5. fioreqsts\n6. producers 7. voters 8. fdtnrewards 9. recordobts 10. FIO Token Stat 11. bundlevoters 12. fiotrxts\nChoose(#):' mChoice
+    read -p $'\n1. fioreqctxts 2. fionames 3. domains 4. accountmap 5. fioreqsts\n6. producers 7. voters 8. fdtnrewards 9. recordobts 10. FIO Token Stat \n11. bundlevoters 12. fiotrxts 13. oraclelgdrs 14. oracless\nChoose(#):' mChoice
 else
     mChoice=$1
 fi
