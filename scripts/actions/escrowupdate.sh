@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
 #FIO Directory Check
-
+oldpath=$PWD/../../scripts
 # ESCROW
 # DEFINE NAME PATH
-if [ -f ../fio.contracts/build/contracts/fio.escrow/fio.escrow.wasm ]; then
-    fio_escrow_name_path="$oldpath/../../fio.contracts/build/contracts/fio.escrow"
+if [ -f $oldpath/../bin/baseContract/2.1.x/fio.contracts/build/contracts/fio.escrow/fio.escrow.wasm ]; then
+    fio_escrow_name_path="$oldpath/../bin/baseContract/2.1.x/fio.contracts/build/contracts/fio.escrow"
 else
-    echo 'No wasm file found at $PWD/build/contracts/fio.escrow'
+    echo 'No wasm file found at $oldpath/../bin/baseContract/2.1.x/fio.contracts/build/contracts/fio.escrow'
 fi
 
-cd ~/fio/$vChoice/bin
+cd ~/fio/2.0/bin 
 
 walletkey=$(head -n 1 $oldpath/../walletkey.ini)
 echo 'Using Password:' $walletkey
