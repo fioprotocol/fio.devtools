@@ -68,6 +68,8 @@ sleep 2
 ./clio -u http://localhost:8879 create account eosio o3jvcxorf4qu FIO5HWLgwpads3f2qAJwgtKPvifevZs5fdaF7LaYEjaPjhHwUZ6K9 FIO5HWLgwpads3f2qAJwgtKPvifevZs5fdaF7LaYEjaPjhHwUZ6K9
 sleep 2
 
+########### BLOCKSMITH DEV ACCOUNTS
+
 #Public Key: FIO5uoS7DFdG643vCU5Ko5YW4ch8Y8NoJ5HSLCAdxdVP4fw6AAsvx
 #Private Key: 5K7mT9syr4ts3uqQiHsFeyor5Ge6JXvQWBdFtozoupWQHfMJaCE
 #FIO Public Address (actor name): aghsbgzbx3iz
@@ -78,12 +80,6 @@ sleep 2
 #Private Key: 5KAt8KnXaqJSngnY6DKvMmdMfZV6uTZkLQ6kaTRWPzJG6wJV4xo
 #FIO Public Address (actor name): ltllcgohc4op
 ./clio -u http://localhost:8879 create account eosio ltllcgohc4op FIO6Ehu1BXZUGkeQS77LC1LKnFVWh1hdwZ3pYFh77819tgpyarQXW FIO6Ehu1BXZUGkeQS77LC1LKnFVWh1hdwZ3pYFh77819tgpyarQXW
-sleep 2
-
-#Public Key: FIO7pirtRezD1KF7C3GPGDzYW3ZZn8NtC26wAt8YsBUWg6caLwfrs
-#Private Key: 5JFUcXstkgAUyXpkTg8aKdtka89gRAb3xvbeZ21pPyWGBzAXJSE
-#FIO Public Address (actor name): 2cum4cy1urpj
-./clio -u http://localhost:8879 create account eosio 2cum4cy1urpj FIO7pirtRezD1KF7C3GPGDzYW3ZZn8NtC26wAt8YsBUWg6caLwfrs FIO7pirtRezD1KF7C3GPGDzYW3ZZn8NtC26wAt8YsBUWg6caLwfrs
 sleep 2
 
 #Public Key: FIO77rFFByyLycsrbC5tH1CXqddZdgkDuTYDbCc2BoGp5hdnU59f7
@@ -102,3 +98,8 @@ sleep 2
 #Private Key: 5J1oyBREGZS4sqRgzofxXP9t7UL2yQgKBZ6MaHF2XzBEfAH3NH4
 #FIO Public Address (actor name): wjeo4abnk4c2
 ./clio -u http://localhost:8879 create account eosio wjeo4abnk4c2 FIO5MDWkM3GRdk4WWdxbNPcGyJev56S5X4cgY3KQNH6EbxQXrcS6Q FIO5MDWkM3GRdk4WWdxbNPcGyJev56S5X4cgY3KQNH6EbxQXrcS6Q
+
+#Private Key:    5HwawJrUijKnypZfXrVPqBDTx7nmVCFk5qDG9MRxW7tdPp6bGcM
+#Public Key:     FIO8PR2TcJAJ1UASYmkmVa8Fi2J2dNvwLJ4qkeAcE3ebgDbPDMx6F
+#Account Name:   g4oc1qkysew2
+./clio -u http://localhost:8879 create account eosio g4oc1qkysew2 FIO8PR2TcJAJ1UASYmkmVa8Fi2J2dNvwLJ4qkeAcE3ebgDbPDMx6F FIO8PR2TcJAJ1UASYmkmVa8Fi2J2dNvwLJ4qkeAcE3ebgDbPDMx6F
