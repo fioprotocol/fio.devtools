@@ -35,6 +35,3 @@ sleep 2
 #./clio -u http://localhost:8879 push action -j fio.token trnsfiopubky '{"payee_public_key": "FIO5oBUYbtGTxMS66pPkjC2p8pbA3zCtc8XD4dq9fMut867GRdh82", "amount":3 "1500000000000", "max_fee": "40000000000", "actor": "euwdcp13zlrj","tpid":""}' -p euwdcp13zlrj@active
 #echo transferred as ED
 #sleep 5
-
-# fio.escrow testing:
-./clio -u http://$host push action eosio addaction '{"action":"hello","contract":"fio.escrow","actor":"eosio"}' --permission eosio
