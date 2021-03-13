@@ -33,6 +33,8 @@ host='localhost:8889'
 ./clio -u http://$host push action eosio addaction '{"action":"burnexpired","contract":"fio.address","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"xferdomain","contract":"fio.address","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"xferaddress","contract":"fio.address","actor":"eosio"}' --permission eosio
+# for FIO.ESCROW
+./clio -u http://$host push action eosio addaction '{"action":"xferescrow","contract":"fio.address","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"setfeemult","contract":"fio.fee","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"bundlevote","contract":"fio.fee","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"setfeevote","contract":"fio.fee","actor":"eosio"}' --permission eosio
@@ -52,7 +54,6 @@ host='localhost:8889'
 ./clio -u http://$host push action eosio addaction '{"action":"updatetpid","contract":"fio.tpid","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"execute","contract":"eosio.wrap","actor":"eosio"}' --permission eosio
 
-
 # USED FOR TESTING:
 ./clio -u http://$host push action eosio addaction '{"action":"migrtrx","contract":"fio.reqobt","actor":"eosio"}' --permission eosio
 
@@ -60,3 +61,9 @@ host='localhost:8889'
 ./clio -u http://$host push action eosio addaction '{"action":"buydomain","contract":"fio.escrow","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"listdomain","contract":"fio.escrow","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"cxlistdomain","contract":"fio.escrow","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"rnlistdomain","contract":"fio.escrow","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"setmrkplcfg","contract":"fio.escrow","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"sethldacct","contract":"fio.escrow","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"rmmrkplcfg","contract":"fio.escrow","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"setmkpcomfee","contract":"fio.escrow","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"setmkplstfee","contract":"fio.escrow","actor":"eosio"}' --permission eosio
