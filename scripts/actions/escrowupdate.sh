@@ -7,7 +7,7 @@ oldpath=$PWD/../../scripts
 if [ -f $oldpath/../bin/baseContract/2.1.x/fio.contracts/build/contracts/fio.escrow/fio.escrow.wasm ]; then
     fio_escrow_name_path="$oldpath/../bin/baseContract/2.1.x/fio.contracts/build/contracts/fio.escrow"
 else
-    echo 'No wasm file found at $oldpath/../bin/baseContract/2.1.x/fio.contracts/build/contracts/fio.escrow'
+    echo "No wasm file found at $oldpath/../bin/baseContract/2.1.x/fio.contracts/build/contracts/fio.escrow"
 fi
 
 cd ~/fio/2.0/bin 
