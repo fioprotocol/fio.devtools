@@ -104,4 +104,4 @@ sleep .5s
 sleep .5s
 ./clio -u http://localhost:8889 set contract -j fio.escrow $fio_escrow_name_path fio.escrow.wasm fio.escrow.abi --permission fio.escrow@active
 
-./clio wallet lock -n fio
+#./clio wallet lock -n fio

@@ -1,1 +1,0 @@
-11_wallet_unlock_name_wallet.sh

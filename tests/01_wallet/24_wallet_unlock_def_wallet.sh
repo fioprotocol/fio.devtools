@@ -1,1 +1,0 @@
-10_wallet_unlock_def_wallet.sh

@@ -14,5 +14,10 @@
 ./clio -u http://localhost:8889 push action -j fio.address regdomain '{"fio_domain":"blah","owner_fio_public_key":"","max_fee":"40000000000","actor":"wjeo4abnk4c2","tpid":""}' --permission wjeo4abnk4c2@active
 ./clio -u http://localhost:8889 push action -j fio.address regdomain '{"fio_domain":"doctor","owner_fio_public_key":"","max_fee":"40000000000","actor":"wjeo4abnk4c2","tpid":""}' --permission wjeo4abnk4c2@active
 ./clio -u http://localhost:8889 push action -j fio.address regdomain '{"fio_domain":"anchor","owner_fio_public_key":"","max_fee":"40000000000","actor":"wjeo4abnk4c2","tpid":""}' --permission wjeo4abnk4c2@active
+./clio -u http://localhost:8889 push action -j fio.address regdomain '{"fio_domain":"domain1","owner_fio_public_key":"","max_fee":"40000000000","actor":"wjeo4abnk4c2","tpid":""}' --permission wjeo4abnk4c2@active
+./clio -u http://localhost:8889 push action -j fio.address regdomain '{"fio_domain":"domain2","owner_fio_public_key":"","max_fee":"40000000000","actor":"wjeo4abnk4c2","tpid":""}' --permission wjeo4abnk4c2@active
+./clio -u http://localhost:8889 push action -j fio.address regdomain '{"fio_domain":"domain3","owner_fio_public_key":"","max_fee":"40000000000","actor":"wjeo4abnk4c2","tpid":""}' --permission wjeo4abnk4c2@active
+./clio -u http://localhost:8889 push action -j fio.address regdomain '{"fio_domain":"domain4","owner_fio_public_key":"","max_fee":"40000000000","actor":"wjeo4abnk4c2","tpid":""}' --permission wjeo4abnk4c2@active
+./clio -u http://localhost:8889 push action -j fio.address regdomain '{"fio_domain":"domain5","owner_fio_public_key":"","max_fee":"40000000000","actor":"wjeo4abnk4c2","tpid":""}' --permission wjeo4abnk4c2@active
 
 sleep 0.5
