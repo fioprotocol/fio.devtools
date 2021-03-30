@@ -29,7 +29,7 @@ if [ -f scripts/walletkey.ini ]; then
 fi
 
 if [ -z "$1" ]; then
-	read -p $'\n1. Local Blockchain 2. Update/Build Contracts 3. Nuke All 4. Launch 21 BPs \n5. Queries 6. History (docker) 7. Post Actions\nChoose(#):' mChoice
+	read -p $'\n1. Local Blockchain 2. Update/Build Contracts 3. Nuke All 4. Launch 21 BPs \n5. Queries 6. History (docker) 7. Post Actions\n8. Escrow Actions Script\nChoose(#):' mChoice
 else
     mChoice=$1
 fi
@@ -367,6 +367,9 @@ elif [ $mChoice == 6 ]; then
 
 elif [ $mChoice == 7 ]; then
   scripts/actions/update_contracts.sh
+
+elif [ $mChoice == 8 ]; then
+  scripts/actions/escrow_actions.sh
 else
     exit 1
 fi
