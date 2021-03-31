@@ -10,7 +10,9 @@
 host='localhost:8889'
 
 # we run the first 15 so that we can test after the fork deadline, and prove the new logic is being used
-
+#added for FIP-21
+./clio -u http://$host push action eosio addaction '{"action":"stakefio","contract":"fio.staking","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"unstakefio","contract":"fio.staking","actor":"eosio"}' --permission eosio
 # added for FIP-6 and FIP-21
 ./clio -u http://$host push action eosio addaction '{"action":"trnsloctoks","contract":"fio.token","actor":"eosio"}' --permission eosio
 # added for FIP-6 and FIP-21

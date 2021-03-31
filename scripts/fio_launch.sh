@@ -48,6 +48,7 @@ if [ $mChoice == 2 ]; then
     cp ./contracts/fio.fee/fio.fee.abi ./build/contracts/fio.fee/fio.fee.abi
     cp ./contracts/fio.address/fio.address.abi ./build/contracts/fio.address/fio.address.abi
     cp ./contracts/fio.request.obt/fio.request.obt.abi ./build/contracts/fio.request.obt/fio.request.obt.abi
+    cp ./contracts/fio.staking/fio.staking.abi ./build/contracts/fio.staking/fio.staking.abi
 
     echo Building Development Contracts
     cd ../../../../../fio.contracts
@@ -57,6 +58,7 @@ if [ $mChoice == 2 ]; then
     cp ./contracts/fio.fee/fio.fee.abi ./build/contracts/fio.fee/fio.fee.abi
     cp ./contracts/fio.address/fio.address.abi ./build/contracts/fio.address/fio.address.abi
     cp ./contracts/fio.request.obt/fio.request.obt.abi ./build/contracts/fio.request.obt/fio.request.obt.abi
+    cp ./contracts/fio.staking/fio.staking.abi ./build/contracts/fio.staking/fio.staking.abi
     echo COMPLETE - READY TO LAUNCH
     exit -1
 fi
@@ -111,6 +113,12 @@ if [ $mChoice == 1 ]; then
             fio_tpid_name_path="$oldpath/../../fio.contracts/build/contracts/fio.tpid"
         else
             echo 'No wasm file found at $PWD/build/contracts/fio.tpid'
+    fi
+    
+    if [ -f ../fio.contracts/build/contracts/fio.staking/fio.staking.wasm ]; then
+            fio_staking_name_path="$oldpath/../../fio.contracts/build/contracts/fio.staking"
+        else
+            echo 'No wasm file found at $PWD/build/contracts/fio.staking'
     fi
 
     if [ -f ../fio.contracts/build/contracts/fio.treasury/fio.treasury.wasm ]; then
@@ -194,6 +202,7 @@ if [ $mChoice == 1 ]; then
     export fio_fee_name_path
     export fio_reqobt_name_path
     export fio_tpid_name_path
+    export fio_staking_name_path
     export fio_treasury_name_path
     export eosio_wrap_name_path
 
