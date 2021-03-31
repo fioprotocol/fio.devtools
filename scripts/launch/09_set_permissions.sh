@@ -28,3 +28,7 @@
 ./clio -u http://localhost:8889 set account permission fio.treasury active --add-code
 sleep 1s
 ./clio -u http://localhost:8889 push action fio.treasury startclock '{"":""}' -p fio.treasury@active
+
+#fio.oracle
+./clio -u http://localhost:8879 push action eosio setpriv '["fio.oracle",1]' -p eosio@active
+./clio -u http://localhost:8879 set account permission fio.oracle active '{"threshold": 1,"keys": [{"key": "FIO7isxEua78KPVbGzKemH4nj2bWE52gqj8Hkac3tc7jKNvpfWzYS","weight": 1}],"accounts": [{"permission":{"actor":"fio.oracle","permission":"eosio.code"},"weight":1}]}}' 4000000000 owner -p fio.oracle@owner
