@@ -60,6 +60,3 @@
 sleep 1s
 ./clio wallet import --private-key 5KF2B21xT5pE5G3LNA6LKJc6AP2pAd2EnfpAUrJH12SFV8NtvCD -n fio
 sleep 1s
-
-# fio.oracle
-./clio wallet import --private-key 5JXkawfVHHZuTAdZrVpdkg4mUNfUytuw8uDUBWcAvb8YMK5R4yY -n fio
