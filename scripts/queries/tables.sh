@@ -3,7 +3,7 @@
 cd ~/fio/$vChoice/bin
 
 if [ -z "$1" ]; then
-    read -p $'\n1. fioreqctxts 2. fionames 3. domains 4. accountmap 5. fioreqsts\n6. producers 7. voters 8. fdtnrewards 9. recordobts 10. FIO Token Stat 11. bundlevoters 12. fiotrxts 13. oraclelgdrs 14. oracless\nChoose(#):' mChoice
+    read -p $'\n1. fioreqctxts 2. fionames 3. domains 4. accountmap 5. fioreqsts\n6. producers 7. voters 8. fdtnrewards 9. recordobts 10. FIO Token Stat 11. bundlevoters 12. fiotrxts\nChoose(#):' mChoice
 else
     mChoice=$1
 fi
@@ -31,10 +31,6 @@ elif [ $mChoice == 10 ]; then
 elif [ $mChoice == 11 ]; then
     ./clio -u http://localhost:8889 get table fio.fee fio.fee bundlevoters
 elif [ $mChoice == 12 ]; then
-    ./clio -u http://localhost:8889 get table -l -1 fio.reqobt fio.reqobt fiotrxtss
-elif [ $mChoice == 13 ]; then
-    ./clio -u http://localhost:8889 get table -l -1 fio.oracle fio.oracle oraclelgdrs
-elif [ $mChoice == 14 ]; then
-    ./clio -u http://localhost:8889 get table -l -1 fio.oracle fio.oracle oracless
+    ./clio -u http://localhost:8889 get table -l -1 fio.reqobt fio.reqobt fiotrxts
 
 fi
