@@ -63,7 +63,4 @@ host='localhost:8889'
 ./clio -u http://$host push action eosio addaction '{"action":"cxlistdomain","contract":"fio.escrow","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"setmrkplcfg","contract":"fio.escrow","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"sethldacct","contract":"fio.escrow","actor":"eosio"}' --permission eosio
-./clio -u http://$host push action eosio addaction '{"action":"rmmrkplcfg","contract":"fio.escrow","actor":"eosio"}' --permission eosio
-./clio -u http://$host push action eosio addaction '{"action":"setmkpcomfee","contract":"fio.escrow","actor":"eosio"}' --permission eosio
-./clio -u http://$host push action eosio addaction '{"action":"setmkplstfee","contract":"fio.escrow","actor":"eosio"}' --permission eosio
-./clio -u http://$host push action eosio addaction '{"action":"setmkpebreak","contract":"fio.escrow","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"updtmkplcfg","contract":"fio.escrow","actor":"eosio"}' --permission eosio

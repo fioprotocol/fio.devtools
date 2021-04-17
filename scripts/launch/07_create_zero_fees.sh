@@ -35,7 +35,5 @@
 ./clio -u http://localhost:8889 push action fio.fee createfee '{"end_point":"cancel_list_domain","type":"0","suf_amount":"0"}' --permission fio.fee@active
 ./clio -u http://localhost:8889 push action fio.fee createfee '{"end_point":"buy_domain","type":"0","suf_amount":"0"}' --permission fio.fee@active
 ./clio -u http://localhost:8889 push action fio.fee createfee '{"end_point":"set_marketplace_config","type":"0","suf_amount":"0"}' --permission fio.fee@active
-./clio -u http://localhost:8889 push action fio.fee createfee '{"end_point":"remove_marketplace_config","type":"0","suf_amount":"0"}' --permission fio.fee@active
 ./clio -u http://localhost:8889 push action fio.fee createfee '{"end_point":"set_holder_account","type":"0","suf_amount":"0"}' --permission fio.fee@active
-./clio -u http://localhost:8889 push action fio.fee createfee '{"end_point":"set_marketplace_commission_fee","type":"0","suf_amount":"0"}' --permission fio.fee@active
-./clio -u http://localhost:8889 push action fio.fee createfee '{"end_point":"set_marketplace_listing_fee","type":"0","suf_amount":"0"}' --permission fio.fee@active
+./clio -u http://localhost:8889 push action fio.fee createfee '{"end_point":"update_marketplace_config","type":"0","suf_amount":"0"}' --permission fio.fee@active
