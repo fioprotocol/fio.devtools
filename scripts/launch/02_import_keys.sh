@@ -65,5 +65,6 @@ sleep 1s
 #comment out when not testing. This creates 100K wallet keys
 for ((n=0;n<100000;n++))
 do
- ./clio wallet create_key -n fio
+  ./clio wallet create_key -n fio
+  printf "$n"
 done
