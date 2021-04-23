@@ -60,3 +60,10 @@
 sleep 1s
 ./clio wallet import --private-key 5KF2B21xT5pE5G3LNA6LKJc6AP2pAd2EnfpAUrJH12SFV8NtvCD -n fio
 sleep 1s
+
+
+#comment out when not testing. This creates 100K wallet keys
+for ((n=0;n<100000;n++))
+do
+ ./clio wallet create_key -n fio
+done
