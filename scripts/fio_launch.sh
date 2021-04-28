@@ -59,7 +59,6 @@ if [ $mChoice == 2 ]; then
     cp ./contracts/fio.address/fio.address.abi ./build/contracts/fio.address/fio.address.abi
     cp ./contracts/fio.request.obt/fio.request.obt.abi ./build/contracts/fio.request.obt/fio.request.obt.abi
     cp ./contracts/fio.staking/fio.staking.abi ./build/contracts/fio.staking/fio.staking.abi
-    cp ./contracts/fio.oracle/fio.oracle.abi ./build/contracts/fio.oracle/fio.oracle.abi
     echo COMPLETE - READY TO LAUNCH
     exit -1
 fi
