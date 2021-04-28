@@ -44,12 +44,6 @@ if [ -f ../fio.contracts/build/contracts/fio.tpid/fio.tpid.wasm ]; then
         echo 'No wasm file found at $PWD/build/contracts/fio.tpid'
 fi
 
-if [ -f ../fio.contracts/build/contracts/fio.staking/fio.staking.wasm ]; then
-        fio_staking_name_path="$oldpath/../../fio.contracts/build/contracts/fio.staking"
-    else
-        echo 'No wasm file found at $PWD/build/contracts/fio.staking'
-fi
-
 if [ -f ../fio.contracts/build/contracts/fio.treasury/fio.treasury.wasm ]; then
         fio_treasury_name_path="$oldpath/../../fio.contracts/build/contracts/fio.treasury"
     else
@@ -82,6 +76,3 @@ sleep 1.5s
 ./clio -u http://localhost:8879 set contract -j fio.fee $fio_fee_name_path fio.fee.wasm fio.fee.abi --permission fio.fee@active
 sleep 1.5s
 ./clio -u http://localhost:8889 set contract -j fio.treasury $fio_treasury_name_path fio.treasury.wasm fio.treasury.abi --permission fio.treasury@active
-./clio -u http://localhost:8879 set contract -j fio.staking $fio_staking_name_path fio.staking.wasm fio.staking.abi -- permission fio.staking@active
-sleep 1.5s
-./clio -u http://localhost:8879 set contract -j fio.oracle $fio_oracle_name_path fio.oracle.wasm fio.oracle.abi --permission fio.oracle@active

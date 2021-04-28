@@ -22,9 +22,6 @@
 #make the fio.system into a privileged account
 ./clio -u http://localhost:8879 push action eosio setpriv '["fio.tpid",1]' -p eosio@active
 
-./clio -u http://localhost:8879 set account permission fio.staking active '{"threshold": 1,"keys": [{"key": "FIO7isxEua78KPVbGzKemH4nj2bWE52gqj8Hkac3tc7jKNvpfWzYS","weight": 1}],"accounts": [{"permission":{"actor":"fio.staking","permission":"eosio.code"},"weight":1}]}}' 4000000000 owner -p fio.staking@owner
-./clio -u http://localhost:8879 push action eosio setpriv '["fio.staking",1]' -p eosio@active
-
 ./clio -u http://localhost:8879 set account permission r41zuwovtn44 active '{"threshold":1,"keys":[{"key":"FIO5oBUYbtGTxMS66pPkjC2p8pbA3zCtc8XD4dq9fMut867GRdh82","weight":1}],"accounts":[{"permission":{"actor":"r41zuwovtn44","permission":"eosio.code"},"weight":1}]}' 4000000000 owner -p r41zuwovtn44@owner
 ./clio -u http://localhost:8879 push action eosio setpriv '["r41zuwovtn44",1]' -p eosio@active
 
