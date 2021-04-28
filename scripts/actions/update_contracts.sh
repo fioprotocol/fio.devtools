@@ -83,5 +83,3 @@ sleep 1.5s
 sleep 1.5s
 ./clio -u http://localhost:8889 set contract -j fio.treasury $fio_treasury_name_path fio.treasury.wasm fio.treasury.abi --permission fio.treasury@active
 ./clio -u http://localhost:8879 set contract -j fio.staking $fio_staking_name_path fio.staking.wasm fio.staking.abi -- permission fio.staking@active
-sleep 1.5s
-./clio -u http://localhost:8879 set contract -j fio.oracle $fio_oracle_name_path fio.oracle.wasm fio.oracle.abi --permission fio.oracle@active
