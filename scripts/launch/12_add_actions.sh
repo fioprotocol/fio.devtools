@@ -15,6 +15,8 @@ sleep 10s
 #added for FIP-21
 ./clio -u http://$host push action eosio addaction '{"action":"stakefio","contract":"fio.staking","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"incgstake","contract":"fio.staking","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"incgrewards","contract":"fio.staking","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"recorddaily","contract":"fio.staking","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"decgstake","contract":"fio.staking","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"incacctstake","contract":"fio.staking","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"decacctstake","contract":"fio.staking","actor":"eosio"}' --permission eosio
