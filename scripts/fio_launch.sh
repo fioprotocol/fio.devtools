@@ -288,6 +288,7 @@ if [ $mChoice == 1 ]; then
     $oldpath/launch/13_create_accounts_foundation.sh
     sleep 0.5
 
+    
     # LOCKED TESTING STARTS HERE
     # $oldpath/launch/14_create_locked_token_holder_accounts.sh
 #$oldpath/launch/15_create_locked_token_holder_test_accounts.sh
@@ -308,6 +309,8 @@ if [ $mChoice == 1 ]; then
     sleep 10s
     echo Setting Development Contracts over v2.0.0
     $oldpath/launch/19_bind_dev_contracts.sh
+    sleep 10s
+    $oldpath/launch/20_debug_staking.sh
 
 elif [ $mChoice == 3 ]; then
     read -p $'WARNING: ALL FILES ( WALLET & CHAIN ) WILL BE DELETED\n\nContinue? (1. Yes 2. No): ' bChoice
