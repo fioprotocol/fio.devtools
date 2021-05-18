@@ -14,6 +14,7 @@ sleep 10s
 # we run the first 15 so that we can test after the fork deadline, and prove the new logic is being used
 #added for FIP-21
 ./clio -u http://$host push action eosio addaction '{"action":"stakefio","contract":"fio.staking","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"unstakefio","contract":"fio.staking","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"incgstake","contract":"fio.staking","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"incgrewards","contract":"fio.staking","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"recorddaily","contract":"fio.staking","actor":"eosio"}' --permission eosio

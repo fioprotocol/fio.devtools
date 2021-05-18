@@ -55,12 +55,15 @@
 #Public key: 'FIO8WaU8ZT9YLixZZ41uHiYmkoRSZHgCR3anfL3YupC3boQpwvXqG'
 #private key 5JwmDtsJDTY2M3h9bsXZDD2tHPj3UgQf7FVpptaLeC7NzxeXnXu
 #FIO Public Address (actor name): 'xbfugtkzvowu'
-./clio -u http://localhost:8889 push action -j fio.token trnsfiopubky '{"payee_public_key": "'FIO8WaU8ZT9YLixZZ41uHiYmkoRSZHgCR3anfL3YupC3boQpwvXqG'", "amount": 10000000000000, "max_fee": "40000000000", "actor": "eosio","tpid":""}' -p eosio@active
+./clio -u http://localhost:8889 push action -j fio.token trnsfiopubky '{"payee_public_key": "'FIO8WaU8ZT9YLixZZ41uHiYmkoRSZHgCR3anfL3YupC3boQpwvXqG'", "amount": 70750650000000000, "max_fee": "40000000000", "actor": "eosio","tpid":""}' -p eosio@active
 
 # issue locked token grant to xbfugtkzvowu as lock type 1 in the amount of 9000000000000 9000 FIO
-./clio -u http://localhost:8889 push action -j eosio addlocked '{"owner":"xbfugtkzvowu","amount":9000000000000,"locktype":1}' -p eosio@active
+./clio -u http://localhost:8889 push action -j eosio addlocked '{"owner":"xbfugtkzvowu","amount":70750650000000000,"locktype":1}' -p eosio@active
 
 ./clio wallet import --private-key 5JwmDtsJDTY2M3h9bsXZDD2tHPj3UgQf7FVpptaLeC7NzxeXnXu  -n fio
+
+# give this account a fio address, useful for calls to the API.
+./clio -u http://localhost:8889 push action -j fio.address regaddress '{"fio_address":"genesis1@dapixdev","owner_fio_public_key":"FIO8WaU8ZT9YLixZZ41uHiYmkoRSZHgCR3anfL3YupC3boQpwvXqG","max_fee":"40000000000","actor":"htjonrkf1lgs","tpid":""}' --permission htjonrkf1lgs@active
 
 #command to vote, this triggers unlocking of tokens
 #../fio/build/bin/clio -u http://localhost:8889 push action -j eosio voteproducer '{"producers":["bp1@dapixdev"],"fio_address":"","actor":"xbfugtkzvowu","max_fee":"40000000000"}' -p xbfugtkzvowu@active
