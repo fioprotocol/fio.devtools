@@ -16,16 +16,19 @@
 #   verify the contents of the lock tokens table after unstake (the lock should be adapted and contain one new lock period)
 #we will test that the staking adapts the locks when unstaking occurs.
 #transfer locked tokens to test account
-./clio -u http://localhost:8889 push action -j fio.token trnsloctoks '{"payee_public_key":"FIO5xGfMyRCVSAhQW1ZAngvvJmwD12NwTf22sgvJoNT1YXcvsZ1Ei", "can_vote":1,"periods":[{"duration":1800,"percent":50.52},{"duration":777600,"percent":49.48}], "amount":100000000000, "max_fee":400000000000, "actor":"htjonrkf1lgs", "tpid":""}' -p htjonrkf1lgs@active
+./clio -u http://localhost:8889 push action -j fio.token trnsloctoks '{"payee_public_key":"FIO5xGfMyRCVSAhQW1ZAngvvJmwD12NwTf22sgvJoNT1YXcvsZ1Ei", "can_vote":1,"periods":[{"duration":120,"percent":50.52},{"duration":1800,"percent":47.48},{"duration":1204800,"percent":2.0}], "amount":10000000000000, "max_fee":400000000000, "actor":"eosio", "tpid":""}' -p eosio@active
 
 #Transfer 100 more fio to pre-existing locked token account
-./clio -u http://localhost:8889 push action -j fio.token trnsfiopubky '{"payee_public_key": "FIO5xGfMyRCVSAhQW1ZAngvvJmwD12NwTf22sgvJoNT1YXcvsZ1Ei", "amount": 100000000000, "max_fee": "40000000000", "actor": "eosio","tpid":""}' -p eosio@active
+#./clio -u http://localhost:8889 push action -j fio.token trnsfiopubky '{"payee_public_key": "FIO5xGfMyRCVSAhQW1ZAngvvJmwD12NwTf22sgvJoNT1YXcvsZ1Ei", "amount": 100000000000, "max_fee": "40000000000", "actor": "eosio","tpid":""}' -p eosio@active
 
 #Import private key of existing locked token holder
 ./clio wallet import --private-key 5Jo3XKAh4yu8xyvkaRXjPLeSW4RWmcZwGF5EuoZTQ8CqHP8K5tq  -n fio
 
+# give this account a fio address, useful for calls to the API.
+./clio -u http://localhost:8889 push action -j fio.address regaddress '{"fio_address":"general1@dapixdev","owner_fio_public_key":"FIO5xGfMyRCVSAhQW1ZAngvvJmwD12NwTf22sgvJoNT1YXcvsZ1Ei","max_fee":"40000000000","actor":"htjonrkf1lgs","tpid":""}' --permission htjonrkf1lgs@active
+
 #Vote as pre existing locked token holder
-./clio -u http://localhost:8889 push action -j eosio voteproducer '{"producers":["bp1@dapixdev"],"fio_address":"","actor":"gcz2iidl51fy","max_fee":"40000000000"}' -p gcz2iidl51fy@active
+./clio -u http://localhost:8889 push action -j eosio voteproducer '{"producers":["bp1@dapixdev"],"fio_address":"general1@dapixdev","actor":"gcz2iidl51fy","max_fee":"40000000000"}' -p gcz2iidl51fy@active
 
 #Stake as pre existing locked token holder
 #./clio -u http://localhost:8889 push action -j fio.staking stakefio '{"fio_address":"","amount":100000000000,"max_fee":400000000000, "tpid":"","actor":"gcz2iidl51fy"}' -p gcz2iidl51fy@active
@@ -55,10 +58,13 @@
 #Public key: 'FIO8WaU8ZT9YLixZZ41uHiYmkoRSZHgCR3anfL3YupC3boQpwvXqG'
 #private key 5JwmDtsJDTY2M3h9bsXZDD2tHPj3UgQf7FVpptaLeC7NzxeXnXu
 #FIO Public Address (actor name): 'xbfugtkzvowu'
-./clio -u http://localhost:8889 push action -j fio.token trnsfiopubky '{"payee_public_key": "'FIO8WaU8ZT9YLixZZ41uHiYmkoRSZHgCR3anfL3YupC3boQpwvXqG'", "amount": 70750650000000000, "max_fee": "40000000000", "actor": "eosio","tpid":""}' -p eosio@active
+./clio -u http://localhost:8889 push action -j fio.token trnsfiopubky '{"payee_public_key": "'FIO8WaU8ZT9YLixZZ41uHiYmkoRSZHgCR3anfL3YupC3boQpwvXqG'", "amount": 7075065123456789, "max_fee": "40000000000", "actor": "eosio","tpid":""}' -p eosio@active
+
+#./clio -u http://localhost:8889 push action -j fio.token trnsfiopubky '{"payee_public_key": "'FIO8WaU8ZT9YLixZZ41uHiYmkoRSZHgCR3anfL3YupC3boQpwvXqG'", "amount": 7000, "max_fee": "40000000000", "actor": "eosio","tpid":""}' -p eosio@active
 
 # issue locked token grant to xbfugtkzvowu as lock type 1 in the amount of 9000000000000 9000 FIO
-./clio -u http://localhost:8889 push action -j eosio addlocked '{"owner":"xbfugtkzvowu","amount":70750650000000000,"locktype":1}' -p eosio@active
+#./clio -u http://localhost:8889 push action -j eosio addlocked '{"owner":"xbfugtkzvowu","amount":70750650000000000,"locktype":1}' -p eosio@active
+./clio -u http://localhost:8889 push action -j eosio addlocked '{"owner":"xbfugtkzvowu","amount":7075065123456789,"locktype":1}' -p eosio@active
 
 ./clio wallet import --private-key 5JwmDtsJDTY2M3h9bsXZDD2tHPj3UgQf7FVpptaLeC7NzxeXnXu  -n fio
 
