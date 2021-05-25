@@ -2,12 +2,11 @@
 
 choice=0
 
-clio wallet unlock -n fio --password PW5KK8y8Bb537NuY5UMo5WgC6Ca116QN1EKvYAwnQDoDX6FLJGBcV
+clio wallet unlock -n fio --password PW5KXu2xVFsqY6oAyrpzVTrRxTjtKgmQ5LRDSujXmF3KmjSDLZyzE
 
 while [ $choice -ne "99" ]; do
   read -p $'
 2. Set Marketplace Config
-4. Change Settings
 5. List Domains
 6. Remove Domains
 7. Buy Domains
@@ -22,29 +21,17 @@ Choose(#):' choice
   if [ $choice == 2 ]; then
     # region set initial marketplace config
     # echo 'Creating marketplace called "marketplace" with a commission fee of 15% and a flat 5FIO listing fee'
+#    clio -u http://localhost:8889 push action fio.escrow setmrkplcfg '{
+#      "owner": "5ufabtv13hv4",
+#    }' -p fio.escrow@active
     clio -u http://localhost:8889 push action fio.escrow setmrkplcfg '{
-      "owner": "5ufabtv13hv4",
-    }' -p fio.escrow@active
-    clio -u http://localhost:8889 push action fio.escrow updtmkplcfg '{
       "actor":"5ufabtv13hv4",
       "listing_fee": "15000000000",
       "commission_fee": 15,
       "max_fee": "1000000000",
-      "e_break": 0,
-      "tpid": ""
-		}' -p 5ufabtv13hv4@active
+      "e_break": 0
+		}' -p eosio
     # endregion
-  elif [ $choice == 4 ]; then
-    # region Change Settings
-    clio -u http://localhost:8889 push action fio.escrow updtmkplcfg '{
-      "actor":"5ufabtv13hv4",
-      "listing_fee": "5000000000",
-      "commission_fee": 3,
-      "max_fee": "1000000000",
-      "e_break": 0,
-      "tpid": ""
-		}' -p 5ufabtv13hv4@active
-		# endregion
   elif [ $choice == 5 ]; then
     # region list domains for sale
     echo 'listing domains for sale'
@@ -160,35 +147,33 @@ Choose(#):' choice
     #region 'buying domain'
     clio -u http://localhost:8889 push action fio.escrow buydomain '{
       "actor":"g4oc1qkysew2",
-      "sale_id": 1,
-      "fio_domain":"anchor",
-      "buy_price":180000000000,
+      "sale_id": 2,
+      "fio_domain":"blah",
+      "max_buy_price":88000000000,
       "max_fee":1000000000,
       "tpid":""
      }' -p g4oc1qkysew2@active
     #endregion
   elif [ $choice == 8 ]; then
     # region Cancel All Domain
-    clio -u http://localhost:8889 push action fio.escrow cxlistdomain '{"actor":"wjeo4abnk4c2", "fio_domain":"awesome"}' -p wjeo4abnk4c2@active
-    clio -u http://localhost:8889 push action fio.escrow cxlistdomain '{"actor":"wjeo4abnk4c2", "fio_domain":"thomas"}' -p wjeo4abnk4c2@active
-    clio -u http://localhost:8889 push action fio.escrow cxlistdomain '{"actor":"wjeo4abnk4c2", "fio_domain":"blah"}' -p wjeo4abnk4c2@active
-    clio -u http://localhost:8889 push action fio.escrow cxlistdomain '{"actor":"wjeo4abnk4c2", "fio_domain":"doctor"}' -p wjeo4abnk4c2@active
-    clio -u http://localhost:8889 push action fio.escrow cxlistdomain '{"actor":"wjeo4abnk4c2", "fio_domain":"anchor"}' -p wjeo4abnk4c2@active
-    clio -u http://localhost:8889 push action fio.escrow cxlistdomain '{"actor":"wjeo4abnk4c2", "fio_domain":"domain1"}' -p wjeo4abnk4c2@active
-    clio -u http://localhost:8889 push action fio.escrow cxlistdomain '{"actor":"wjeo4abnk4c2", "fio_domain":"domain2"}' -p wjeo4abnk4c2@active
-    clio -u http://localhost:8889 push action fio.escrow cxlistdomain '{"actor":"wjeo4abnk4c2", "fio_domain":"domain3"}' -p wjeo4abnk4c2@active
-    clio -u http://localhost:8889 push action fio.escrow cxlistdomain '{"actor":"wjeo4abnk4c2", "fio_domain":"domain4"}' -p wjeo4abnk4c2@active
+    clio -u http://localhost:8889 push action fio.escrow cxlistdomain '{"actor":"wjeo4abnk4c2", "fio_domain":"awesome","max_fee":1000000000, "tpid":""}' -p wjeo4abnk4c2@active
+    clio -u http://localhost:8889 push action fio.escrow cxlistdomain '{"actor":"wjeo4abnk4c2", "fio_domain":"doctor","max_fee":1000000000, "tpid":""}' -p wjeo4abnk4c2@active
+    clio -u http://localhost:8889 push action fio.escrow cxlistdomain '{"actor":"wjeo4abnk4c2", "fio_domain":"anchor","max_fee":1000000000, "tpid":""}' -p wjeo4abnk4c2@active
+    clio -u http://localhost:8889 push action fio.escrow cxlistdomain '{"actor":"wjeo4abnk4c2", "fio_domain":"domain1","max_fee":1000000000, "tpid":""}' -p wjeo4abnk4c2@active
+    clio -u http://localhost:8889 push action fio.escrow cxlistdomain '{"actor":"wjeo4abnk4c2", "fio_domain":"domain2","max_fee":1000000000, "tpid":""}' -p wjeo4abnk4c2@active
+    clio -u http://localhost:8889 push action fio.escrow cxlistdomain '{"actor":"wjeo4abnk4c2", "fio_domain":"domain3","max_fee":1000000000, "tpid":""}' -p wjeo4abnk4c2@active
+    clio -u http://localhost:8889 push action fio.escrow cxlistdomain '{"actor":"wjeo4abnk4c2", "fio_domain":"domain4","max_fee":1000000000, "tpid":""}' -p wjeo4abnk4c2@active
     # endregion
   elif [ $choice == 9 ]; then
     #region set ebreak
-    clio -u http://localhost:8889 push action fio.escrow updtmkplcfg '{
+    clio -u http://localhost:8889 push action fio.escrow setmrkplcfg '{
       "actor":"5ufabtv13hv4",
-      "listing_fee": "5000000000",
-      "commission_fee": 3,
+      "listing_fee": "15000000000",
+      "commission_fee": 5,
       "max_fee": "1000000000",
-      "e_break": 1,
+      "e_break": 0,
       "tpid": ""
-		}' -p fio.escrow@active
+		}' -p 5ufabtv13hv4@active
 		#endregion
   elif [ $choice == 10 ]; then
     # region Test Suite
