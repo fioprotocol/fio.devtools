@@ -60,5 +60,8 @@ sleep 10s
 ./clio -u http://$host push action eosio addaction '{"action":"newfundsreq","contract":"fio.reqobt","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"rewardspaid","contract":"fio.tpid","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"updatetpid","contract":"fio.tpid","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"retire","contract":"fio.token","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"updlocks","contract":"eosio","actor":"eosio"}' --permission eosio
+
 # USED FOR TESTING:
 ./clio -u http://$host push action eosio addaction '{"action":"migrtrx","contract":"fio.reqobt","actor":"eosio"}' --permission eosio
