@@ -84,6 +84,9 @@
 
 ./clio -u http://localhost:8889 push action -j fio.address regaddress '{"fio_address":"stake@dapixdev","owner_fio_public_key":"","max_fee":"40000000000","actor":"ni1eyydbdpht","tpid":""}' --permission ni1eyydbdpht@active
 
+#make casey a proxy for testing of auto proxy
+./clio -u http://localhost:8889 push action -j eosio regproxy '{"fio_address":"casey@dapixdev","actor":"r41zuwovtn44","max_fee":"40000000000"}' --permission r41zuwovtn44@active
+
 
 
 
