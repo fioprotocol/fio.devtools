@@ -312,9 +312,25 @@ sleep 1
 echo "create RETIRETEST1"
 sleep 1
 
-# Create locked token account RETIRETEST1
+# Create locked token account RETIRETEST2
 #Public key: 'FIO6py1nZ3Vk61oqSAVudh79apo5vkDaFkDHQeHF45EidYmuYUT38'
 #FIO Public Address (actor name): 'z4qqs4cugjfa'
 ./clio -u http://localhost:8889 push action -j fio.token trnsfiopubky '{"payee_public_key": "'FIO6py1nZ3Vk61oqSAVudh79apo5vkDaFkDHQeHF45EidYmuYUT38'", "amount": 1000000000000, "max_fee": "1000000000000", "actor": "eosio","tpid":""}' -p eosio@active
 echo "create RETIRETEST2"
+sleep 1
+
+# Create locked token account RETIRETEST3
+# Public key: 'FIO6kifTDXvnbS8T7Bvuk4zL3d7bysiZGV2s2vQpTnf5oT31CFqAu'
+# FIO Public Address (actor name): pzjjgjwwdm5v'
+
+./clio -u http://localhost:8889 push action -j fio.token trnsfiopubky '{"payee_public_key": "'FIO6kifTDXvnbS8T7Bvuk4zL3d7bysiZGV2s2vQpTnf5oT31CFqAu'", "amount": 1000000000000, "max_fee": "1000000000000", "actor": "eosio","tpid":""}' -p eosio@active
+echo "create RETIRETEST3"
+sleep 1
+
+# Create locked token account RETIRETEST4
+# Public key: 'FIO6AsajVZBdmWBuxTUFURqGBk822L11q8BpWH8vBXyteiGeU8mRX'
+# FIO Public Address (actor name): c5mkju354ibi'
+
+./clio -u http://localhost:8889 push action -j fio.token trnsfiopubky '{"payee_public_key": "'FIO6AsajVZBdmWBuxTUFURqGBk822L11q8BpWH8vBXyteiGeU8mRX'", "amount": 102202000000000, "max_fee": "1000000000000", "actor": "eosio","tpid":""}' -p eosio@active
+echo "create RETIRETEST4"
 sleep 1
