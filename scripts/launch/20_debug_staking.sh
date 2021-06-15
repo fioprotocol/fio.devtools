@@ -16,7 +16,7 @@
 #   verify the contents of the lock tokens table after unstake (the lock should be adapted and contain one new lock period)
 #we will test that the staking adapts the locks when unstaking occurs.
 #transfer locked tokens to test account
-./clio -u http://localhost:8889 push action -j fio.token trnsloctoks '{"payee_public_key":"FIO5xGfMyRCVSAhQW1ZAngvvJmwD12NwTf22sgvJoNT1YXcvsZ1Ei", "can_vote":1,"periods":[{"duration":120,"percent":50.52},{"duration":1800,"percent":47.48},{"duration":1204800,"percent":2.0}], "amount":10000000000000, "max_fee":400000000000, "actor":"eosio", "tpid":""}' -p eosio@active
+./clio -u http://localhost:8889 push action -j fio.token trnsloctoks '{"payee_public_key":"FIO5xGfMyRCVSAhQW1ZAngvvJmwD12NwTf22sgvJoNT1YXcvsZ1Ei", "can_vote":1,"periods":[{"duration":120,"amount":5000000000000},{"duration":180,"amount":4000000000000},{"duration":1204800,"amount":1000000000000}], "amount":10000000000000, "max_fee":400000000000, "actor":"eosio", "tpid":""}' -p eosio@active
 
 #Transfer 100 more fio to pre-existing locked token account
 #./clio -u http://localhost:8889 push action -j fio.token trnsfiopubky '{"payee_public_key": "FIO5xGfMyRCVSAhQW1ZAngvvJmwD12NwTf22sgvJoNT1YXcvsZ1Ei", "amount": 100000000000, "max_fee": "40000000000", "actor": "eosio","tpid":""}' -p eosio@active
@@ -73,6 +73,20 @@
 
 #command to vote, this triggers unlocking of tokens
 #../fio/build/bin/clio -u http://localhost:8889 push action -j eosio voteproducer '{"producers":["bp1@dapixdev"],"fio_address":"","actor":"xbfugtkzvowu","max_fee":"40000000000"}' -p xbfugtkzvowu@active
+
+#create an account with 1M FIO
+#Private key: 5Ke8oZdtefgVEC6GDUeo7FW9xC7WgdxC9Fi92b3YmTrPynWb4Rb
+#Public key: FIO6ydLCnUfsEMpbp35kF8oaUbHvcmLEyswMUF75C4FQAm78DUhAi
+#FIO Public Address (actor name): ni1eyydbdpht
+./clio -u http://localhost:8889 push action -j fio.token trnsfiopubky '{"payee_public_key": "'FIO6ydLCnUfsEMpbp35kF8oaUbHvcmLEyswMUF75C4FQAm78DUhAi'", "amount": 1000000000000000, "max_fee": "40000000000", "actor": "eosio","tpid":""}' -p eosio@active
+
+./clio wallet import --private-key 5Ke8oZdtefgVEC6GDUeo7FW9xC7WgdxC9Fi92b3YmTrPynWb4Rb  -n fio
+
+./clio -u http://localhost:8889 push action -j fio.address regaddress '{"fio_address":"stake@dapixdev","owner_fio_public_key":"","max_fee":"40000000000","actor":"ni1eyydbdpht","tpid":""}' --permission ni1eyydbdpht@active
+
+#make casey a proxy for testing of auto proxy
+./clio -u http://localhost:8889 push action -j eosio regproxy '{"fio_address":"casey@dapixdev","actor":"r41zuwovtn44","max_fee":"40000000000"}' --permission r41zuwovtn44@active
+
 
 
 
