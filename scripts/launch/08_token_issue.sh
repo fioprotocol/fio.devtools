@@ -23,4 +23,4 @@
 ./clio -u http://localhost:8879 push action -j fio.token transfer '{"from": "eosio", "to": "r41zuwovtn44", "quantity": "999999.000000000 FIO", "memo": "launcher test transfer"}' -p eosio@active
 
 #Faucet
-./clio -u http://localhost:8879 push action -j fio.token issue '["qhh25sqpktwh","150000000.000000000 FIO","memo"]' -p eosio@active
+./clio -u http://localhost:8879 push action -j fio.token issue '["qhh25sqpktwh","200000000.000000000 FIO","memo"]' -p eosio@active
