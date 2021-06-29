@@ -173,3 +173,14 @@ sleep 1
 ./clio -u http://localhost:8889 push action -j eosio addlocked '{"owner":"rskvsotqyjuf","amount":20000000000000,"locktype":4}' -p eosio@active
 echo "create t4u7 grant"
 sleep 1
+
+
+# RETIRETEST1 issue locked token grant to jbx4oaspu1h1 as lock type 4 in the amount of 10000000000000
+./clio -u http://localhost:8889 push action -j eosio addlocked '{"owner":"jbx4oaspu1h1","amount":1000000000000,"locktype":4}' -p eosio@active
+echo "create RETIRETEST1 grant"
+sleep 1
+
+# RETIRETEST2 issue locked token grant to jbx4oaspu1h1 as lock type 1 in the amount of 10000000000000
+./clio -u http://localhost:8889 push action -j eosio addlocked '{"owner":"z4qqs4cugjfa","amount":1000000000000,"locktype":1}' -p eosio@active
+echo "create RETIRETEST2 grant"
+sleep 1
