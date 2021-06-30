@@ -300,7 +300,7 @@ if [ $mChoice == 1 ]; then
     echo Setting Development Contracts over v2.0.0
     $oldpath/launch/19_bind_dev_contracts.sh
 
-    $oldpath/launch/misc/oracle_testing.sh
+    # $oldpath/launch/misc/oracle_testing.sh
 
 elif [ $mChoice == 3 ]; then
     read -p $'WARNING: ALL FILES ( WALLET & CHAIN ) WILL BE DELETED\n\nContinue? (1. Yes 2. No): ' bChoice
