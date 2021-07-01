@@ -8,6 +8,7 @@
 #foundation msig account, this becomes useless when the msig is created.
 ./clio wallet import --private-key 5KjKZyDuk1t5b8UGpjbqzmSYZViUdcPVgfJUsDjPGTKdHUtdHvt -n fio
 ./clio wallet import --private-key 5JxUfAkXoCQdeZKNMhXEqRkFcZMYa3KR3vbie7SKsPv6rS3pCHg -n fio
+# eosio
 ./clio wallet import --private-key 5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3 -n fio
 ./clio wallet import --private-key 5KDQzVMaD1iUdYDrA2PNK3qEP7zNbUf8D41ZVKqGzZ117PdM5Ap -n fio
 ./clio wallet import --private-key 5Jr2SxVH6bh6QcJerJrGKvNAp7zfemN98rp4BfzFonkJQmcumvP -n fio
