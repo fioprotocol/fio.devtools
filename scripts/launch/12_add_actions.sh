@@ -8,9 +8,21 @@
 
 
 host='localhost:8889'
+echo "EDEDEDEDED adding actions"
+sleep 10s
 
 # we run the first 15 so that we can test after the fork deadline, and prove the new logic is being used
-
+#added for FIP-21
+./clio -u http://$host push action eosio addaction '{"action":"stakefio","contract":"fio.staking","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"unstakefio","contract":"fio.staking","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"incgstake","contract":"fio.staking","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"incgrewards","contract":"fio.staking","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"recorddaily","contract":"fio.staking","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"decgstake","contract":"fio.staking","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"incacctstake","contract":"fio.staking","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"decacctstake","contract":"fio.staking","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"paystake","contract":"fio.treasury","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"modgenlocked","contract":"eosio","actor":"eosio"}' --permission eosio
 # added for FIP-6 and FIP-21
 ./clio -u http://$host push action eosio addaction '{"action":"trnsloctoks","contract":"fio.token","actor":"eosio"}' --permission eosio
 # added for FIP-6 and FIP-21
@@ -48,6 +60,5 @@ host='localhost:8889'
 ./clio -u http://$host push action eosio addaction '{"action":"newfundsreq","contract":"fio.reqobt","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"rewardspaid","contract":"fio.tpid","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"updatetpid","contract":"fio.tpid","actor":"eosio"}' --permission eosio
-
 # USED FOR TESTING:
 ./clio -u http://$host push action eosio addaction '{"action":"migrtrx","contract":"fio.reqobt","actor":"eosio"}' --permission eosio
