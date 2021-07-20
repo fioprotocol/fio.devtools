@@ -38,3 +38,4 @@
 ./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"msig_invalidate","type":"0","suf_amount":"400000000"}' --permission fio.fee@active
 
 ./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"wrap_fio_tokens","type":"0","suf_amount":"400000000"}' --permission fio.fee@active
+./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"wrap_fio_domain","type":"0","suf_amount":"400000000"}' --permission fio.fee@active
