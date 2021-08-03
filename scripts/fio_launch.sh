@@ -309,8 +309,8 @@ $oldpath/launch/15_create_locked_token_holder_test_accounts.sh
     sleep 10s
     echo Setting Development Contracts over v2.0.0
     $oldpath/launch/19_bind_dev_contracts.sh
-    sleep 10s
-    $oldpath/launch/20_debug_staking.sh
+   # sleep 10s
+   # $oldpath/launch/20_debug_staking.sh
 
 elif [ $mChoice == 3 ]; then
     read -p $'WARNING: ALL FILES ( WALLET & CHAIN ) WILL BE DELETED\n\nContinue? (1. Yes 2. No): ' bChoice
