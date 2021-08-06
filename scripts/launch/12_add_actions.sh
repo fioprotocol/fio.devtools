@@ -53,3 +53,4 @@ host='localhost:8889'
 ./clio -u http://$host push action eosio addaction '{"action":"migrtrx","contract":"fio.reqobt","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"addnft","contract":"fio.address","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"remnft","contract":"fio.address","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"remallnfts","contract":"fio.address","actor":"eosio"}' --permission eosio
