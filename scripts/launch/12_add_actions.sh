@@ -58,6 +58,7 @@ host='localhost:8889'
 ./clio -u http://$host push action eosio addaction '{"action":"unregoracle","contract":"fio.oracle","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"setoraclefee","contract":"fio.oracle","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"wrapdomain","contract":"fio.oracle","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"xferescrow","contract":"fio.address","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"unwrapdomain","contract":"fio.oracle","actor":"eosio"}' --permission eosio
 
 # USED FOR TESTING:
