@@ -8,7 +8,7 @@ function prereqs() {
     echo "  - the current user must be added to the 'docker' group: 'sudo usermod -a -G docker $(whoami)' and log back in to pick up new permissions"
     echo
     read -N 1 -p "Would you like to install packages and set permissions now? [y/N] " RUN_SETUP
-    [ "$RUN_SETUP" == "y" || "$RUN_SETUP" == "Y" ] || kill 0
+    [ "$RUN_SETUP" == "y" ] || [ "$RUN_SETUP" == "Y" ] || kill 0
     sudo apt-get -y install docker.io docker-compose jq
     sudo usermod -a -G docker $(whoami)
     echo "Re-run the script after logging out and back in, or run 'newgrp -' to start a subshell with updated permissions"
