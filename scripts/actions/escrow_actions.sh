@@ -2,7 +2,7 @@
 
 choice=0
 
-clio wallet unlock -n fio --password PW5KXu2xVFsqY6oAyrpzVTrRxTjtKgmQ5LRDSujXmF3KmjSDLZyzE
+clio wallet unlock -n fio --password PW5JPe9VnSw29H3TfWChfRnSr1xTbGpvMKbYuFK4hREM1Gwhv1EJf
 
 while [ $choice -ne "99" ]; do
   read -p $'
@@ -113,26 +113,90 @@ Choose(#):' choice
       "tpid":""
     }' -p wjeo4abnk4c2@active
     clio -u http://localhost:8889 push action fio.escrow listdomain '{
-      "actor":"wjeo4abnk4c2",
-      "fio_domain":"domain3",
+      "actor":"g4oc1qkysew2",
+      "fio_domain":"spotty",
       "sale_price":"3000000000000",
       "max_fee":1000000000,
       "tpid":""
-    }' -p wjeo4abnk4c2@active
+    }' -p g4oc1qkysew2@active
     clio -u http://localhost:8889 push action fio.escrow listdomain '{
-      "actor":"wjeo4abnk4c2",
-      "fio_domain":"domain4",
+      "actor":"g4oc1qkysew2",
+      "fio_domain":"playground",
       "sale_price":"3000000000000",
       "max_fee":1000000000,
       "tpid":""
-    }' -p wjeo4abnk4c2@active
+    }' -p g4oc1qkysew2@active
     clio -u http://localhost:8889 push action fio.escrow listdomain '{
-      "actor":"wjeo4abnk4c2",
-      "fio_domain":"domain5",
+      "actor":"g4oc1qkysew2",
+      "fio_domain":"hat",
       "sale_price":"3000000000000",
       "max_fee":1000000000,
       "tpid":""
-    }' -p wjeo4abnk4c2@active
+    }' -p g4oc1qkysew2@active
+    clio -u http://localhost:8889 push action fio.escrow listdomain '{
+      "actor":"g4oc1qkysew2",
+      "fio_domain":"jar",
+      "sale_price":"3000000000000",
+      "max_fee":1000000000,
+      "tpid":""
+    }' -p g4oc1qkysew2@active
+    clio -u http://localhost:8889 push action fio.escrow listdomain '{
+      "actor":"g4oc1qkysew2",
+      "fio_domain":"craven",
+      "sale_price":"3000000000000",
+      "max_fee":1000000000,
+      "tpid":""
+    }' -p g4oc1qkysew2@active
+    clio -u http://localhost:8889 push action fio.escrow listdomain '{
+      "actor":"g4oc1qkysew2",
+      "fio_domain":"grease",
+      "sale_price":"3000000000000",
+      "max_fee":1000000000,
+      "tpid":""
+    }' -p g4oc1qkysew2@active
+    clio -u http://localhost:8889 push action fio.escrow listdomain '{
+      "actor":"g4oc1qkysew2",
+      "fio_domain":"upbeat",
+      "sale_price":"3000000000000",
+      "max_fee":1000000000,
+      "tpid":""
+    }' -p g4oc1qkysew2@active
+    clio -u http://localhost:8889 push action fio.escrow listdomain '{
+      "actor":"g4oc1qkysew2",
+      "fio_domain":"sister",
+      "sale_price":"3000000000000",
+      "max_fee":1000000000,
+      "tpid":""
+    }' -p g4oc1qkysew2@active
+    clio -u http://localhost:8889 push action fio.escrow listdomain '{
+      "actor":"ltllcgohc4op",
+      "fio_domain":"request",
+      "sale_price":"822000000000",
+      "max_fee":1000000000,
+      "tpid":""
+    }' -p ltllcgohc4op@active
+    clio -u http://localhost:8889 push action fio.escrow listdomain '{
+      "actor":"ltllcgohc4op",
+      "fio_domain":"boat",
+      "sale_price":"1100000000000",
+      "max_fee":1000000000,
+      "tpid":""
+    }' -p ltllcgohc4op@active
+    clio -u http://localhost:8889 push action fio.escrow listdomain '{
+      "actor":"ltllcgohc4op",
+      "fio_domain":"space",
+      "sale_price":"-200000000000",
+      "max_fee":1000000000,
+      "tpid":""
+    }' -p ltllcgohc4op@active
+    clio -u http://localhost:8889 push action fio.escrow listdomain '{
+      "actor":"ltllcgohc4op",
+      "fio_domain":"numberless",
+      "sale_price":"-200000000000",
+      "max_fee":1000000000,
+      "tpid":""
+    }' -p ltllcgohc4op@active
+
     #endregion
   elif [ $choice == 6 ]; then
     #region  'removing listings'
