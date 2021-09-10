@@ -300,11 +300,12 @@
 ./clio -u http://localhost:8889 push action fio.address regdomain '{"fio_domain":"list","owner_fio_public_key":"","max_fee":"800000000000","actor":"ltllcgohc4op","tpid":""}' --permission ltllcgohc4op@active
 ./clio -u http://localhost:8889 push action fio.address regdomain '{"fio_domain":"spooky","owner_fio_public_key":"","max_fee":"800000000000","actor":"ltllcgohc4op","tpid":""}' --permission ltllcgohc4op@active
 ./clio -u http://localhost:8889 push action fio.address regdomain '{"fio_domain":"business","owner_fio_public_key":"","max_fee":"800000000000","actor":"ltllcgohc4op","tpid":""}' --permission ltllcgohc4op@active
-./clio -u http://localhost:8889 push action fio.address regdomain '{"fio_domain":"mask","owner_fio_public_key":"","max_fee":"800000000000","actor":"ltllcgohc4op","tpid":""}' --permission ltllcgohc4op@active
 ./clio -u http://localhost:8889 push action fio.address regdomain '{"fio_domain":"inject","owner_fio_public_key":"","max_fee":"800000000000","actor":"ltllcgohc4op","tpid":""}' --permission ltllcgohc4op@active
 ./clio -u http://localhost:8889 push action fio.address regdomain '{"fio_domain":"realize","owner_fio_public_key":"","max_fee":"800000000000","actor":"ltllcgohc4op","tpid":""}' --permission ltllcgohc4op@active
 ./clio -u http://localhost:8889 push action fio.address regdomain '{"fio_domain":"alcoholic","owner_fio_public_key":"","max_fee":"800000000000","actor":"ltllcgohc4op","tpid":""}' --permission ltllcgohc4op@active
 ./clio -u http://localhost:8889 push action fio.address regdomain '{"fio_domain":"sisters","owner_fio_public_key":"","max_fee":"800000000000","actor":"ltllcgohc4op","tpid":""}' --permission ltllcgohc4op@active
-./clio -u http://localhost:8889 push action fio.address regdomain '{"fio_domain":"legs","owner_fio_public_key":"","max_fee":"800000000000","actor":"ltllcgohc4op","tpid":""}' --permission ltllcgohc4op@active
+./clio -u http://localhost:8889 push action fio.address regdomain '{"fio_domain":"maskmaskmaskmaskmaskmaskmaskmaskmaskmask","owner_fio_public_key":"","max_fee":"800000000000","actor":"g4oc1qkysew2","tpid":""}' --permission g4oc1qkysew2@active
+./clio -u http://localhost:8889 push action fio.address regdomain '{"fio_domain":"legslegslegslegslegslegslegslegslegslegslegslegslegslegs","owner_fio_public_key":"","max_fee":"800000000000","actor":"ltllcgohc4op","tpid":""}' --permission ltllcgohc4op@active
+./clio -u http://localhost:8889 push action fio.address regdomain '{"fio_domain":"superficialsuperficialsuperficialsuperficialsuperficialsuperfi","owner_fio_public_key":"","max_fee":"800000000000","actor":"wjeo4abnk4c2","tpid":""}' --permission wjeo4abnk4c2@active
 
 sleep 0.5
