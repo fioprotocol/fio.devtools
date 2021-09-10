@@ -26,8 +26,8 @@ Choose(#):' choice
 #    }' -p fio.escrow@active
     clio -u http://localhost:8889 push action fio.escrow setmrkplcfg '{
       "actor":"5ufabtv13hv4",
-      "listing_fee": "15000000000",
-      "commission_fee": 15,
+      "listing_fee": "5000000000",
+      "commission_fee": 10,
       "max_fee": "1000000000",
       "e_break": 0
 		}' -p eosio
