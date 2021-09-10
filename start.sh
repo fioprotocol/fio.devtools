@@ -19,12 +19,12 @@ DEBUG=false #true sends debug output to log/debug.log file
 if [ -f bin/clio ]; then
     rm -rf bin/clio;
     rm -rf bin/nodeos;
-    rm -rf bin/keosd;
+    rm -rf bin/fio-wallet;
 fi
 
 cp ../fio/build/bin/clio ./bin/clio
 cp ../fio/build/bin/nodeos ./bin/nodeos
-cp ../fio/build/bin/keosd ./bin/keosd
+cp ../fio/build/bin/fio-wallet ./bin/fio-wallet
 
 echo -n $'\E[0;31m'
 cat << "EOF"

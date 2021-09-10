@@ -36,3 +36,7 @@
 ./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"msig_cancel","type":"0","suf_amount":"400000000"}' --permission fio.fee@active
 ./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"msig_exec","type":"0","suf_amount":"400000000"}' --permission fio.fee@active
 ./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"msig_invalidate","type":"0","suf_amount":"400000000"}' --permission fio.fee@active
+./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"add_nft","type":"0","suf_amount":"300000000"}' --permission fio.fee@active
+./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"rem_nft","type":"0","suf_amount":"100000000"}' --permission fio.fee@active
+./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"stake_fio_tokens","type":"1","suf_amount":"3000000000"}' --permission fio.fee@active
+./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"unstake_fio_tokens","type":"1","suf_amount":"3000000000"}' --permission fio.fee@active
