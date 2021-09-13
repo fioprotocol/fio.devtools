@@ -1,4 +1,4 @@
-/#!/usr/bin/env bash
+#!/usr/bin/env bash
 
 printf "\n\n${bldgrn}"
 printf "  FFFFFFFFFFFFFFFFFFF IIIIIIIII     OOOOOOO     \n"
@@ -42,7 +42,7 @@ fi
 if [ $mChoice == 2 ]; then
     echo Updating Current Base Contracts
     cd ../fio.devtools/bin/baseContract/2.2.x/
-    git clone http://github.com/fioprotocol/fio.contracts -b release/2.2.x
+    git clone http://github.com/tvl83/fio.contracts -b escrow-develop
     cd fio.contracts/
     ./build.sh
     cp ./contracts/fio.fee/fio.fee.abi ./build/contracts/fio.fee/fio.fee.abi
