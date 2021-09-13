@@ -200,7 +200,7 @@ if [ $mChoice == 1 ]; then
 
     # ESCROW
     # DEFINE BASE PATH
-    if [ -f bin/baseContract/2.1.x/fio.contracts/build/contracts/fio.escrow/fio.escrow.wasm ]; then
+    if [ -f bin/baseContract/2.2.x/fio.contracts/build/contracts/fio.escrow/fio.escrow.wasm ]; then
        fio_escrow_base_path="$basepath/fio.contracts/build/contracts/fio.escrow"
     else
         echo "No wasm file found at $PWD/build/contracts/fio.escrow"
