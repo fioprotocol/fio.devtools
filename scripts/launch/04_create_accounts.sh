@@ -19,5 +19,5 @@ sleep 1.5s
 ./clio -u http://localhost:8879 set contract fio.tpid $fio_tpid_base_path fio.tpid.wasm fio.tpid.abi
 sleep 10s
 ./clio -u http://localhost:8879 set contract eosio.msig $eosio_msig_contract_base_path eosio.msig.wasm eosio.msig.abi
-./clio -u http://localhost:8879 set contract -j fio.address $fio_contract_base_path fio.address.wasm fio.address.abi --permission fio.address@active
+./clio -u http://localhost:8879 set contract fio.address $fio_contract_base_path fio.address.wasm fio.address.abi --permission fio.address@active
 sleep 2s
