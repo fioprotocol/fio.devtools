@@ -29,7 +29,7 @@ if [ -f scripts/walletkey.ini ]; then
 fi
 
 if [ -z "$1" ]; then
-	read -p $'\n1. Local Blockchain 2. Update/Build Contracts 3. Nuke All 4. Launch 21 BPs \n5. Queries 6. History (docker) 7. Post Actions\nChoose(#):' mChoice
+	read -p $'\n1. Local Blockchain 2. Update/Build Contracts 3. Nuke All 4. Launch 21 BPs \n5. Queries 6. History (docker) 7. Post Actions\n8. Escrow Actions Script\nChoose(#):' mChoice
 else
     mChoice=$1
 fi
@@ -49,7 +49,7 @@ if [ $mChoice == 2 ]; then
     cp ./contracts/fio.address/fio.address.abi ./build/contracts/fio.address/fio.address.abi
     cp ./contracts/fio.request.obt/fio.request.obt.abi ./build/contracts/fio.request.obt/fio.request.obt.abi
     cp ./contracts/fio.staking/fio.staking.abi ./build/contracts/fio.staking/fio.staking.abi
-    cp ./contracts/fio.escrow/fio.escrow.abi ./build/contracts/fio.escrow/fio.escrow.abi
+#    cp ./contracts/fio.escrow/fio.escrow.abi ./build/contracts/fio.escrow/fio.escrow.abi
 
     echo Building Development Contracts
     cd ../../../../../fio.contracts
@@ -116,13 +116,13 @@ if [ $mChoice == 1 ]; then
         else
             echo 'No wasm file found at $PWD/build/contracts/fio.tpid'
     fi
-    
+
     if [ -f ../fio.contracts/build/contracts/fio.staking/fio.staking.wasm ]; then
             fio_staking_name_path="$oldpath/../../fio.contracts/build/contracts/fio.staking"
         else
             echo 'No wasm file found at $PWD/build/contracts/fio.staking'
     fi
-    
+
     if [ -f ../fio.contracts/build/contracts/fio.escrow/fio.escrow.wasm ]; then
             fio_escrow_name_path="$oldpath/../../fio.contracts/build/contracts/fio.escrow"
         else
@@ -299,7 +299,6 @@ if [ $mChoice == 1 ]; then
     $oldpath/launch/13_create_accounts_foundation.sh
     sleep 0.5
 
-    
     # LOCKED TESTING STARTS HERE
     # $oldpath/launch/14_create_locked_token_holder_accounts.sh
 #$oldpath/launch/15_create_locked_token_holder_test_accounts.sh
@@ -359,6 +358,10 @@ elif [ $mChoice == 7 ]; then
     if [ $bChoice == 1 ]; then
       scripts/actions/update_contracts.sh
     fi
+elif [ $mChoice == 8 ]; then
+  scripts/actions/escrow_actions.sh
+else
+    exit 1
 fi
 
 printf "\n\n${bldgrn}"

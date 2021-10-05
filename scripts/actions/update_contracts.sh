@@ -88,6 +88,5 @@ sleep 1.5s
 ./clio -u http://localhost:8879 set contract -j fio.fee $fio_fee_name_path fio.fee.wasm fio.fee.abi --permission fio.fee@active
 sleep 1.5s
 ./clio -u http://localhost:8889 set contract -j fio.treasury $fio_treasury_name_path fio.treasury.wasm fio.treasury.abi --permission fio.treasury@active
-./clio -u http://localhost:8879 set contract -j fio.staking $fio_staking_name_path fio.staking.wasm fio.staking.abi -- permission fio.staking@active
-
-./clio -u http://localhost:8879 set contract -j fio.escrow $fio_escrow_name_path fio.escrow.wasm fio.escrow.abi -- permission fio.escrow@active
+./clio -u http://localhost:8879 set contract -j fio.staking $fio_staking_name_path fio.staking.wasm fio.staking.abi --permission fio.staking@active
+./clio -u http://localhost:8879 set contract -j fio.escrow $fio_escrow_name_path fio.escrow.wasm fio.escrow.abi --permission fio.escrow@active
