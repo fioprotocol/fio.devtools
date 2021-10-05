@@ -40,3 +40,8 @@
 ./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"rem_nft","type":"0","suf_amount":"100000000"}' --permission fio.fee@active
 ./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"stake_fio_tokens","type":"1","suf_amount":"3000000000"}' --permission fio.fee@active
 ./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"unstake_fio_tokens","type":"1","suf_amount":"3000000000"}' --permission fio.fee@active
+
+./clio -u http://localhost:8889 push action -f fio.fee createfee '{"end_point":"list_domain","type":"0","suf_amount":"2000000000"}' --permission fio.fee@active
+./clio -u http://localhost:8889 push action -f fio.fee createfee '{"end_point":"cancel_list_domain","type":"0","suf_amount":"1000000000"}' --permission fio.fee@active
+./clio -u http://localhost:8889 push action -f fio.fee createfee '{"end_point":"buy_domain","type":"0","suf_amount":"1000000000"}' --permission fio.fee@active
+./clio -u http://localhost:8889 push action -f fio.fee createfee '{"end_point":"set_marketplace_config","type":"0","suf_amount":"500000000"}' --permission fio.fee@active
