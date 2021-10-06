@@ -8,8 +8,8 @@
 
 
 host='localhost:8889'
-echo "EDEDEDEDED adding actions"
-sleep 10s
+#echo "EDEDEDEDED adding actions"
+#sleep 10s
 
 # we run the first 15 so that we can test after the fork deadline, and prove the new logic is being used
 #added for FIP-21

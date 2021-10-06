@@ -128,8 +128,8 @@ if [ $mChoice == 1 ]; then
         else
             echo 'No wasm file found at $PWD/build/contracts/fio.escrow'
     fi
-    echo "EDEDEDEDEDED just checked for escrow wasm file!!!"
-    sleep 10
+#    echo "EDEDEDEDEDED just checked for escrow wasm file!!!"
+#    sleep 10
 
     if [ -f ../fio.contracts/build/contracts/fio.treasury/fio.treasury.wasm ]; then
             fio_treasury_name_path="$oldpath/../../fio.contracts/build/contracts/fio.treasury"
