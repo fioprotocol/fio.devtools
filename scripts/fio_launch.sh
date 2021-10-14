@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+/#!/usr/bin/env bash
 
 printf "\n\n${bldgrn}"
 printf "  FFFFFFFFFFFFFFFFFFF IIIIIIIII     OOOOOOO     \n"
@@ -48,6 +48,7 @@ if [ $mChoice == 2 ]; then
     cp ./contracts/fio.fee/fio.fee.abi ./build/contracts/fio.fee/fio.fee.abi
     cp ./contracts/fio.address/fio.address.abi ./build/contracts/fio.address/fio.address.abi
     cp ./contracts/fio.request.obt/fio.request.obt.abi ./build/contracts/fio.request.obt/fio.request.obt.abi
+    cp ./contracts/fio.staking/fio.staking.abi ./build/contracts/fio.staking/fio.staking.abi
 
     echo Building Development Contracts
     cd ../../../../../fio.contracts
@@ -57,6 +58,7 @@ if [ $mChoice == 2 ]; then
     cp ./contracts/fio.fee/fio.fee.abi ./build/contracts/fio.fee/fio.fee.abi
     cp ./contracts/fio.address/fio.address.abi ./build/contracts/fio.address/fio.address.abi
     cp ./contracts/fio.request.obt/fio.request.obt.abi ./build/contracts/fio.request.obt/fio.request.obt.abi
+    cp ./contracts/fio.staking/fio.staking.abi ./build/contracts/fio.staking/fio.staking.abi
     echo COMPLETE - READY TO LAUNCH
     exit -1
 fi
@@ -111,6 +113,12 @@ if [ $mChoice == 1 ]; then
             fio_tpid_name_path="$oldpath/../../fio.contracts/build/contracts/fio.tpid"
         else
             echo 'No wasm file found at $PWD/build/contracts/fio.tpid'
+    fi
+    
+    if [ -f ../fio.contracts/build/contracts/fio.staking/fio.staking.wasm ]; then
+            fio_staking_name_path="$oldpath/../../fio.contracts/build/contracts/fio.staking"
+        else
+            echo 'No wasm file found at $PWD/build/contracts/fio.staking'
     fi
 
     if [ -f ../fio.contracts/build/contracts/fio.treasury/fio.treasury.wasm ]; then
@@ -194,6 +202,7 @@ if [ $mChoice == 1 ]; then
     export fio_fee_name_path
     export fio_reqobt_name_path
     export fio_tpid_name_path
+    export fio_staking_name_path
     export fio_treasury_name_path
     export eosio_wrap_name_path
 
@@ -279,6 +288,7 @@ if [ $mChoice == 1 ]; then
     $oldpath/launch/13_create_accounts_foundation.sh
     sleep 0.5
 
+    
     # LOCKED TESTING STARTS HERE
     # $oldpath/launch/14_create_locked_token_holder_accounts.sh
 #$oldpath/launch/15_create_locked_token_holder_test_accounts.sh
@@ -299,6 +309,8 @@ if [ $mChoice == 1 ]; then
     sleep 10s
     echo Setting Development Contracts over v2.0.0
     $oldpath/launch/19_bind_dev_contracts.sh
+   # sleep 10s
+   # $oldpath/launch/20_debug_staking.sh
 
 elif [ $mChoice == 3 ]; then
     read -p $'WARNING: ALL FILES ( WALLET & CHAIN ) WILL BE DELETED\n\nContinue? (1. Yes 2. No): ' bChoice
