@@ -9,9 +9,6 @@ sleep 1.5s
 ./clio -u http://localhost:8879 set contract fio.staking $fio_staking_name_path fio.staking.wasm fio.staking.abi
 ./clio -u http://localhost:8879 set contract fio.escrow $fio_escrow_name_path fio.escrow.wasm fio.escrow.abi
 
-#echo "EDEDEDEDEDEDED set contract escrow"
-#sleep 10
-
 ./clio -u http://localhost:8879 set contract eosio.msig $eosio_msig_contract_name_path eosio.msig.wasm eosio.msig.abi
 ./clio -u http://localhost:8879 set contract fio.address $fio_contract_name_path fio.address.wasm fio.address.abi --permission fio.address@active
 
