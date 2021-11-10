@@ -44,11 +44,11 @@ if [ -f ../fio.contracts/build/contracts/fio.tpid/fio.tpid.wasm ]; then
         echo 'No wasm file found at $PWD/build/contracts/fio.tpid'
 fi
 
-if [ -f ../fio.contracts/build/contracts/fio.staking/fio.staking.wasm ]; then
-        fio_staking_name_path="$oldpath/../../fio.contracts/build/contracts/fio.staking"
-    else
-        echo 'No wasm file found at $PWD/build/contracts/fio.staking'
-fi
+#if [ -f ../fio.contracts/build/contracts/fio.staking/fio.staking.wasm ]; then
+#        fio_staking_name_path="$oldpath/../../fio.contracts/build/contracts/fio.staking"
+#    else
+#        echo 'No wasm file found at $PWD/build/contracts/fio.staking'
+#fi
 
 if [ -f ../fio.contracts/build/contracts/fio.treasury/fio.treasury.wasm ]; then
         fio_treasury_name_path="$oldpath/../../fio.contracts/build/contracts/fio.treasury"
