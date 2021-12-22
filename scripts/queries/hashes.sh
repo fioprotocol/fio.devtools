@@ -158,3 +158,20 @@ echo Mainnet
 echo -n $'\e[0;39m'
 ./bin/clio -u https://fio.greymass.com get code fio.treasury
 
+echo -n $'\e[0;34m'
+echo fio.staking - Local WASM:
+echo -n $'\e[0;39m'
+openssl sha256 < ../fio.contracts/build/contracts/fio.staking/fio.staking.wasm
+echo -n $'\E[0;31m'
+echo Local
+echo -n $'\e[0;39m'
+./bin/clio -u http://localhost:8889 get code fio.staking
+echo -n $'\E[0;31m'
+echo Testnet
+echo -n $'\e[0;39m'
+./bin/clio -u http://testnet.fioprotocol.io get code fio.staking
+echo -n $'\E[0;31m'
+echo Mainnet
+echo -n $'\e[0;39m'
+./bin/clio -u https://fio.greymass.com get code fio.staking
+
