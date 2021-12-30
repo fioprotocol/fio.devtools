@@ -114,7 +114,7 @@ if [ $mChoice == 1 ]; then
         else
             echo 'No wasm file found at $PWD/build/contracts/fio.tpid'
     fi
-    
+
     if [ -f ../fio.contracts/build/contracts/fio.staking/fio.staking.wasm ]; then
             fio_staking_name_path="$oldpath/../../fio.contracts/build/contracts/fio.staking"
         else
@@ -296,12 +296,12 @@ if [ $mChoice == 1 ]; then
     $oldpath/launch/13_create_accounts_foundation.sh
     sleep 0.5
 
-    
+
     # LOCKED TESTING STARTS HERE
-    # $oldpath/launch/14_create_locked_token_holder_accounts.sh
-#$oldpath/launch/15_create_locked_token_holder_test_accounts.sh
-    # $oldpath/launch/16_emplace_grants_into_locked_tokens.sh
-# $oldpath/launch/17_emplace_test_grants_into_locked_tokens.sh
+     $oldpath/launch/14_create_locked_token_holder_accounts.sh
+$oldpath/launch/15_create_locked_token_holder_test_accounts.sh
+     $oldpath/launch/16_emplace_grants_into_locked_tokens.sh
+ $oldpath/launch/17_emplace_test_grants_into_locked_tokens.sh
     sleep 2
 #uncomment these next 3 lines to test the genesis scripts, warning this takes around 30 minutes to execute.
 #after these run you can run validate_locked_token_holder.sh
