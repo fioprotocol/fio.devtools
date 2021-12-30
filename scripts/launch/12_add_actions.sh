@@ -66,3 +66,4 @@ sleep 10s
 ./clio -u http://$host push action eosio addaction '{"action":"remnft","contract":"fio.address","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"remallnfts","contract":"fio.address","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"burnnfts","contract":"fio.address","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"retire","contract":"fio.token","actor":"eosio"}' --permission eosio
