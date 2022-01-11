@@ -8,8 +8,8 @@
 
 
 host='localhost:8889'
-#echo "EDEDEDEDED adding actions"
-#sleep 10s
+echo "EDEDEDEDED adding actions"
+sleep 10s
 
 # we run the first 15 so that we can test after the fork deadline, and prove the new logic is being used
 #added for FIP-21
@@ -66,6 +66,7 @@ host='localhost:8889'
 ./clio -u http://$host push action eosio addaction '{"action":"remnft","contract":"fio.address","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"remallnfts","contract":"fio.address","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"burnnfts","contract":"fio.address","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"retire","contract":"fio.token","actor":"eosio"}' --permission eosio
 # fio.escrow:
 ./clio -u http://$host push action eosio addaction '{"action":"buydomain","contract":"fio.escrow","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"listdomain","contract":"fio.escrow","actor":"eosio"}' --permission eosio
