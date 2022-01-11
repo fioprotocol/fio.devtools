@@ -29,20 +29,20 @@
 # marketplace and escrow development
 # fio.escrow
 ./clio -u http://localhost:8879 push action fio.token issue '["fio.escrow","1000000.000000000 FIO","memo"]' -p eosio@active
-
-# blocksmith dev accounts
-# marketplace
-./clio -u http://localhost:8879 push action fio.token issue '["5ufabtv13hv4","1000000.000000000 FIO","memo"]' -p eosio@active
-
-#dev account / domain owner
-./clio -u http://localhost:8879 push action fio.token issue '["wjeo4abnk4c2","1000000.000000000 FIO","memo"]' -p eosio@active
-
-# contract holder account
-./clio -u http://localhost:8879 push action fio.token issue '["p2yrhsvsvjge","1000000.000000000 FIO","memo"]' -p eosio@active
-
-#buyer account
-./clio -u http://localhost:8879 push action fio.token issue '["g4oc1qkysew2","1000000.000000000 FIO","memo"]' -p eosio@active
-
-#extras
-./clio -u http://localhost:8879 push action fio.token issue '["ltllcgohc4op","1000000.000000000 FIO","memo"]' -p eosio@active
-./clio -u http://localhost:8879 push action fio.token issue '["aghsbgzbx3iz","1000000.000000000 FIO","memo"]' -p eosio@active
+#
+## blocksmith dev accounts
+## marketplace
+#./clio -u http://localhost:8879 push action fio.token issue '["5ufabtv13hv4","1000000.000000000 FIO","memo"]' -p eosio@active
+#
+##dev account / domain owner
+#./clio -u http://localhost:8879 push action fio.token issue '["wjeo4abnk4c2","1000000.000000000 FIO","memo"]' -p eosio@active
+#
+## contract holder account
+#./clio -u http://localhost:8879 push action fio.token issue '["p2yrhsvsvjge","1000000.000000000 FIO","memo"]' -p eosio@active
+#
+##buyer account
+#./clio -u http://localhost:8879 push action fio.token issue '["g4oc1qkysew2","1000000.000000000 FIO","memo"]' -p eosio@active
+#
+##extras
+#./clio -u http://localhost:8879 push action fio.token issue '["ltllcgohc4op","1000000.000000000 FIO","memo"]' -p eosio@active
+#./clio -u http://localhost:8879 push action fio.token issue '["aghsbgzbx3iz","1000000.000000000 FIO","memo"]' -p eosio@active
