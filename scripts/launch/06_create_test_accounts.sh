@@ -67,4 +67,3 @@ sleep 2
 #FIO Public Address (actor name): o3jvcxorf4qu
 ./clio -u http://localhost:8879 create account eosio o3jvcxorf4qu FIO5HWLgwpads3f2qAJwgtKPvifevZs5fdaF7LaYEjaPjhHwUZ6K9 FIO5HWLgwpads3f2qAJwgtKPvifevZs5fdaF7LaYEjaPjhHwUZ6K9
 sleep 2
-

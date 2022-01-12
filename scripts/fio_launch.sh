@@ -49,6 +49,7 @@ if [ $mChoice == 2 ]; then
     cp ./contracts/fio.address/fio.address.abi ./build/contracts/fio.address/fio.address.abi
     cp ./contracts/fio.request.obt/fio.request.obt.abi ./build/contracts/fio.request.obt/fio.request.obt.abi
     # cp ./contracts/fio.staking/fio.staking.abi ./build/contracts/fio.staking/fio.staking.abi
+#    cp ./contracts/fio.escrow/fio.escrow.abi ./build/contracts/fio.escrow/fio.escrow.abi
 
     echo Building Development Contracts
     cd ../../../../../fio.contracts
@@ -59,6 +60,7 @@ if [ $mChoice == 2 ]; then
     cp ./contracts/fio.address/fio.address.abi ./build/contracts/fio.address/fio.address.abi
     cp ./contracts/fio.request.obt/fio.request.obt.abi ./build/contracts/fio.request.obt/fio.request.obt.abi
     cp ./contracts/fio.staking/fio.staking.abi ./build/contracts/fio.staking/fio.staking.abi
+    cp ./contracts/fio.escrow/fio.escrow.abi ./build/contracts/fio.escrow/fio.escrow.abi
     echo COMPLETE - READY TO LAUNCH
     exit -1
 fi
@@ -114,12 +116,20 @@ if [ $mChoice == 1 ]; then
         else
             echo 'No wasm file found at $PWD/build/contracts/fio.tpid'
     fi
-    
+
     if [ -f ../fio.contracts/build/contracts/fio.staking/fio.staking.wasm ]; then
             fio_staking_name_path="$oldpath/../../fio.contracts/build/contracts/fio.staking"
         else
             echo 'No wasm file found at $PWD/build/contracts/fio.staking'
     fi
+
+    if [ -f ../fio.contracts/build/contracts/fio.escrow/fio.escrow.wasm ]; then
+            fio_escrow_name_path="$oldpath/../../fio.contracts/build/contracts/fio.escrow"
+        else
+            echo 'No wasm file found at $PWD/build/contracts/fio.escrow'
+    fi
+#    echo "EDEDEDEDEDED just checked for escrow wasm file!!!"
+#    sleep 10
 
     if [ -f ../fio.contracts/build/contracts/fio.treasury/fio.treasury.wasm ]; then
             fio_treasury_name_path="$oldpath/../../fio.contracts/build/contracts/fio.treasury"
@@ -210,6 +220,7 @@ if [ $mChoice == 1 ]; then
     export fio_reqobt_name_path
     export fio_tpid_name_path
     export fio_staking_name_path
+    export fio_escrow_name_path
     export fio_treasury_name_path
     export eosio_wrap_name_path
 
@@ -296,7 +307,6 @@ if [ $mChoice == 1 ]; then
     $oldpath/launch/13_create_accounts_foundation.sh
     sleep 0.5
 
-    
     # LOCKED TESTING STARTS HERE
     # $oldpath/launch/14_create_locked_token_holder_accounts.sh
 #$oldpath/launch/15_create_locked_token_holder_test_accounts.sh
@@ -356,6 +366,8 @@ elif [ $mChoice == 7 ]; then
     if [ $bChoice == 1 ]; then
       scripts/actions/update_contracts.sh
     fi
+else
+    exit 1
 fi
 
 printf "\n\n${bldgrn}"

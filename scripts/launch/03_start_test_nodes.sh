@@ -51,7 +51,7 @@ if [ $tChoice == 2 ]; then
     #start the first BP node
     mkdir -p $HOME/node2
     pushd $HOME/node2 >/dev/null
-    "${NODEOS_BIN}" --max-transaction-time=6000 --producer-name 3ddowwxs11ss --producer-name wttywsmdmfew --plugin eosio::chain_api_plugin --plugin eosio::db_size_api_plugin --logconf=$oldpath/launch/logging.json --plugin eosio::net_api_plugin --http-server-address 0.0.0.0:8889 --http-validate-host=0  --p2p-listen-endpoint 0.0.0.0:9877 --p2p-peer-address localhost:9876 --config-dir $HOME/node2 --data-dir $HOME/node2  --private-key [\"FIO6ruJ5qLeaa6VtYVpkcU4AeWVaL2QvViyQqjxjpAWYRFsYaSbBN\",\"5KLxezoCEw5Ca97FHq3HPyrzkmZQT6Wqw9DmKaJ6inE6fiN1ijT\"] --private-key [\"FIO6oa5UV9ghWgYH9en8Cv8dFcAxnZg2i9z9gKbnHahciuKNRPyHc\",\"5JvmPVxPxypQEKPwFZQW4Vx7EC8cDYzorVhSWZvuYVFMccfi5mU\"]  --contracts-console 2> $oldpath/../node2.txt &
+    "${NODEOS_BIN}" --max-transaction-time=6000 --producer-name 3ddowwxs11ss --producer-name wttywsmdmfew --plugin eosio::chain_api_plugin --plugin eosio::db_size_api_plugin --logconf=$oldpath/launch/logging.json --plugin eosio::net_api_plugin --http-server-address 0.0.0.0:8889 --http-validate-host=0  --p2p-listen-endpoint 0.0.0.0:9877 --p2p-peer-address localhost:9876 --config-dir $HOME/node2 --data-dir $HOME/node2  --private-key [\"FIO6ruJ5qLeaa6VtYVpkcU4AeWVaL2QvViyQqjxjpAWYRFsYaSbBN\",\"5KLxezoCEw5Ca97FHq3HPyrzkmZQT6Wqw9DmKaJ6inE6fiN1ijT\"] --private-key [\"FIO6oa5UV9ghWgYH9en8Cv8dFcAxnZg2i9z9gKbnHahciuKNRPyHc\",\"5JvmPVxPxypQEKPwFZQW4Vx7EC8cDYzorVhSWZvuYVFMccfi5mU\"] --access-control-allow-origin * --contracts-console 2> $oldpath/../node2.txt &
     popd >/dev/null
     sleep 1.5s
 
