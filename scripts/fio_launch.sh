@@ -42,14 +42,12 @@ fi
 if [ $mChoice == 2 ]; then
     echo Updating Current Base Contracts
     cd ../fio.devtools/bin/baseContract/master/
-    git clone http://github.com/fioprotocol/fio.contracts
+    git clone http://github.com/fioprotocol/fio.contracts -b release/2.5.x
     cd fio.contracts/
     ./build.sh
     cp ./contracts/fio.fee/fio.fee.abi ./build/contracts/fio.fee/fio.fee.abi
     cp ./contracts/fio.address/fio.address.abi ./build/contracts/fio.address/fio.address.abi
     cp ./contracts/fio.request.obt/fio.request.obt.abi ./build/contracts/fio.request.obt/fio.request.obt.abi
-    # cp ./contracts/fio.staking/fio.staking.abi ./build/contracts/fio.staking/fio.staking.abi
-#    cp ./contracts/fio.escrow/fio.escrow.abi ./build/contracts/fio.escrow/fio.escrow.abi
 
     echo Building Development Contracts
     cd ../../../../../fio.contracts
@@ -203,13 +201,6 @@ if [ $mChoice == 1 ]; then
             else
                 echo 'No wasm file found at $PWD/build/contracts/eosio.wrap'
     fi
-
-    if [ -f bin/baseContract/master/fio.contracts/build/contracts/fio.staking/fio.staking.wasm ]; then
-            fio_staking_base_path="$basepath/fio.contracts/build/contracts/fio.staking"
-            else
-                echo 'No wasm file found at $PWD/build/contracts/fio.staking'
-    fi
-
 
     export eosio_bios_contract_name_path
     export fio_system_contract_name_path
