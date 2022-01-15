@@ -202,13 +202,6 @@ if [ $mChoice == 1 ]; then
                 echo 'No wasm file found at $PWD/build/contracts/eosio.wrap'
     fi
 
-    if [ -f bin/baseContract/master/fio.contracts/build/contracts/fio.staking/fio.staking.wasm ]; then
-            fio_staking_base_path="$basepath/fio.contracts/build/contracts/fio.staking"
-            else
-                echo 'No wasm file found at $PWD/build/contracts/fio.staking'
-    fi
-
-
     export eosio_bios_contract_name_path
     export fio_system_contract_name_path
     export eosio_msig_contract_name_path
