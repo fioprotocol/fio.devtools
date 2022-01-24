@@ -57,7 +57,7 @@
 ./clio wallet import --private-key 5JqfyvSXXoXT7h6tHbFLwNznAAriLKRWPhUNAeBLznaMHnaNFG5 -n fio
 
 #faucet account
-sleep 0.5s
+sleep 1s
 ./clio wallet import --private-key 5KF2B21xT5pE5G3LNA6LKJc6AP2pAd2EnfpAUrJH12SFV8NtvCD -n fio
 sleep 0.5s
 
@@ -73,7 +73,3 @@ sleep 0.5s
 # fio.escrow
 ./clio wallet import --private-key 5JXkawfVHHZuTAdZrVpdkg4mUNfUytuw8uDUBWcAvb8YMK5R4yY -n fio
 sleep 1s
-
-#Private Key:    5KcjPwGJ3MHrWcSLhh7ePt3DfmgRZGrZNjSH4fXUrdqHtj4BoUj
-#Public Key:     FIO8KFCLs3HfkoKQ3Dnf3aaM1qEWnDHE3ZK4B7gEC2ibStKTqRdck
-#Account Name:   3gn1rv1ghih5

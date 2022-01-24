@@ -45,8 +45,6 @@ sleep 10s
 ./clio -u http://$host push action eosio addaction '{"action":"burnexpired","contract":"fio.address","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"xferdomain","contract":"fio.address","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"xferaddress","contract":"fio.address","actor":"eosio"}' --permission eosio
-# for FIO.ESCROW
-./clio -u http://$host push action eosio addaction '{"action":"xferescrow","contract":"fio.address","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"setfeemult","contract":"fio.fee","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"bundlevote","contract":"fio.fee","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"setfeevote","contract":"fio.fee","actor":"eosio"}' --permission eosio
@@ -67,9 +65,17 @@ sleep 10s
 ./clio -u http://$host push action eosio addaction '{"action":"addnft","contract":"fio.address","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"remnft","contract":"fio.address","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"remallnfts","contract":"fio.address","actor":"eosio"}' --permission eosio
-
+./clio -u http://$host push action eosio addaction '{"action":"burnnfts","contract":"fio.address","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"retire","contract":"fio.token","actor":"eosio"}' --permission eosio
 # fio.escrow:
 ./clio -u http://$host push action eosio addaction '{"action":"buydomain","contract":"fio.escrow","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"listdomain","contract":"fio.escrow","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"cxlistdomain","contract":"fio.escrow","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"setmrkplcfg","contract":"fio.escrow","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"xferescrow","contract":"fio.address","actor":"eosio"}' --permission eosio
+## admin action only called from fio.address::burnexpired
+./clio -u http://$host push action eosio addaction '{"action":"cxburned","contract":"fio.escrow","actor":"eosio"}' --permission eosio
+
+# required for unit testing
+./clio -u http://$host push action eosio addaction '{"action":"modexpire","contract":"fio.address","actor":"eosio"}' --permission eosio
+

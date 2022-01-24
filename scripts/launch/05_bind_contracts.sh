@@ -15,6 +15,3 @@ sleep 1.5s
 ./clio -u http://localhost:8889 set contract fio.treasury $fio_treasury_base_path fio.treasury.wasm fio.treasury.abi --permission fio.treasury@active
 sleep 1.5s
 ./clio -u http://localhost:8889 set contract eosio.wrap $eosio_wrap_base_path eosio.wrap.wasm eosio.wrap.abi --permission eosio.wrap@active
-sleep 1.5s
-./clio -u http://localhost:8889 set contract fio.staking $fio_staking_base_path fio.staking.wasm fio.staking.abi --permission fio.staking@active
-sleep 1.5s
