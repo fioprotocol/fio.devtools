@@ -19,10 +19,6 @@ sleep 1.5s
 sleep 1.5s
 ./clio -u http://localhost:8889 set contract fio.treasury $fio_treasury_name_path fio.treasury.wasm fio.treasury.abi --permission fio.treasury@active
 
-# escrow contract
-./clio -u http://localhost:8879 set contract fio.escrow $fio_escrow_base_path fio.escrow.wasm fio.escrow.abi --permission fio.escrow@active
-sleep 1.5s
-
 ############ Initial marketplace config action that requires EOSIO permissions
 
 ./clio -u http://localhost:8889 push action fio.escrow setmrkplcfg '{ "actor":"5ufabtv13hv4", "listing_fee": "5000000000", "commission_fee": 6, "max_fee": "1000000000", "e_break": 0}' -p eosio
