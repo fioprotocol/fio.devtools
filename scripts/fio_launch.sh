@@ -61,6 +61,7 @@ if [ $mChoice == 2 ]; then
     cp ./contracts/fio.request.obt/fio.request.obt.abi ./build/contracts/fio.request.obt/fio.request.obt.abi
     cp ./contracts/fio.escrow/fio.escrow.abi ./build/contracts/fio.escrow/fio.escrow.abi
     cp ./contracts/fio.staking/fio.staking.abi ./build/contracts/fio.staking/fio.staking.abi
+    cp ./contracts/fio.escrow/fio.escrow.abi ./build/contracts/fio.escrow/fio.escrow.abi
     echo COMPLETE - READY TO LAUNCH
     exit -1
 fi
@@ -121,6 +122,12 @@ if [ $mChoice == 1 ]; then
             fio_staking_name_path="$oldpath/../../fio.contracts/build/contracts/fio.staking"
         else
             echo 'No wasm file found at $PWD/build/contracts/fio.staking'
+    fi
+
+    if [ -f ../fio.contracts/build/contracts/fio.escrow/fio.escrow.wasm ]; then
+            fio_escrow_name_path="$oldpath/../../fio.contracts/build/contracts/fio.escrow"
+        else
+            echo 'No wasm file found at $PWD/build/contracts/fio.escrow'
     fi
 
     if [ -f ../fio.contracts/build/contracts/fio.treasury/fio.treasury.wasm ]; then
