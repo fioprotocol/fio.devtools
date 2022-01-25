@@ -24,7 +24,7 @@
 
 ./clio -u http://localhost:8879 set account permission fio.staking active '{"threshold": 1,"keys": [{"key": "FIO7isxEua78KPVbGzKemH4nj2bWE52gqj8Hkac3tc7jKNvpfWzYS","weight": 1}],"accounts": [{"permission":{"actor":"fio.staking","permission":"eosio.code"},"weight":1}]}}' 4000000000 owner -p fio.staking@owner
 ./clio -u http://localhost:8879 push action eosio setpriv '["fio.staking",1]' -p eosio@active
-
+#fio.escrow
 ./clio -u http://localhost:8879 set account permission fio.escrow active '{"threshold": 1,"keys": [{"key": "FIO7isxEua78KPVbGzKemH4nj2bWE52gqj8Hkac3tc7jKNvpfWzYS","weight": 1}],"accounts": [{"permission":{"actor":"fio.escrow","permission":"eosio.code"},"weight":1}]}}' 4000000000 owner -p fio.escrow@owner
 ./clio -u http://localhost:8879 push action eosio setpriv '["fio.escrow",1]' -p eosio@active
 

@@ -114,7 +114,7 @@ if [ $mChoice == 1 ]; then
         else
             echo 'No wasm file found at $PWD/build/contracts/fio.tpid'
     fi
-
+    
     if [ -f ../fio.contracts/build/contracts/fio.staking/fio.staking.wasm ]; then
             fio_staking_name_path="$oldpath/../../fio.contracts/build/contracts/fio.staking"
         else
@@ -255,8 +255,6 @@ if [ $mChoice == 1 ]; then
 
         echo creating dapix test accounts
         $oldpath/launch/06_create_test_accounts.sh
-
-
 
         #create fees for the fio protocol, all fees are zero so no added FIO circulation for genesis.
         echo "creating fees"
