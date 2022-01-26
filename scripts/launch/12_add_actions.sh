@@ -79,3 +79,4 @@ sleep 10s
 # required for unit testing
 ./clio -u http://$host push action eosio addaction '{"action":"modexpire","contract":"fio.address","actor":"eosio"}' --permission eosio
 
+./clio -u http://$host push action eosio addaction '{"action":"test","contract":"fio.game","actor":"eosio"}' --permission eosio
