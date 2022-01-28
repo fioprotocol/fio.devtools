@@ -57,6 +57,6 @@ docker ps
 echo
 echo -e "Done.\n\tdocker compose launched from ./scripts/launch/history/, \n\tto view logs run: 'cd scripts/launch/history; docker-compose logs -f --tail 10'\n"
 echo "   ******************************************"
-echo "   * History API is available at port 8081  *"
+echo "   * History API is available at port 8080  *"
 echo "   ******************************************"
 echo
