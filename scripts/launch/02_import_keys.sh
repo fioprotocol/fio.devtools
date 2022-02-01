@@ -57,6 +57,6 @@
 ./clio wallet import --private-key 5JqfyvSXXoXT7h6tHbFLwNznAAriLKRWPhUNAeBLznaMHnaNFG5 -n fio
 
 #faucet account
-sleep 1s
+sleep 1
 ./clio wallet import --private-key 5KF2B21xT5pE5G3LNA6LKJc6AP2pAd2EnfpAUrJH12SFV8NtvCD -n fio
-sleep 1s
+sleep 1

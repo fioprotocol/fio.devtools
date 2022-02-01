@@ -307,7 +307,7 @@ if [ $mChoice == 1 ]; then
 
     echo "creating operational fees"
     $oldpath/launch/18_create_set_fees_after_genesis.sh
-    sleep 10s
+    sleep 10
     echo Setting Development Contracts over v2.0.0
     $oldpath/launch/19_bind_dev_contracts.sh
    # sleep 10s

@@ -15,9 +15,9 @@ echo $'Creating Accounts...done using the bios node\n'
 
 #Set Contracts..done using the bios node
 ./clio -u http://localhost:8879 set contract fio.token $fio_token_contract_base_path fio.token.wasm fio.token.abi
-sleep 1.5s
+sleep 1.5
 ./clio -u http://localhost:8879 set contract fio.tpid $fio_tpid_base_path fio.tpid.wasm fio.tpid.abi
-sleep 10s
+sleep 10
 ./clio -u http://localhost:8879 set contract eosio.msig $eosio_msig_contract_base_path eosio.msig.wasm eosio.msig.abi
 ./clio -u http://localhost:8879 set contract -j fio.address $fio_contract_base_path fio.address.wasm fio.address.abi --permission fio.address@active
-sleep 2s
+sleep 2
