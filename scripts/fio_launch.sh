@@ -42,7 +42,7 @@ fi
 if [ $mChoice == 2 ]; then
     echo Updating Current Base Contracts
     cd ../fio.devtools/bin/baseContract/master/
-    git clone http://github.com/fioprotocol/fio.contracts
+    git clone http://github.com/fioprotocol/fio.contracts -b release/2.5.x
     cd fio.contracts/
     ./build.sh
     cp ./contracts/fio.fee/fio.fee.abi ./build/contracts/fio.fee/fio.fee.abi
