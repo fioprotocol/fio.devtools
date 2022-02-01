@@ -228,7 +228,7 @@ if [ $mChoice == 1 ]; then
     export fio_staking_base_path
     export vChoice
 
-    sleep 1s
+    sleep 1
     cd ~/fio/$vChoice/bin
     $oldpath/launch/01_new_wallet.sh
 
@@ -313,10 +313,10 @@ if [ $mChoice == 1 ]; then
 
     echo "creating operational fees"
     $oldpath/launch/18_create_set_fees_after_genesis.sh
-    sleep 10s
+    sleep 10
     echo Setting Development Contracts over v2.0.0
     $oldpath/launch/19_bind_dev_contracts.sh
-   # sleep 10s
+   # sleep 10
    # $oldpath/launch/20_debug_staking.sh
 
 elif [ $mChoice == 3 ]; then
