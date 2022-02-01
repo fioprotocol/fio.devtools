@@ -35,5 +35,5 @@
 ./clio -u http://localhost:8879 push action eosio setpriv '["r41zuwovtn44",1]' -p eosio@active
 
 ./clio -u http://localhost:8889 set account permission fio.treasury active --add-code
-sleep 1s
+sleep 1
 ./clio -u http://localhost:8889 push action fio.treasury startclock '{"":""}' -p fio.treasury@active
