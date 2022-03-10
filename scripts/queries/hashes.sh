@@ -317,7 +317,7 @@ openssl sha256 < ../fio.contracts/build/contracts/fio.staking/fio.staking.abi
 echo -n $'\E[0;31m'
 echo Local
 echo -n $'\e[0;39m'
-./bin/clio -u http://localhost:8889 get code fio.staking -a staking.abi
+./bin/clio -u http://localhost:8889 get code fio.staking -a bin/staking.abi
 echo -n $'\E[0;31m'
 echo ABI:
 echo -n $'\e[0;39m'
@@ -325,7 +325,7 @@ openssl sha256 < bin/staking.abi
 echo -n $'\E[0;31m'
 echo Testnet
 echo -n $'\e[0;39m'
-./bin/clio -u http://testnet.fioprotocol.io get code fio.staking -a staking.abi
+./bin/clio -u http://testnet.fioprotocol.io get code fio.staking -a bin/staking.abi
 echo -n $'\E[0;31m'
 echo ABI:
 echo -n $'\e[0;39m'
@@ -333,7 +333,7 @@ openssl sha256 < bin/staking.abi
 echo -n $'\E[0;31m'
 echo Mainnet
 echo -n $'\e[0;39m'
-./bin/clio -u https://fio.greymass.com get code fio.staking -a staking.abi
+./bin/clio -u https://fio.greymass.com get code fio.staking -a bin/staking.abi
 echo -n $'\E[0;31m'
 echo ABI:
 echo -n $'\e[0;39m'
@@ -350,7 +350,7 @@ openssl sha256 < ../fio.contracts/build/contracts/fio.escrow/fio.escrow.abi
 echo -n $'\E[0;31m'
 echo Local
 echo -n $'\e[0;39m'
-./bin/clio -u http://localhost:8889 get code fio.escrow -a escrow.abi
+./bin/clio -u http://localhost:8889 get code fio.escrow -a bin/escrow.abi
 echo -n $'\E[0;31m'
 echo ABI:
 echo -n $'\e[0;39m'
@@ -358,7 +358,7 @@ openssl sha256 < bin/escrow.abi
 echo -n $'\E[0;31m'
 echo Testnet
 echo -n $'\e[0;39m'
-./bin/clio -u http://testnet.fioprotocol.io get code fio.escrow -a escrow.abi
+./bin/clio -u http://testnet.fioprotocol.io get code fio.escrow -a bin/escrow.abi
 echo -n $'\E[0;31m'
 echo ABI:
 echo -n $'\e[0;39m'
@@ -366,7 +366,7 @@ openssl sha256 < bin/escrow.abi
 echo -n $'\E[0;31m'
 echo Mainnet
 echo -n $'\e[0;39m'
-./bin/clio -u https://fio.greymass.com get code fio.escrow -a escrow.abi
+./bin/clio -u https://fio.greymass.com get code fio.escrow -a bin/escrow.abi
 echo -n $'\E[0;31m'
 echo ABI:
 echo -n $'\e[0;39m'
