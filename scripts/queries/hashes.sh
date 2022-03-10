@@ -338,4 +338,36 @@ echo -n $'\E[0;31m'
 echo ABI:
 echo -n $'\e[0;39m'
 openssl sha256 < bin/staking.abi
-a
+
+echo -n $'\e[0;34m'
+echo fio.escrow - Local WASM:
+echo -n $'\e[0;39m'
+openssl sha256 < ../fio.contracts/build/contracts/fio.escrow/fio.escrow.wasm
+echo -n $'\e[0;34m'
+echo fio.escrow - Local ABI:
+echo -n $'\e[0;39m'
+openssl sha256 < ../fio.contracts/build/contracts/fio.escrow/fio.escrow.abi
+echo -n $'\E[0;31m'
+echo Local
+echo -n $'\e[0;39m'
+./bin/clio -u http://localhost:8889 get code fio.escrow -a escrow.abi
+echo -n $'\E[0;31m'
+echo ABI:
+echo -n $'\e[0;39m'
+openssl sha256 < bin/escrow.abi
+echo -n $'\E[0;31m'
+echo Testnet
+echo -n $'\e[0;39m'
+./bin/clio -u http://testnet.fioprotocol.io get code fio.escrow -a escrow.abi
+echo -n $'\E[0;31m'
+echo ABI:
+echo -n $'\e[0;39m'
+openssl sha256 < bin/escrow.abi
+echo -n $'\E[0;31m'
+echo Mainnet
+echo -n $'\e[0;39m'
+./bin/clio -u https://fio.greymass.com get code fio.escrow -a escrow.abi
+echo -n $'\E[0;31m'
+echo ABI:
+echo -n $'\e[0;39m'
+openssl sha256 < bin/escrow.abi
