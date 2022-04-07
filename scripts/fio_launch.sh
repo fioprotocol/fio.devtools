@@ -42,13 +42,12 @@ fi
 if [ $mChoice == 2 ]; then
     echo Updating Current Base Contracts
     cd ../fio.devtools/bin/baseContract/master/
-    git clone http://github.com/fioprotocol/fio.contracts
+    git clone http://github.com/fioprotocol/fio.contracts -b release/2.5.x
     cd fio.contracts/
     ./build.sh
     cp ./contracts/fio.fee/fio.fee.abi ./build/contracts/fio.fee/fio.fee.abi
     cp ./contracts/fio.address/fio.address.abi ./build/contracts/fio.address/fio.address.abi
     cp ./contracts/fio.request.obt/fio.request.obt.abi ./build/contracts/fio.request.obt/fio.request.obt.abi
-    # cp ./contracts/fio.staking/fio.staking.abi ./build/contracts/fio.staking/fio.staking.abi
 
     echo Building Development Contracts
     cd ../../../../../fio.contracts
@@ -59,6 +58,7 @@ if [ $mChoice == 2 ]; then
     cp ./contracts/fio.address/fio.address.abi ./build/contracts/fio.address/fio.address.abi
     cp ./contracts/fio.request.obt/fio.request.obt.abi ./build/contracts/fio.request.obt/fio.request.obt.abi
     cp ./contracts/fio.staking/fio.staking.abi ./build/contracts/fio.staking/fio.staking.abi
+    cp ./contracts/fio.escrow/fio.escrow.abi ./build/contracts/fio.escrow/fio.escrow.abi
     echo COMPLETE - READY TO LAUNCH
     exit -1
 fi
@@ -120,6 +120,14 @@ if [ $mChoice == 1 ]; then
         else
             echo 'No wasm file found at $PWD/build/contracts/fio.staking'
     fi
+
+    if [ -f ../fio.contracts/build/contracts/fio.escrow/fio.escrow.wasm ]; then
+            fio_escrow_name_path="$oldpath/../../fio.contracts/build/contracts/fio.escrow"
+        else
+            echo 'No wasm file found at $PWD/build/contracts/fio.escrow'
+    fi
+#    echo "EDEDEDEDEDED just checked for escrow wasm file!!!"
+#    sleep 10
 
     if [ -f ../fio.contracts/build/contracts/fio.treasury/fio.treasury.wasm ]; then
             fio_treasury_name_path="$oldpath/../../fio.contracts/build/contracts/fio.treasury"
@@ -194,13 +202,6 @@ if [ $mChoice == 1 ]; then
                 echo 'No wasm file found at $PWD/build/contracts/eosio.wrap'
     fi
 
-    if [ -f bin/baseContract/master/fio.contracts/build/contracts/fio.staking/fio.staking.wasm ]; then
-            fio_staking_base_path="$basepath/fio.contracts/build/contracts/fio.staking"
-            else
-                echo 'No wasm file found at $PWD/build/contracts/fio.staking'
-    fi
-
-
     export eosio_bios_contract_name_path
     export fio_system_contract_name_path
     export eosio_msig_contract_name_path
@@ -210,6 +211,7 @@ if [ $mChoice == 1 ]; then
     export fio_reqobt_name_path
     export fio_tpid_name_path
     export fio_staking_name_path
+    export fio_escrow_name_path
     export fio_treasury_name_path
     export eosio_wrap_name_path
 
@@ -226,7 +228,7 @@ if [ $mChoice == 1 ]; then
     export fio_staking_base_path
     export vChoice
 
-    sleep 1s
+    sleep 1
     cd ~/fio/$vChoice/bin
     $oldpath/launch/01_new_wallet.sh
 
@@ -253,8 +255,6 @@ if [ $mChoice == 1 ]; then
 
         echo creating dapix test accounts
         $oldpath/launch/06_create_test_accounts.sh
-
-
 
         #create fees for the fio protocol, all fees are zero so no added FIO circulation for genesis.
         echo "creating fees"
@@ -296,7 +296,6 @@ if [ $mChoice == 1 ]; then
     $oldpath/launch/13_create_accounts_foundation.sh
     sleep 0.5
 
-    
     # LOCKED TESTING STARTS HERE
     # $oldpath/launch/14_create_locked_token_holder_accounts.sh
 #$oldpath/launch/15_create_locked_token_holder_test_accounts.sh
@@ -314,10 +313,10 @@ if [ $mChoice == 1 ]; then
 
     echo "creating operational fees"
     $oldpath/launch/18_create_set_fees_after_genesis.sh
-    sleep 10s
+    sleep 10
     echo Setting Development Contracts over v2.0.0
     $oldpath/launch/19_bind_dev_contracts.sh
-   # sleep 10s
+   # sleep 10
    # $oldpath/launch/20_debug_staking.sh
 
 elif [ $mChoice == 3 ]; then
@@ -356,6 +355,8 @@ elif [ $mChoice == 7 ]; then
     if [ $bChoice == 1 ]; then
       scripts/actions/update_contracts.sh
     fi
+else
+    exit 1
 fi
 
 printf "\n\n${bldgrn}"

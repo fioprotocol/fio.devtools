@@ -9,7 +9,7 @@
 
 host='localhost:8889'
 echo "EDEDEDEDED adding actions"
-sleep 10s
+sleep 10
 
 # we run the first 15 so that we can test after the fork deadline, and prove the new logic is being used
 #added for FIP-21
@@ -66,3 +66,16 @@ sleep 10s
 ./clio -u http://$host push action eosio addaction '{"action":"remnft","contract":"fio.address","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"remallnfts","contract":"fio.address","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"burnnfts","contract":"fio.address","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"retire","contract":"fio.token","actor":"eosio"}' --permission eosio
+# fio.escrow:
+./clio -u http://$host push action eosio addaction '{"action":"buydomain","contract":"fio.escrow","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"listdomain","contract":"fio.escrow","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"cxlistdomain","contract":"fio.escrow","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"setmrkplcfg","contract":"fio.escrow","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"xferescrow","contract":"fio.address","actor":"eosio"}' --permission eosio
+## admin action only called from fio.address::burnexpired
+./clio -u http://$host push action eosio addaction '{"action":"cxburned","contract":"fio.escrow","actor":"eosio"}' --permission eosio
+
+# required for unit testing
+./clio -u http://$host push action eosio addaction '{"action":"modexpire","contract":"fio.address","actor":"eosio"}' --permission eosio
+
