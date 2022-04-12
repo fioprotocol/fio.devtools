@@ -44,6 +44,18 @@ if [ -f ../fio.contracts/build/contracts/fio.tpid/fio.tpid.wasm ]; then
         echo 'No wasm file found at $PWD/build/contracts/fio.tpid'
 fi
 
+if [ -f ../fio.contracts/build/contracts/fio.staking/fio.staking.wasm ]; then
+        fio_staking_name_path="$oldpath/../../fio.contracts/build/contracts/fio.staking"
+    else
+        echo 'No wasm file found at $PWD/build/contracts/fio.staking'
+fi
+
+if [ -f ../fio.contracts/build/contracts/fio.escrow/fio.escrow.wasm ]; then
+        fio_escrow_name_path="$oldpath/../../fio.contracts/build/contracts/fio.escrow"
+    else
+        echo 'No wasm file found at $PWD/build/contracts/fio.escrow'
+fi
+
 if [ -f ../fio.contracts/build/contracts/fio.treasury/fio.treasury.wasm ]; then
         fio_treasury_name_path="$oldpath/../../fio.contracts/build/contracts/fio.treasury"
     else
@@ -66,21 +78,23 @@ cd ~/fio/$vChoice/bin
 
 walletkey=$(head -n 1 $oldpath/../walletkey.ini)
 echo 'Using Password:' $walletkey
-sleep 1s
+sleep 1
 ./clio wallet unlock -n fio --password $walletkey
 
 #Update Contracts..
 ./clio -u http://localhost:8879 set contract -j eosio $fio_system_contract_name_path fio.system.wasm fio.system.abi --permission eosio@active
-sleep 1.5s
+sleep 1.5
 ./clio -u http://localhost:8879 set contract fio.token $fio_token_contract_name_path fio.token.wasm fio.token.abi
-sleep 1.5s
+sleep 1.5
 ./clio -u http://localhost:8879 set contract fio.tpid $fio_tpid_name_path fio.tpid.wasm fio.tpid.abi
 ./clio -u http://localhost:8879 set contract eosio.msig $eosio_msig_contract_name_path eosio.msig.wasm eosio.msig.abi
 ./clio -u http://localhost:8879 set contract -j fio.address $fio_contract_name_path fio.address.wasm fio.address.abi --permission fio.address@active
 ./clio -u http://localhost:8879 set contract -j fio.reqobt $fio_reqobt_name_path fio.request.obt.wasm fio.request.obt.abi --permission fio.reqobt@active
-sleep 1.5s
+sleep 1.5
 ./clio -u http://localhost:8879 set contract -j fio.fee $fio_fee_name_path fio.fee.wasm fio.fee.abi --permission fio.fee@active
-sleep 1.5s
+sleep 1.5
 ./clio -u http://localhost:8889 set contract -j fio.treasury $fio_treasury_name_path fio.treasury.wasm fio.treasury.abi --permission fio.treasury@active
 sleep 1.5s
 ./clio -u http://localhost:8879 set contract -j fio.oracle $fio_oracle_name_path fio.oracle.wasm fio.oracle.abi --permission fio.oracle@active
+./clio -u http://localhost:8879 set contract -j fio.staking $fio_staking_name_path fio.staking.wasm fio.staking.abi --permission fio.staking@active
+./clio -u http://localhost:8879 set contract -j fio.escrow $fio_escrow_name_path fio.escrow.wasm fio.escrow.abi --permission fio.escrow@active

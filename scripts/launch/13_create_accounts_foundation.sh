@@ -6,54 +6,54 @@ retries=3
 #Private key: 5KjKZyDuk1t5b8UGpjbqzmSYZViUdcPVgfJUsDjPGTKdHUtdHvt
 #Public key: FIO8BtuJ4FYSCM44pPLZHzCrsJfw5cSnC6iWn7LajuJzSDstqTr9s
 #FIO Public Address (actor name): mwv42t2vjzkv
-./clio -u http://localhost:8879 push action -j fio.token trnsfiopubky '{"payee_public_key": "FIO8BtuJ4FYSCM44pPLZHzCrsJfw5cSnC6iWn7LajuJzSDstqTr9s", "amount": "150000000000000", "max_fee": "40000000000", "actor": "eosio","tpid":""}' -p eosio@active
+./clio -u http://localhost:8879 push action fio.token trnsfiopubky '{"payee_public_key": "FIO8BtuJ4FYSCM44pPLZHzCrsJfw5cSnC6iWn7LajuJzSDstqTr9s", "amount": "150000000000000", "max_fee": "40000000000", "actor": "eosio","tpid":""}' -p eosio@active
 
 # create 9 participatory accounts in a multi signature account
 #1
 #Private key: 5JXxe8wHYkUDjW8xqSYRJQmjoEG4shuvrgXzLtS9DuqeVhZKodn
 #Public key: FIO5j7MmJN5PxTmGf3RLtcwdXqsWsvBzpspZYmzJAAPwobYot9L1F
 #FIO Public Address (actor name): iahg1zpkd12n
-./clio -u http://localhost:8879 push action -j fio.token trnsfiopubky '{"payee_public_key": "FIO5j7MmJN5PxTmGf3RLtcwdXqsWsvBzpspZYmzJAAPwobYot9L1F", "amount": "1000000000", "max_fee": "40000000000", "actor": "eosio","tpid":""}' -p eosio@active
+./clio -u http://localhost:8879 push action fio.token trnsfiopubky '{"payee_public_key": "FIO5j7MmJN5PxTmGf3RLtcwdXqsWsvBzpspZYmzJAAPwobYot9L1F", "amount": "1000000000", "max_fee": "40000000000", "actor": "eosio","tpid":""}' -p eosio@active
 #2
 #Private key: 5JddpG5YfK2JUEZL2oGry8VAbK5jTWdUT8WmECBc14EdgoLFN1r
 #Public key: FIO8g74aBqUFjSe4PVh7ZRNRGMk1awMZuTg4vtiEszEEP8FyC5Toa
 #FIO Public Address (actor name): mefrpkqgqbvt
-./clio -u http://localhost:8879 push action -j fio.token trnsfiopubky '{"payee_public_key": "FIO8g74aBqUFjSe4PVh7ZRNRGMk1awMZuTg4vtiEszEEP8FyC5Toa", "amount": "1000000000", "max_fee": "40000000000", "actor": "eosio","tpid":""}' -p eosio@active
+./clio -u http://localhost:8879 push action fio.token trnsfiopubky '{"payee_public_key": "FIO8g74aBqUFjSe4PVh7ZRNRGMk1awMZuTg4vtiEszEEP8FyC5Toa", "amount": "1000000000", "max_fee": "40000000000", "actor": "eosio","tpid":""}' -p eosio@active
 #3
 #Private key: 5JbFiQ8DLXfA6d7oPMg6iZnNfADgXKbs1VjGuL54KSuYLuxTeST
 #Public key: FIO7k36HiCfmsFPbkHCrUYNFRJtSNnWWLKqznsBrV1uYXTU4fRt5G
 #FIO Public Address (actor name): r5f1hriukyq3
-./clio -u http://localhost:8879 push action -j fio.token trnsfiopubky '{"payee_public_key": "FIO7k36HiCfmsFPbkHCrUYNFRJtSNnWWLKqznsBrV1uYXTU4fRt5G", "amount": "1000000000", "max_fee": "40000000000", "actor": "eosio","tpid":""}' -p eosio@active
+./clio -u http://localhost:8879 push action fio.token trnsfiopubky '{"payee_public_key": "FIO7k36HiCfmsFPbkHCrUYNFRJtSNnWWLKqznsBrV1uYXTU4fRt5G", "amount": "1000000000", "max_fee": "40000000000", "actor": "eosio","tpid":""}' -p eosio@active
 #4
 #Private key: 5Jumr3oxsKMYgm9ngRq7YCJKLRiiRnwbbsYt3mwEwpmWqBf5PLo
 #Public key: FIO83TupKVSH1dG5V67FLNzLjP73VApGkAQSpPriqYa9gbUzetxLt
 #FIO Public Address (actor name): zrd3um5xoxlk
-./clio -u http://localhost:8879 push action -j fio.token trnsfiopubky '{"payee_public_key": "FIO83TupKVSH1dG5V67FLNzLjP73VApGkAQSpPriqYa9gbUzetxLt", "amount": "1000000000", "max_fee": "40000000000", "actor": "eosio","tpid":""}' -p eosio@active
+./clio -u http://localhost:8879 push action fio.token trnsfiopubky '{"payee_public_key": "FIO83TupKVSH1dG5V67FLNzLjP73VApGkAQSpPriqYa9gbUzetxLt", "amount": "1000000000", "max_fee": "40000000000", "actor": "eosio","tpid":""}' -p eosio@active
 #5
 #Private key: 5KaLisPyEzSmMPBAR7cmTzcSjJJStZ6NnqPbBPFpge4mHzVsfAk
 #Public key: FIO5NPqHSaHR4s1dr4exwwpQLFH89arNCFjAeNMAGc5RnTFMWGvKF
 #FIO Public Address (actor name): zwy1msikpomb
-./clio -u http://localhost:8879 push action -j fio.token trnsfiopubky '{"payee_public_key": "FIO5NPqHSaHR4s1dr4exwwpQLFH89arNCFjAeNMAGc5RnTFMWGvKF", "amount": "1000000000", "max_fee": "40000000000", "actor": "eosio","tpid":""}' -p eosio@active
+./clio -u http://localhost:8879 push action fio.token trnsfiopubky '{"payee_public_key": "FIO5NPqHSaHR4s1dr4exwwpQLFH89arNCFjAeNMAGc5RnTFMWGvKF", "amount": "1000000000", "max_fee": "40000000000", "actor": "eosio","tpid":""}' -p eosio@active
 #6
 #Private key: 5K9hbWjVMEj1LkLvLh8nrXBvenXvhF1AZ9QF3zSvDGRYWU6uRii
 #Public key: FIO59mmePrDRKgpzpY9BvLb7Lqo17ZXD9qjjqzB8yP2XDxV9j7Ezs
 #FIO Public Address (actor name): 2nsn2fklp3qt
-./clio -u http://localhost:8879 push action -j fio.token trnsfiopubky '{"payee_public_key": "FIO59mmePrDRKgpzpY9BvLb7Lqo17ZXD9qjjqzB8yP2XDxV9j7Ezs", "amount": "1000000000", "max_fee": "40000000000", "actor": "eosio","tpid":""}' -p eosio@active
+./clio -u http://localhost:8879 push action fio.token trnsfiopubky '{"payee_public_key": "FIO59mmePrDRKgpzpY9BvLb7Lqo17ZXD9qjjqzB8yP2XDxV9j7Ezs", "amount": "1000000000", "max_fee": "40000000000", "actor": "eosio","tpid":""}' -p eosio@active
 #7
 #Private key: 5KZaZxe8SxNEoXEG4e2RqzvJx7yc8H3WtgpYKacbFshnsy9G3nG
 #Public key: FIO4vcNBgzii7dULcmWohsqDB2tMMaA4q5zKgw6cnUxuiSDosKi5m
 #FIO Public Address (actor name): 4kqd2qtmfaa4
-./clio -u http://localhost:8879 push action -j fio.token trnsfiopubky '{"payee_public_key": "FIO4vcNBgzii7dULcmWohsqDB2tMMaA4q5zKgw6cnUxuiSDosKi5m", "amount": "1000000000", "max_fee": "40000000000", "actor": "eosio","tpid":""}' -p eosio@active
+./clio -u http://localhost:8879 push action fio.token trnsfiopubky '{"payee_public_key": "FIO4vcNBgzii7dULcmWohsqDB2tMMaA4q5zKgw6cnUxuiSDosKi5m", "amount": "1000000000", "max_fee": "40000000000", "actor": "eosio","tpid":""}' -p eosio@active
 #8
 #Private key: 5Huesp6F8KWy6TbXH2TjhRvSf1N9d1h1uoqMb9Gq8zeBQw9hps4
 #Public key: FIO6dLL6c8Ndq6ZYLJK65NsHLQH8DqrVgVArq6AFByGVvy9mWJDEF
 #FIO Public Address (actor name): 4uavbl5lae33
-./clio -u http://localhost:8879 push action -j fio.token trnsfiopubky '{"payee_public_key": "FIO6dLL6c8Ndq6ZYLJK65NsHLQH8DqrVgVArq6AFByGVvy9mWJDEF", "amount": "1000000000", "max_fee": "40000000000", "actor": "eosio","tpid":""}' -p eosio@active
+./clio -u http://localhost:8879 push action fio.token trnsfiopubky '{"payee_public_key": "FIO6dLL6c8Ndq6ZYLJK65NsHLQH8DqrVgVArq6AFByGVvy9mWJDEF", "amount": "1000000000", "max_fee": "40000000000", "actor": "eosio","tpid":""}' -p eosio@active
 #9
 #Private key: 5KL9bCjqi1bKtXEDA8awMUK6MGUUqn45nxrvzx1UbMGc16v4PqK
 #Public key: FIO5ez5QUUdc6wmgiAYbdmL2rETVyT5nAjuQ9pznyuxpL8Wq1wFnc
 #FIO Public Address (actor name): 5cbvokp5zwxy
-./clio -u http://localhost:8879 push action -j fio.token trnsfiopubky '{"payee_public_key": "FIO5ez5QUUdc6wmgiAYbdmL2rETVyT5nAjuQ9pznyuxpL8Wq1wFnc", "amount": "1000000000", "max_fee": "40000000000", "actor": "eosio","tpid":""}' -p eosio@active
+./clio -u http://localhost:8879 push action fio.token trnsfiopubky '{"payee_public_key": "FIO5ez5QUUdc6wmgiAYbdmL2rETVyT5nAjuQ9pznyuxpL8Wq1wFnc", "amount": "1000000000", "max_fee": "40000000000", "actor": "eosio","tpid":""}' -p eosio@active
 sleep 5
 #create the MSIG
 #IMPORTANT NOTE -- accounts and keys MUST be in alpha sorted order in updateauth.
