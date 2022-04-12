@@ -13,11 +13,15 @@ sleep 1.5
 ./clio -u http://localhost:8879 set contract fio.address $fio_contract_name_path fio.address.wasm fio.address.abi --permission fio.address@active
 
 # Bind more fio contracts
-./clio -u http://localhost:8879 set contract fio.reqobt $fio_reqobt_name_path fio.request.obt.wasm fio.request.obt.abi --permission fio.reqobt@active
-sleep 1.5
-./clio -u http://localhost:8879 set contract fio.fee $fio_fee_name_path fio.fee.wasm fio.fee.abi --permission fio.fee@active
-sleep 1.5
-./clio -u http://localhost:8889 set contract fio.treasury $fio_treasury_name_path fio.treasury.wasm fio.treasury.abi --permission fio.treasury@active
+./clio -u http://localhost:8879 set contract -j fio.reqobt $fio_reqobt_name_path fio.request.obt.wasm fio.request.obt.abi --permission fio.reqobt@active
+sleep 1.5s
+./clio -u http://localhost:8879 set contract -j fio.fee $fio_fee_name_path fio.fee.wasm fio.fee.abi --permission fio.fee@active
+sleep 1.5s
+./clio -u http://localhost:8889 set contract -j fio.treasury $fio_treasury_name_path fio.treasury.wasm fio.treasury.abi --permission fio.treasury@active
+
+# oracle contract
+./clio -u http://localhost:8889 set contract -j fio.oracle $fio_oracle_name_path fio.oracle.wasm fio.oracle.abi --permission fio.oracle@active
+sleep 1.5s
 
 ############ Initial marketplace config action that requires EOSIO permissions
 

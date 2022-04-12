@@ -68,6 +68,12 @@ if [ -f ../fio.contracts/build/contracts/eosio.wrap/eosio.wrap.wasm ]; then
             echo 'No wasm file found at $PWD/build/contracts/eosio.wrap'
 fi
 
+if [ -f ../fio.contracts/build/contracts/fio.oracle/fio.oracle.wasm ]; then
+           fio_oracle_name_path="$oldpath/../../fio.contracts/build/contracts/fio.oracle"
+        else
+            echo 'No wasm file found at $PWD/build/contracts/fio.oracle'
+fi
+
 cd ~/fio/$vChoice/bin
 
 walletkey=$(head -n 1 $oldpath/../walletkey.ini)
@@ -88,5 +94,7 @@ sleep 1.5
 ./clio -u http://localhost:8879 set contract -j fio.fee $fio_fee_name_path fio.fee.wasm fio.fee.abi --permission fio.fee@active
 sleep 1.5
 ./clio -u http://localhost:8889 set contract -j fio.treasury $fio_treasury_name_path fio.treasury.wasm fio.treasury.abi --permission fio.treasury@active
+sleep 1.5s
+./clio -u http://localhost:8879 set contract -j fio.oracle $fio_oracle_name_path fio.oracle.wasm fio.oracle.abi --permission fio.oracle@active
 ./clio -u http://localhost:8879 set contract -j fio.staking $fio_staking_name_path fio.staking.wasm fio.staking.abi --permission fio.staking@active
 ./clio -u http://localhost:8879 set contract -j fio.escrow $fio_escrow_name_path fio.escrow.wasm fio.escrow.abi --permission fio.escrow@active
