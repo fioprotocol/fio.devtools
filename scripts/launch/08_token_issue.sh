@@ -51,7 +51,8 @@
 
 # marketplace and escrow development
 # fio.escrow
-./clio -u http://localhost:8879 push action fio.token issue '["fio.escrow","1000000.000000000 FIO","memo"]' -p eosio@active
+# this is a duplicate, looks like some merges went wrong on dev tools at some point, is this oracle?????
+#./clio -u http://localhost:8879 push action fio.token issue '["fio.escrow","1000000.000000000 FIO","memo"]' -p eosio@active
 
 # blocksmith dev accounts
 # marketplace

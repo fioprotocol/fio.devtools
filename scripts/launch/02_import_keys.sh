@@ -63,7 +63,7 @@ sleep 1
 sleep 1s
 
 # fio.oracle
-./clio wallet import --private-key 5JXkawfVHHZuTAdZrVpdkg4mUNfUytuw8uDUBWcAvb8YMK5R4yY -n fio
+#./clio wallet import --private-key 5JXkawfVHHZuTAdZrVpdkg4mUNfUytuw8uDUBWcAvb8YMK5R4yY -n fio
 sleep 0.5
 
 # blocksmith dev accounts
