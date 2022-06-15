@@ -36,6 +36,7 @@ echo creating dev account for escrow and marketplace
 #Public Key: FIO5VEZHHBJwgzjVtLrdUYZ4dPbTFNHGLDcaB4gKDo2GHhwHbW7QE
 #Private key: 5JXkawfVHHZuTAdZrVpdkg4mUNfUytuw8uDUBWcAvb8YMK5R4yY
 #FIO Internal Account (actor name): i4wplnm2ogsd
+
 ./clio -u http://localhost:8879 create account eosio fio.oracle FIO7isxEua78KPVbGzKemH4nj2bWE52gqj8Hkac3tc7jKNvpfWzYS FIO7isxEua78KPVbGzKemH4nj2bWE52gqj8Hkac3tc7jKNvpfWzYS
 ./clio -u http://localhost:8879 set contract fio.address $fio_contract_base_path fio.address.wasm fio.address.abi --permission fio.address@active
 sleep 2

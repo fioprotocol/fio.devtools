@@ -61,7 +61,8 @@ sleep 10
 ./clio -u http://$host push action eosio addaction '{"action":"newfundsreq","contract":"fio.reqobt","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"rewardspaid","contract":"fio.tpid","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"updatetpid","contract":"fio.tpid","actor":"eosio"}' --permission eosio
-./clio -u http://$host push action eosio addaction '{"action":"execute","contract":"eosio.wrap","actor":"eosio"}' --permission eosio
+# this action gets added by the controller core code, so no need to do it here...
+#./clio -u http://$host push action eosio addaction '{"action":"execute","contract":"eosio.wrap","actor":"eosio"}' --permission eosio
 # fio.oracle:
 ./clio -u http://$host push action eosio addaction '{"action":"wraptokens","contract":"fio.oracle","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"unwraptokens","contract":"fio.oracle","actor":"eosio"}' --permission eosio
@@ -70,7 +71,6 @@ sleep 10
 ./clio -u http://$host push action eosio addaction '{"action":"setoraclefee","contract":"fio.oracle","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"wrapdomain","contract":"fio.oracle","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"unwrapdomain","contract":"fio.oracle","actor":"eosio"}' --permission eosio
-
 # USED FOR TESTING:
 ./clio -u http://$host push action eosio addaction '{"action":"migrtrx","contract":"fio.reqobt","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"addnft","contract":"fio.address","actor":"eosio"}' --permission eosio
@@ -83,7 +83,7 @@ sleep 10
 ./clio -u http://$host push action eosio addaction '{"action":"listdomain","contract":"fio.escrow","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"cxlistdomain","contract":"fio.escrow","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"setmrkplcfg","contract":"fio.escrow","actor":"eosio"}' --permission eosio
-./clio -u http://$host push action eosio addaction '{"action":"xferescrow","contract":"fio.address","actor":"eosio"}' --permission eosio
+
 ## admin action only called from fio.address::burnexpired
 ./clio -u http://$host push action eosio addaction '{"action":"cxburned","contract":"fio.escrow","actor":"eosio"}' --permission eosio
 
