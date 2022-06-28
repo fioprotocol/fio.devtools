@@ -358,10 +358,13 @@ elif [ $mChoice == 6 ]; then
     $oldpath/launch/history/20_start_docker_compose.sh "${nodeos_dev_p2p}" "${nodeos_dev_port}"
 
 elif [ $mChoice == 7 ]; then
-    read -p $'1. Update All Contracts\nChoose(#):' bChoice
+    read -p $'1. Update All Contracts 2. Oracle Register/Vote\nChoose(#):' bChoice
 
     if [ $bChoice == 1 ]; then
       scripts/actions/update_contracts.sh
+    fi
+    if [ $bChoice == 2 ]; then
+      scripts/actions/reg_oracles.sh
     fi
 else
     exit 1
