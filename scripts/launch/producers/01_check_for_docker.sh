@@ -12,8 +12,7 @@ function prereqs() {
     echo "  -     $(lsb_release -cs) stable\" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null"
     echo
     echo "  - Install docker:"
-    echo "  -   sudo apt-get update"
-    echo "  -   sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin"
+    echo "  -   sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin"
     echo
     echo "  - Configure user with ability to run docker commands:"
     echo "  -   sudo usermod -aG docker $USER"
@@ -32,6 +31,12 @@ function prereqs() {
     echo "Removing old versions of docker..."
     sudo apt-get -y remove docker docker-engine docker.io containerd runc
     echo
+    echo "Update apt package index..."
+    sudo apt-get update
+    echo
+    echo "Updating ubuntu repos..."
+    sudo apt-get -y install ca-certificates curl gnupg lsb-release
+    echo
     echo "Add Docker’s official GPG key..."
     sudo mkdir -p /etc/apt/keyrings
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
@@ -42,7 +47,7 @@ function prereqs() {
     echo
     echo "Install docker and jq..."
     sudo apt-get update
-    sudo apt-get -y install ca-certificates curl gnupg lsb-release jq
+    sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
     sudo usermod -a -G docker $(whoami)
     newgrp -
     echo
