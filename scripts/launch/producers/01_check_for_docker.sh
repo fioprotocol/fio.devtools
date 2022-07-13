@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
 function prereqs() {
-    echo "The following are required to run this script:"
     echo
-    echo "  - this script is intended to run on Linux only"
+    echo "The following are required to run this script (ubuntu-specific):"
     echo "  - docker, and docker-compose must be installed. To install docker, first configure the docker repository:"
     echo "  -   sudo apt-get update"
     echo "  -   sudo apt-get install ca-certificates curl gnupg lsb-release"
@@ -45,6 +44,7 @@ function prereqs() {
     sudo apt-get update
     sudo apt-get -y install ca-certificates curl gnupg lsb-release jq
     sudo usermod -a -G docker $(whoami)
+    newgrp -
     echo
     echo "Re-run the script after logging out and back in, or run 'newgrp -' to start a subshell with updated permissions"
 }
