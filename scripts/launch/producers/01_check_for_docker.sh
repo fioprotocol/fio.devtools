@@ -46,7 +46,8 @@ function prereqs() {
     sudo usermod -a -G docker $(whoami)
     newgrp -
     echo
-    echo "Re-run the script after logging out and back in, or run 'newgrp -' to start a subshell with updated permissions"
+    echo "NOTE: 'newgrp -' was executed to temporiarily load the new docker permissions into the user's environment,"
+    echo "however, it's recommended to exit the script and re-run after logging out and back in."
 }
 
 # ensure pre-requisites are met:
