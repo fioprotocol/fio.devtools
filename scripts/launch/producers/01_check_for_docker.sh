@@ -26,7 +26,7 @@ function prereqs() {
     echo "  -   sudo apt-get update"
     echo "  -   sudo apt-get jq"
     echo
-    read -N 1 -p "Would you like to install packages and set permissions now? [y/N] " RUN_SETUP
+    read -p "Would you like to install packages and set permissions now? [y/N] " RUN_SETUP
     [ "$RUN_SETUP" == "y" ] || [ "$RUN_SETUP" == "Y" ] || kill 0
     echo "Removing old versions of docker..."
     sudo apt-get -y remove docker docker-engine docker.io containerd runc
@@ -47,12 +47,12 @@ function prereqs() {
     echo
     echo "Install docker and jq..."
     sudo apt-get update
-    sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
     sudo usermod -a -G docker $(whoami)
-    newgrp -
     echo
-    echo "NOTE: 'newgrp -' was executed to temporiarily load the new docker permissions into the user's environment,"
-    echo "however, it's recommended to exit the script and re-run after logging out and back in."
+    echo "NOTE: It's recommended to exit the script and either a) execute the command 'newgrp -' or"
+    echo "b) log out and back in. Doing will load the new docker permissions into the user's environment."
+    read -N -s 1
 }
 
 # ensure pre-requisites are met:
