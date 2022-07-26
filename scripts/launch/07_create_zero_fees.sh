@@ -10,6 +10,9 @@
 ./clio -u http://localhost:8879 push action fio.fee createfee '{"end_point":"transfer_fio_domain","type":"0","suf_amount":"0"}' --permission fio.fee@active
 ./clio -u http://localhost:8879 push action fio.fee createfee '{"end_point":"transfer_fio_address","type":"0","suf_amount":"0"}' --permission fio.fee@active
 ./clio -u http://localhost:8879 push action fio.fee createfee '{"end_point":"transfer_tokens_pub_key","type":"0","suf_amount":"0"}' --permission fio.fee@active
+#FIP-38 begin
+./clio -u http://localhost:8879 push action fio.fee createfee '{"end_point":"new_fio_chain_account","type":"0","suf_amount":"0"}' --permission fio.fee@active
+#FIP-38 end
 ./clio -u http://localhost:8879 push action fio.fee createfee '{"end_point":"new_funds_request","type":"1","suf_amount":"0"}' --permission fio.fee@active
 ./clio -u http://localhost:8879 push action fio.fee createfee '{"end_point":"reject_funds_request","type":"1","suf_amount":"0"}' --permission fio.fee@active
 ./clio -u http://localhost:8879 push action fio.fee createfee '{"end_point":"record_obt_data","type":"1","suf_amount":"0"}' --permission fio.fee@active
