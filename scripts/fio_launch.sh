@@ -1,4 +1,4 @@
-/#!/usr/bin/env bash
+#!/usr/bin/env bash
 
 printf "\n\n${bldgrn}"
 printf "  FFFFFFFFFFFFFFFFFFF IIIIIIIII     OOOOOOO     \n"
