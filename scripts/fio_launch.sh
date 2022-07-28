@@ -34,36 +34,6 @@ else
     mChoice=$1
 fi
 
-if [ $mChoice == 5 ]; then
-    scripts/queries/general.sh
-    exit
-fi
-
-if [ $mChoice == 2 ]; then
-    echo Updating Current Base Contracts
-    cd ../fio.devtools/bin/baseContract/master/
-    git clone http://github.com/fioprotocol/fio.contracts -b release/2.5.x
-    cd fio.contracts/
-    ./build.sh
-    cp ./contracts/fio.fee/fio.fee.abi ./build/contracts/fio.fee/fio.fee.abi
-    cp ./contracts/fio.address/fio.address.abi ./build/contracts/fio.address/fio.address.abi
-    cp ./contracts/fio.request.obt/fio.request.obt.abi ./build/contracts/fio.request.obt/fio.request.obt.abi
-
-    echo Building Development Contracts
-    cd ../../../../../fio.contracts
-    pwd
-    ./build.sh
-    echo COPYING ABI FILES FROM contracts TO ./build/contracts!
-    cp ./contracts/fio.fee/fio.fee.abi ./build/contracts/fio.fee/fio.fee.abi
-    cp ./contracts/fio.address/fio.address.abi ./build/contracts/fio.address/fio.address.abi
-    cp ./contracts/fio.request.obt/fio.request.obt.abi ./build/contracts/fio.request.obt/fio.request.obt.abi
-    cp ./contracts/fio.oracle/fio.oracle.abi ./build/contracts/fio.oracle/fio.oracle.abi
-    cp ./contracts/fio.staking/fio.staking.abi ./build/contracts/fio.staking/fio.staking.abi
-    cp ./contracts/fio.escrow/fio.escrow.abi ./build/contracts/fio.escrow/fio.escrow.abi
-    echo COMPLETE - READY TO LAUNCH
-    exit -1
-fi
-
 if [ $mChoice == 1 ]; then
 
         #FIO Directory Check
@@ -306,17 +276,17 @@ if [ $mChoice == 1 ]; then
 
     # LOCKED TESTING STARTS HERE
     # $oldpath/launch/14_create_locked_token_holder_accounts.sh
-#$oldpath/launch/15_create_locked_token_holder_test_accounts.sh
+    #$oldpath/launch/15_create_locked_token_holder_test_accounts.sh
     # $oldpath/launch/16_emplace_grants_into_locked_tokens.sh
-# $oldpath/launch/17_emplace_test_grants_into_locked_tokens.sh
+    # $oldpath/launch/17_emplace_test_grants_into_locked_tokens.sh
     sleep 2
-#uncomment these next 3 lines to test the genesis scripts, warning this takes around 30 minutes to execute.
-#after these run you can run validate_locked_token_holder.sh
-#validate_presale_domains.sh and validate_presale_fioaddresses.sh...
-#after the final transfer from prime trus you can run final_validation_locked_token_holders.sh
-   #$oldpath/launch/presale/create_presale_domains.sh
-   #$oldpath/launch/presale/create_presale_fioaddresses.sh
-   #$oldpath/launch/presale/make_presale_domains_private.sh
+    #uncomment these next 3 lines to test the genesis scripts, warning this takes around 30 minutes to execute.
+    #after these run you can run validate_locked_token_holder.sh
+    #validate_presale_domains.sh and validate_presale_fioaddresses.sh...
+    #after the final transfer from prime trus you can run final_validation_locked_token_holders.sh
+    #$oldpath/launch/presale/create_presale_domains.sh
+    #$oldpath/launch/presale/create_presale_fioaddresses.sh
+    #$oldpath/launch/presale/make_presale_domains_private.sh
     #create fees for the fio protocol, all fees are zero so no added FIO circulation for genesis.
 
     echo "creating operational fees"
@@ -326,6 +296,30 @@ if [ $mChoice == 1 ]; then
     $oldpath/launch/19_bind_dev_contracts.sh
    # sleep 10
    # $oldpath/launch/20_debug_staking.sh
+
+elif [ $mChoice == 2 ]; then
+    echo Updating Current Base Contracts
+    cd ../fio.devtools/bin/baseContract/master/
+    git clone http://github.com/fioprotocol/fio.contracts -b release/2.5.x
+    cd fio.contracts/
+    ./build.sh
+    cp ./contracts/fio.address/fio.address.abi ./build/contracts/fio.address/fio.address.abi
+    cp ./contracts/fio.fee/fio.fee.abi ./build/contracts/fio.fee/fio.fee.abi
+    cp ./contracts/fio.request.obt/fio.request.obt.abi ./build/contracts/fio.request.obt/fio.request.obt.abi
+
+    echo Building Development Contracts
+    cd ../../../../../fio.contracts
+    pwd
+    ./build.sh
+    echo COPYING ABI FILES FROM contracts TO ./build/contracts!
+    cp ./contracts/fio.address/fio.address.abi ./build/contracts/fio.address/fio.address.abi
+    cp ./contracts/fio.fee/fio.fee.abi ./build/contracts/fio.fee/fio.fee.abi
+    cp ./contracts/fio.escrow/fio.escrow.abi ./build/contracts/fio.escrow/fio.escrow.abi
+    cp ./contracts/fio.oracle/fio.oracle.abi ./build/contracts/fio.oracle/fio.oracle.abi
+    cp ./contracts/fio.request.obt/fio.request.obt.abi ./build/contracts/fio.request.obt/fio.request.obt.abi
+    cp ./contracts/fio.staking/fio.staking.abi ./build/contracts/fio.staking/fio.staking.abi
+    echo COMPLETE - READY TO LAUNCH
+    exit -1
 
 elif [ $mChoice == 3 ]; then
     read -p $'WARNING: ALL FILES ( WALLET & CHAIN ) WILL BE DELETED\n\nContinue? (1. Yes 2. No): ' bChoice
@@ -345,6 +339,10 @@ elif [ $mChoice == 4 ]; then
     read -p "Port for nodeos P2p [8889]:" nodeos_dev_port
     [ -z "${nodeos_dev_port}"] && nodeos_dev_port=8889
     $oldpath/launch/producers/19_start_docker_compose.sh "${nodeos_dev_p2p}" "${nodeos_dev_port}"
+
+elif [ $mChoice == 5 ]; then
+    scripts/queries/general.sh
+    exit 1
 
 elif [ $mChoice == 6 ]; then
     scripts/launch/producers/01_check_for_docker.sh
@@ -367,6 +365,7 @@ elif [ $mChoice == 7 ]; then
       scripts/actions/reg_oracles.sh
     fi
 else
+    echo "Unkown option: $mChoice! Exiting..."
     exit 1
 fi
 

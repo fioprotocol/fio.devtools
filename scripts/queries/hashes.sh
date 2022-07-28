@@ -14,7 +14,7 @@ echo eosio.msig - Local WASM:
 echo -n $'\e[0;39m'
 openssl sha256 < ../fio.contracts/build/contracts/eosio.msig/eosio.msig.wasm
 echo -n $'\e[0;34m'
-echo eosio.bios - Local ABI:
+echo eosio.msig - Local ABI:
 echo -n $'\e[0;39m'
 openssl sha256 < ../fio.contracts/build/contracts/eosio.msig/eosio.msig.abi
 echo -n $'\E[0;31m'
