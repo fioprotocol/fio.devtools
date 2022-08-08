@@ -140,18 +140,18 @@ do_compare_abiwasm_hashout() {
       if ! unique_values "${lt_list[@]}"; then
         echo
         echo -e "\e[41m LocalNet/TestNet ABI Hashes DIFFER!\e[0m"
-        echo -n $'\e[0;41m' 'LocalNet:'
+        echo -n $'\e[0;31m  LocalNet:'
         echo $'\e[0;39m' ${lt_list[0]}
-        echo -n $'\e[0;41m' ' TestNet: '
+        echo -n $'\e[0;31m  TestNet: '
         echo $'\e[0;39m' ${lt_list[1]}
       fi
       tm_list=("${abi_hashes[@]:2:3}")
       if ! unique_values "${tm_list[@]}"; then
         echo
         echo -e "\e[41m TestNet/MainNet ABI Hashes DIFFER!\e[0m"
-        echo -n $'\e[0;41m' ' TestNet: '
+        echo -n $'\e[0;31m  TestNet: '
         echo $'\e[0;39m' ${tm_list[0]}
-        echo -n $'\e[0;41m' ' MainNet: '
+        echo -n $'\e[0;31m  MainNet: '
         echo $'\e[0;39m' ${tm_list[1]}
       fi
     fi
@@ -160,27 +160,29 @@ do_compare_abiwasm_hashout() {
       if ! unique_values "${lt_list[@]}"; then
         echo
         echo -e "\e[41m LocalNet/TestNet WASM Hashes DIFFER!\e[0m"
-        echo -n $'\e[0;41m' 'LocalNet:'
+        echo -n $'\e[0;31m  LocalNet:'
         echo $'\e[0;39m' ${lt_list[0]}
-        echo -n $'\e[0;41m' ' TestNet: '
+        echo -n $'\e[0;31m  TestNet: '
         echo $'\e[0;39m' ${lt_list[1]}
       fi
       tm_list=("${wasm_hashes[@]:2:3}")
       if ! unique_values "${tm_list[@]}"; then
         echo
-        echo -e "\e[41m TestNet/MainNet ABI Hashes DIFFER!\e[0m"
-        echo -n $'\e[0;41m' ' TestNet: '
+        echo -e "\e[41m TestNet/MainNet WASM Hashes DIFFER!\e[0m"
+        echo -n $'\e[0;31m  TestNet: '
         echo $'\e[0;39m' ${tm_list[0]}
-        echo -n $'\e[0;41m' ' MainNet: '
+        echo -n $'\e[0;31m  MainNet: '
         echo $'\e[0;39m' ${tm_list[1]}
       fi
     fi
   done
 }
 
+# Generate hashes as they are retrieved from *Net, without pre-processing to remove
+# unwanted elements (for comparison)
 do_net_abiwasm_hashout() {
-  echo "Select *Net:"
-  read -p $'\n1. LocalNet 2. TestNet 3. MainNet\nChoose(#):' mChoice
+  echo -e "\nSelect *Net:"
+  read -p $'1. LocalNet 2. TestNet 3. MainNet\nChoose(#):' mChoice
 
   local net
   if [ $mChoice == 1 ]; then
@@ -256,12 +258,12 @@ do_net_abiwasm_hashout() {
 while getopts 'cnh' opt; do
   case "$opt" in
     c)
-      echo "Output each ABI and WASM Hash for each type (file, *net) for each contract..."
+      echo "Generating hashes of each type (file, *net), side by side, for comparison..."
       do_compare_abiwasm_hashout
       ;;
 
     n)
-      echo "Generating Hashes..."
+      echo "Generating *Net hashes..."
       do_net_abiwasm_hashout
       ;;
 
