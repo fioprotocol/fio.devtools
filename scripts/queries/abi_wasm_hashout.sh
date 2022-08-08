@@ -81,18 +81,18 @@ do_compare_abiwasm_hashout() {
     echo
     echo "${contract}"
     echo $'\e[0;34m' ABI
-    echo -n $'\E[0;36m' ' File:    '
+    echo -n $'\e[0;36m' ' File:    '
     hash=$(jq -c -S ${jq_file_filter} ${contract_dir}/${contract}/${contract}.abi | openssl sha256  | awk -F'= ' '{print $2}')
     abi_hashes+=($hash)
     echo $'\e[0;39m' ${hash}
 
-    echo -n $'\E[0;36m' ' LocalNet:'
+    echo -n $'\e[0;36m' ' LocalNet:'
     ./bin/clio -u ${localhost_url} get code ${contract_code} -a bin/localnet.abi >/dev/null
     hash=$(jq -c -S ${jq_net_filter} bin/localnet.abi | openssl sha256 | awk -F'= ' '{print $2}')
     abi_hashes+=($hash)
     echo $'\e[0;39m' ${hash}
 
-    echo -n $'\E[0;36m' ' TestNet: '
+    echo -n $'\e[0;36m' ' TestNet: '
     ./bin/clio -u ${testnet_url} get code ${contract_code} -a bin/testnet.abi >/dev/null
     hash=$(jq -c -S ${jq_net_filter} bin/testnet.abi | openssl sha256 | awk -F'= ' '{print $2}')
     abi_hashes+=($hash)
@@ -100,30 +100,30 @@ do_compare_abiwasm_hashout() {
 
     if [[ ${contract} != 'fio.oracle' ]]; then
       ./bin/clio -u ${mainnet_url} get code ${contract_code} -a bin/mainnet.abi >/dev/null
-      echo -n $'\E[0;36m' ' MainNet: '
+      echo -n $'\e[0;36m' ' MainNet: '
       hash=$(jq -c -S ${jq_net_filter} bin/mainnet.abi | openssl sha256 | awk -F'= ' '{print $2}')
       abi_hashes+=($hash)
       echo $'\e[0;39m' ${hash}
     fi
 
     echo $'\e[0;34m' WASM
-    echo -n $'\E[0;36m' ' File:    '
+    echo -n $'\e[0;36m' ' File:    '
     hash=$(openssl sha256 ${contract_dir}/${contract}/${contract}.wasm | awk -F'= ' '{print $2}')
     wasm_hashes+=($hash)
     echo $'\e[0;39m' ${hash}
 
-    echo -n $'\E[0;36m' ' LocalNet:'
+    echo -n $'\e[0;36m' ' LocalNet:'
     hash=$(./bin/clio -u ${localhost_url} get code ${contract_code} | awk -F': ' '{print $2}')
     wasm_hashes+=($hash)
     echo $'\e[0;39m' ${hash}
 
-    echo -n $'\E[0;36m' ' TestNet: '
+    echo -n $'\e[0;36m' ' TestNet: '
     hash=$(./bin/clio -u ${testnet_url} get code ${contract_code} | awk -F': ' '{print $2}')
     wasm_hashes+=($hash)
     echo $'\e[0;39m' ${hash}
 
     if [[ ${contract} != 'fio.oracle' ]]; then
-      echo -n $'\E[0;36m' ' MainNet: '
+      echo -n $'\e[0;36m' ' MainNet: '
       hash=$(./bin/clio -u ${mainnet_url} get code ${contract_code} | awk -F': ' '{print $2}')
       wasm_hashes+=($hash)
       echo $'\e[0;39m' ${hash}
@@ -139,19 +139,19 @@ do_compare_abiwasm_hashout() {
       lt_list=("${abi_hashes[@]:1:2}")
       if ! unique_values "${lt_list[@]}"; then
         echo
-        echo $'\e[0;31m' LocalNet/TestNet ABI Hashes DIFFER!
-        echo -n $'\E[0;41m' 'LocalNet:'
-        echo $'\e[0;39m' ${lt_list[0]}}
-        echo -n $'\E[0;41m' ' TestNet: '
+        echo -e "\e[41m LocalNet/TestNet ABI Hashes DIFFER!\e[0m"
+        echo -n $'\e[0;41m' 'LocalNet:'
+        echo $'\e[0;39m' ${lt_list[0]}
+        echo -n $'\e[0;41m' ' TestNet: '
         echo $'\e[0;39m' ${lt_list[1]}
       fi
       tm_list=("${abi_hashes[@]:2:3}")
       if ! unique_values "${tm_list[@]}"; then
         echo
-        echo $'\e[0;31m' TestNet/MainNet ABI Hashes DIFFER!
-        echo -n $'\E[0;41m' ' TestNet: '
+        echo -e "\e[41m TestNet/MainNet ABI Hashes DIFFER!\e[0m"
+        echo -n $'\e[0;41m' ' TestNet: '
         echo $'\e[0;39m' ${tm_list[0]}
-        echo -n $'\E[0;41m' ' MainNet: '
+        echo -n $'\e[0;41m' ' MainNet: '
         echo $'\e[0;39m' ${tm_list[1]}
       fi
     fi
@@ -159,19 +159,19 @@ do_compare_abiwasm_hashout() {
       lt_list=("${wasm_hashes[@]:1:2}")
       if ! unique_values "${lt_list[@]}"; then
         echo
-        echo $'\e[0;31m' LocalNet/TestNet ABI Hashes DIFFER!
-        echo -n $'\E[0;41m' 'LocalNet:'
-        echo $'\e[0;39m' ${lt_list[0]}}
-        echo -n $'\E[0;41m' ' TestNet: '
+        echo -e "\e[41m LocalNet/TestNet WASM Hashes DIFFER!\e[0m"
+        echo -n $'\e[0;41m' 'LocalNet:'
+        echo $'\e[0;39m' ${lt_list[0]}
+        echo -n $'\e[0;41m' ' TestNet: '
         echo $'\e[0;39m' ${lt_list[1]}
       fi
       tm_list=("${wasm_hashes[@]:2:3}")
       if ! unique_values "${tm_list[@]}"; then
         echo
-        echo $'\e[0;31m' TestNet/MainNet WASM Hashes DIFFER!
-        echo -n $'\E[0;41m' ' TestNet: '
+        echo -e "\e[41m TestNet/MainNet ABI Hashes DIFFER!\e[0m"
+        echo -n $'\e[0;41m' ' TestNet: '
         echo $'\e[0;39m' ${tm_list[0]}
-        echo -n $'\E[0;41m' ' MainNet: '
+        echo -n $'\e[0;41m' ' MainNet: '
         echo $'\e[0;39m' ${tm_list[1]}
       fi
     fi
@@ -227,9 +227,7 @@ do_net_abiwasm_hashout() {
     padding=max_padding-length
     if [[ ${contract} != 'fio.oracle' ]]; then
       ./bin/clio -u ${url} get code ${contract_code} -a bin/${net}.abi >/dev/null
-      #echo $'\e[0;39m' `openssl sha256 bin/localnet.abi | awk -F'= ' '{print $2}'`
-      #echo -n $'\E[0;31m' "${contract}:"
-      echo -n $'\E[0;31m'
+      echo -n $'\e[0;31m'
       printf "%.20s" " ${contract}:                     "
       echo $'\e[0;39m' `jq -c -S ${jq_net_filter} bin/${net}.abi | openssl sha256 | awk -F'= ' '{print $2}'`
       rm bin/${net}.abi
@@ -248,8 +246,7 @@ do_net_abiwasm_hashout() {
     fi
 
     if [[ ${contract} != 'fio.oracle' ]]; then
-      #echo -n $'\E[0;31m' "${contract}: "
-      echo -n $'\E[0;31m'
+      echo -n $'\e[0;31m'
       printf "%.20s" " ${contract}:                     "
       echo $'\e[0;39m' `./bin/clio -u ${url} get code ${contract_code} | awk -F': ' '{print $2}'`
     fi
