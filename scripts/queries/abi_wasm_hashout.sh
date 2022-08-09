@@ -371,7 +371,7 @@ function do_wasm_markup() {
 while getopts 'cmnh' opt; do
   case "$opt" in
     c)
-      echo "Generating hashes of each type (file, *net), side by side, for comparison..."
+      echo "Generating hashes of each type (file, *net), for side-by-side comparison..."
       do_compare_abiwasm_hashout
       ;;
 
