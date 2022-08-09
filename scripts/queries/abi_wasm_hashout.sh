@@ -16,8 +16,6 @@ localhost_url="http://localhost:8889"
 testnet_url="http://testnet.fioprotocol.io"
 mainnet_url="https://fio.greymass.com"
 
-max_padding=20
-
 function unique_values() {
   typeset i
   for i do
@@ -82,51 +80,82 @@ do_compare_abiwasm_hashout() {
     echo "${contract}"
     echo $'\e[0;34m' ABI
     echo -n $'\e[0;36m' ' File:    '
-    hash=$(jq -c -S ${jq_file_filter} ${contract_dir}/${contract}/${contract}.abi | openssl sha256  | awk -F'= ' '{print $2}')
-    abi_hashes+=($hash)
-    echo $'\e[0;39m' ${hash}
+    if [[ -r ${contract_dir}/${contract}/${contract}.abi ]]; then
+      hash=$(jq -c -S ${jq_file_filter} ${contract_dir}/${contract}/${contract}.abi | openssl sha256  | awk -F'= ' '{print $2}')
+      abi_hashes+=($hash)
+      echo $'\e[0;39m' ${hash}
+    else
+      echo -e "\e[0m \e[41m!!! Contract not found !!!\e[0m"
+    fi
 
     echo -n $'\e[0;36m' ' LocalNet:'
     ./bin/clio -u ${localhost_url} get code ${contract_code} -a bin/localnet.abi >/dev/null
-    hash=$(jq -c -S ${jq_net_filter} bin/localnet.abi | openssl sha256 | awk -F'= ' '{print $2}')
-    abi_hashes+=($hash)
-    echo $'\e[0;39m' ${hash}
+    if [[ $? -eq 0 ]]; then
+      hash=$(jq -c -S ${jq_net_filter} bin/localnet.abi | openssl sha256 | awk -F'= ' '{print $2}')
+      abi_hashes+=($hash)
+      echo $'\e[0;39m' ${hash}
+    else
+      echo -e "\e[0m \e[41m!!! Contract not found !!!\e[0m"
+    fi
 
     echo -n $'\e[0;36m' ' TestNet: '
     ./bin/clio -u ${testnet_url} get code ${contract_code} -a bin/testnet.abi >/dev/null
-    hash=$(jq -c -S ${jq_net_filter} bin/testnet.abi | openssl sha256 | awk -F'= ' '{print $2}')
-    abi_hashes+=($hash)
-    echo $'\e[0;39m' ${hash}
+    if [[ $? -eq 0 ]]; then
+      hash=$(jq -c -S ${jq_net_filter} bin/testnet.abi | openssl sha256 | awk -F'= ' '{print $2}')
+      abi_hashes+=($hash)
+      echo $'\e[0;39m' ${hash}
+    else
+      echo -e "\e[0m \e[41m!!! Contract not found !!!\e[0m"
+    fi
 
-    if [[ ${contract} != 'fio.oracle' ]]; then
-      ./bin/clio -u ${mainnet_url} get code ${contract_code} -a bin/mainnet.abi >/dev/null
-      echo -n $'\e[0;36m' ' MainNet: '
+    echo -n $'\e[0;36m' ' MainNet: '
+    ./bin/clio -u ${mainnet_url} get code ${contract_code} -a bin/mainnet.abi &>/dev/null
+    if [[ $? -eq 0 ]]; then
       hash=$(jq -c -S ${jq_net_filter} bin/mainnet.abi | openssl sha256 | awk -F'= ' '{print $2}')
       abi_hashes+=($hash)
       echo $'\e[0;39m' ${hash}
+    else
+      echo -e "\e[0m \e[41m!!! Contract not found !!!\e[0m"
     fi
 
     echo $'\e[0;34m' WASM
     echo -n $'\e[0;36m' ' File:    '
-    hash=$(openssl sha256 ${contract_dir}/${contract}/${contract}.wasm | awk -F'= ' '{print $2}')
-    wasm_hashes+=($hash)
-    echo $'\e[0;39m' ${hash}
-
-    echo -n $'\e[0;36m' ' LocalNet:'
-    hash=$(./bin/clio -u ${localhost_url} get code ${contract_code} | awk -F': ' '{print $2}')
-    wasm_hashes+=($hash)
-    echo $'\e[0;39m' ${hash}
-
-    echo -n $'\e[0;36m' ' TestNet: '
-    hash=$(./bin/clio -u ${testnet_url} get code ${contract_code} | awk -F': ' '{print $2}')
-    wasm_hashes+=($hash)
-    echo $'\e[0;39m' ${hash}
-
-    if [[ ${contract} != 'fio.oracle' ]]; then
-      echo -n $'\e[0;36m' ' MainNet: '
-      hash=$(./bin/clio -u ${mainnet_url} get code ${contract_code} | awk -F': ' '{print $2}')
+    if [[ -r ${contract_dir}/${contract}/${contract}.wasm ]]; then
+      hash=$(openssl sha256 ${contract_dir}/${contract}/${contract}.wasm | awk -F'= ' '{print $2}')
       wasm_hashes+=($hash)
       echo $'\e[0;39m' ${hash}
+    else
+      echo -e "\e[0m \e[41m!!! Contract not found !!!\e[0m"
+    fi
+
+    echo -n $'\e[0;36m' ' LocalNet:'
+    code=$(./bin/clio -u ${localhost_url} get code ${contract_code} 2>/dev/null)
+    if [[ $? -eq 0 ]]; then
+      hash=$(echo ${code} | awk -F': ' '{print $2}')
+      wasm_hashes+=($hash)
+      echo $'\e[0;39m' ${hash}
+    else
+      echo -e "\e[0m \e[41m!!! Contract not found !!!\e[0m"
+    fi
+
+    echo -n $'\e[0;36m' ' TestNet: '
+    code=$(./bin/clio -u ${testnet_url} get code ${contract_code} 2>/dev/null)
+    if [[ $? -eq 0 ]]; then
+      hash=$(echo ${code} | awk -F': ' '{print $2}')
+      wasm_hashes+=($hash)
+      echo $'\e[0;39m' ${hash}
+    else
+      echo -e "\e[0m \e[41m!!! Contract not found !!!\e[0m"
+    fi
+
+    echo -n $'\e[0;36m' ' MainNet: '
+    code=$(./bin/clio -u ${mainnet_url} get code ${contract_code} 2>/dev/null)
+    if [[ $? -eq 0 ]]; then
+      hash=$(echo ${code} | awk -F': ' '{print $2}')
+      wasm_hashes+=($hash)
+      echo $'\e[0;39m' ${hash}
+    else
+      echo -e "\e[0m \e[41m!!! Contract not found !!!\e[0m"
     fi
 
     # Clean up output files
@@ -225,14 +254,14 @@ do_net_abiwasm_hashout() {
     jq_file_filter='(.)'
     jq_net_filter='(.)'
 
-    length=${#contract}
-    padding=max_padding-length
-    if [[ ${contract} != 'fio.oracle' ]]; then
-      ./bin/clio -u ${url} get code ${contract_code} -a bin/${net}.abi >/dev/null
-      echo -n $'\e[0;31m'
-      printf "%.20s" " ${contract}:                     "
+    echo -n $'\e[0;31m'
+    printf "%.20s" " ${contract}:                     "
+    ./bin/clio -u ${url} get code ${contract_code} -a bin/${net}.abi &>/dev/null
+    if [[ $? -eq 0 ]]; then
       echo $'\e[0;39m' `jq -c -S ${jq_net_filter} bin/${net}.abi | openssl sha256 | awk -F'= ' '{print $2}'`
       rm bin/${net}.abi
+    else
+      echo -e "\e[0m \e[41m!!! Contract not found !!!\e[0m"
     fi
   done
 
@@ -247,10 +276,15 @@ do_net_abiwasm_hashout() {
       contract_code='fio.reqobt'
     fi
 
-    if [[ ${contract} != 'fio.oracle' ]]; then
-      echo -n $'\e[0;31m'
-      printf "%.20s" " ${contract}:                     "
-      echo $'\e[0;39m' `./bin/clio -u ${url} get code ${contract_code} | awk -F': ' '{print $2}'`
+    echo -n $'\e[0;31m'
+    printf "%.20s" " ${contract}:                     "
+    code=$(./bin/clio -u ${url} get code ${contract_code} 2>/dev/null)
+    if [[ $? -eq 0 ]]; then
+      hash=$(echo ${code} | awk -F': ' '{print $2}')
+      #echo $'\e[0;39m' " ${hash}"
+      echo -e "\e[0;39m ${hash}\e[0m"
+    else
+      echo -e "\e[0m \e[41m!!! Contract not found !!!\e[0m"
     fi
   done
 }
