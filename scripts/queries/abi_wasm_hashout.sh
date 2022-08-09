@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+DIR=$(cd -P -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)
+contracts_dir=$(realpath ${DIR}/../../../fio.contracts/build/contracts)
+
 # Notes
 # Use jq -S to sort file output (alphabetically) . Same file content but
 #   different order will produce a different hash
@@ -11,7 +14,6 @@ declare -a contracts
 contracts=(eosio.msig eosio.wrap fio.system fio.address fio.escrow fio.fee fio.oracle)
 contracts+=(fio.request.obt fio.staking fio.token fio.tpid fio.treasury)
 
-contract_dir="../fio.contracts/build/contracts/"
 localhost_url="http://localhost:8889"
 testnet_url="http://testnet.fioprotocol.io"
 mainnet_url="https://fio.greymass.com"
@@ -80,8 +82,8 @@ do_compare_abiwasm_hashout() {
     echo "${contract}"
     echo $'\e[0;34m' ABI
     echo -n $'\e[0;36m' ' File:    '
-    if [[ -r ${contract_dir}/${contract}/${contract}.abi ]]; then
-      hash=$(jq -c -S ${jq_file_filter} ${contract_dir}/${contract}/${contract}.abi | openssl sha256  | awk -F'= ' '{print $2}')
+    if [[ -r ${contracts_dir}/${contract}/${contract}.abi ]]; then
+      hash=$(jq -c -S ${jq_file_filter} ${contracts_dir}/${contract}/${contract}.abi | openssl sha256  | awk -F'= ' '{print $2}')
       abi_hashes+=($hash)
       echo $'\e[0;39m' ${hash}
     else
@@ -120,8 +122,8 @@ do_compare_abiwasm_hashout() {
 
     echo $'\e[0;34m' WASM
     echo -n $'\e[0;36m' ' File:    '
-    if [[ -r ${contract_dir}/${contract}/${contract}.wasm ]]; then
-      hash=$(openssl sha256 ${contract_dir}/${contract}/${contract}.wasm | awk -F'= ' '{print $2}')
+    if [[ -r ${contracts_dir}/${contract}/${contract}.wasm ]]; then
+      hash=$(openssl sha256 ${contracts_dir}/${contract}/${contract}.wasm | awk -F'= ' '{print $2}')
       wasm_hashes+=($hash)
       echo $'\e[0;39m' ${hash}
     else
