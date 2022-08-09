@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Notes
-# Use jq -S to sort (alphabetically) file output. Same file content but
+# Use jq -S to sort file output (alphabetically) . Same file content but
 #   different order will produce a different hash
 # clio get code output format: code hash: <hash>
 # openssl dgst -sha256 <file> == openssl sha256 <file> == sha256sum <file>
@@ -210,6 +210,8 @@ do_compare_abiwasm_hashout() {
 # Generate hashes as they are retrieved from *Net, without pre-processing to remove
 # unwanted elements (for comparison)
 do_net_abiwasm_hashout() {
+  local markup="${1}"
+
   echo -e "\nSelect *Net:"
   read -p $'1. LocalNet 2. TestNet 3. MainNet\nChoose(#):' mChoice
 
@@ -240,8 +242,17 @@ do_net_abiwasm_hashout() {
     url=$mainnet_url
   fi
 
-  echo ${net_label}:
-  echo $'\e[0;34m' ABI
+  echo
+  if [[ -z ${markup} ]]; then
+    echo ${net_label}:
+    echo $'\e[0;34m' ABI
+  else
+    echo "## vX.Y.Z"
+    echo "#### ABI"
+    echo '| Contract | Hash | Update |'
+    echo '| -------- | ---- | ------ |'
+  fi
+
   for contract in "${contracts[@]}";
   do
     contract_code=${contract}
@@ -251,22 +262,22 @@ do_net_abiwasm_hashout() {
       contract_code='fio.reqobt'
     fi
 
-    jq_file_filter='(.)'
-    jq_net_filter='(.)'
-
-    echo -n $'\e[0;31m'
-    printf "%.20s" " ${contract}:                     "
-    ./bin/clio -u ${url} get code ${contract_code} -a bin/${net}.abi &>/dev/null
-    if [[ $? -eq 0 ]]; then
-      echo $'\e[0;39m' `jq -c -S ${jq_net_filter} bin/${net}.abi | openssl sha256 | awk -F'= ' '{print $2}'`
-      rm bin/${net}.abi
+    if [[ -z ${markup} ]]; then
+      do_abi $net $url $contract $contract_code
     else
-      echo -e "\e[0m \e[41m!!! Contract not found !!!\e[0m"
+      do_abi_markup $net $url $contract $contract_code
     fi
   done
 
   echo
-  echo $'\e[0;34m' WASM
+  if [[ -z ${markup} ]]; then
+    echo $'\e[0;34m' WASM
+  else
+    echo "#### WASM"
+    echo '| Contract | Hash | Update |'
+    echo '| -------- | ---- | ------ |'
+  fi
+
   for contract in "${contracts[@]}";
   do
     contract_code=${contract}
@@ -276,24 +287,97 @@ do_net_abiwasm_hashout() {
       contract_code='fio.reqobt'
     fi
 
-    echo -n $'\e[0;31m'
-    printf "%.20s" " ${contract}:                     "
-    code=$(./bin/clio -u ${url} get code ${contract_code} 2>/dev/null)
-    if [[ $? -eq 0 ]]; then
-      hash=$(echo ${code} | awk -F': ' '{print $2}')
-      #echo $'\e[0;39m' " ${hash}"
-      echo -e "\e[0;39m ${hash}\e[0m"
+    if [[ -z ${markup} ]]; then
+      do_wasm $url $contract $contract_code
     else
-      echo -e "\e[0m \e[41m!!! Contract not found !!!\e[0m"
-    fi
+      do_wasm_markup $url $contract $contract_code
+    fi    
   done
 }
 
-while getopts 'cnh' opt; do
+function do_abi() {
+  local net=$1
+  local url=$2
+  local contract=$3
+  local contract_code=$4
+
+  jq_net_filter='.'
+
+  echo -n $'\e[0;31m'
+  printf "%.20s" " ${contract}:                     "
+
+  ./bin/clio -u ${url} get code ${contract_code} -a bin/${net}.abi &>/dev/null
+  if [[ $? -eq 0 ]]; then
+    hash=$(jq -c -S ${jq_net_filter} bin/${net}.abi | openssl sha256 | awk -F'= ' '{print $2}')
+    echo $'\e[0;39m' "${hash}"
+    rm bin/${net}.abi
+  else
+    echo -e "\e[0m \e[41m!!! Contract not found !!!\e[0m"
+  fi
+}
+
+function do_abi_markup() {
+  local net=$1
+  local url=$2
+  local contract=$3
+  local contract_code=$4
+
+  jq_net_filter='.'
+
+  echo -n "| ${contract} |"
+
+  ./bin/clio -u ${url} get code ${contract_code} -a bin/${net}.abi &>/dev/null
+  if [[ $? -eq 0 ]]; then
+    hash=$(jq -c -S ${jq_net_filter} bin/${net}.abi | openssl sha256 | awk -F'= ' '{print $2}')
+    echo " ${hash} |  |"
+    rm bin/${net}.abi
+  else
+    echo -e "\e[0m \e[41m!!! Contract not found !!!\e[0m |  |"
+  fi
+}
+
+function do_wasm() {
+  local url=$1
+  local contract=$2
+  local contract_code=$3
+
+  echo -n $'\e[0;31m'
+  printf "%.20s" " ${contract}:                     "
+    
+  code=$(./bin/clio -u ${url} get code ${contract_code} 2>/dev/null)
+  if [[ $? -eq 0 ]]; then
+    hash=$(echo ${code} | awk -F': ' '{print $2}')
+    echo $'\e[0;39m' "${hash}"
+  else
+    echo -e "\e[0m \e[41m !!! Contract not found !!!\e[0m"
+  fi
+}
+
+function do_wasm_markup() {
+  local url=$1
+  local contract=$2
+  local contract_code=$3
+
+  echo -n "| ${contract} |"
+  code=$(./bin/clio -u ${url} get code ${contract_code} 2>/dev/null)
+  if [[ $? -eq 0 ]]; then
+    hash=$(echo ${code} | awk -F': ' '{print $2}')
+    echo " ${hash} |  |"
+  else
+    echo -e "\e[0m \e[41m !!! Contract not found !!!\e[0m |  |"
+  fi
+}
+
+while getopts 'cmnh' opt; do
   case "$opt" in
     c)
       echo "Generating hashes of each type (file, *net), side by side, for comparison..."
       do_compare_abiwasm_hashout
+      ;;
+
+    m)
+      echo "Generating *Net hashes in markup format..."
+      do_net_abiwasm_hashout markup
       ;;
 
     n)
