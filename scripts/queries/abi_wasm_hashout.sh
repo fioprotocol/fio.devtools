@@ -386,7 +386,10 @@ while getopts 'cmnh' opt; do
       ;;
 
     ?|h)
-      echo "Usage: $(basename $0) [-c] [-n]"
+      echo "Usage: $(basename $0) [-c] [-m] [-n]"
+      echo -e "-c\tGenerate hashes of each type (file, *net), for side-by-side comparison"
+      echo -e "-m\tGenerate hashes for each network (localhost, TestNet, MainNet) in markup format"
+      echo -e "-n\tGenerate hashes for each network (localhost, TestNet, MainNet)"
       exit 0
       ;;
 
