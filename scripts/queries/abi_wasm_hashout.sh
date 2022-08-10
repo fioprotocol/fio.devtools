@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-DIR=$(cd -P -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)
+DIR=$(realpath "$(dirname "${BASH_SOURCE[0]}")")
+devtools_dir=$(realpath ${DIR}/../..)
 contracts_dir=$(realpath ${DIR}/../../../fio.contracts/build/contracts)
 
 # Notes
@@ -8,7 +9,7 @@ contracts_dir=$(realpath ${DIR}/../../../fio.contracts/build/contracts)
 #   different order will produce a different hash
 # clio get code output format: code hash: <hash>
 # openssl dgst -sha256 <file> == openssl sha256 <file> == sha256sum <file>
-# openssl sha256 output format: SHA256(bin/localnet.abi)= <hash>
+# openssl sha256 output format: SHA256(${devtools_dir}/bin/localnet.abi)= <hash>
 
 declare -a contracts
 contracts=(eosio.msig eosio.wrap fio.system fio.address fio.escrow fio.fee fio.oracle)
@@ -39,7 +40,7 @@ function count_unique() {
 }
 
 # Clean up any pre-existing output files
-rm -f bin/localnet.abi bin/testnet.abi bin/mainnet.abi
+rm -f ${devtools_dir}/bin/localnet.abi ${devtools_dir}/bin/testnet.abi ${devtools_dir}/bin/mainnet.abi
 
 do_compare_abiwasm_hashout() {
   declare -a abi_hashes
@@ -91,9 +92,9 @@ do_compare_abiwasm_hashout() {
     fi
 
     echo -n $'\e[0;36m' ' LocalNet:'
-    ./bin/clio -u ${localhost_url} get code ${contract_code} -a bin/localnet.abi >/dev/null
+    ${devtools_dir}/bin/clio -u ${localhost_url} get code ${contract_code} -a ${devtools_dir}/bin/localnet.abi >/dev/null
     if [[ $? -eq 0 ]]; then
-      hash=$(jq -c -S ${jq_net_filter} bin/localnet.abi | openssl sha256 | awk -F'= ' '{print $2}')
+      hash=$(jq -c -S ${jq_net_filter} ${devtools_dir}/bin/localnet.abi | openssl sha256 | awk -F'= ' '{print $2}')
       abi_hashes+=($hash)
       echo $'\e[0;39m' ${hash}
     else
@@ -101,9 +102,9 @@ do_compare_abiwasm_hashout() {
     fi
 
     echo -n $'\e[0;36m' ' TestNet: '
-    ./bin/clio -u ${testnet_url} get code ${contract_code} -a bin/testnet.abi >/dev/null
+    ${devtools_dir}/bin/clio -u ${testnet_url} get code ${contract_code} -a ${devtools_dir}/bin/testnet.abi >/dev/null
     if [[ $? -eq 0 ]]; then
-      hash=$(jq -c -S ${jq_net_filter} bin/testnet.abi | openssl sha256 | awk -F'= ' '{print $2}')
+      hash=$(jq -c -S ${jq_net_filter} ${devtools_dir}/bin/testnet.abi | openssl sha256 | awk -F'= ' '{print $2}')
       abi_hashes+=($hash)
       echo $'\e[0;39m' ${hash}
     else
@@ -111,9 +112,9 @@ do_compare_abiwasm_hashout() {
     fi
 
     echo -n $'\e[0;36m' ' MainNet: '
-    ./bin/clio -u ${mainnet_url} get code ${contract_code} -a bin/mainnet.abi &>/dev/null
+    ${devtools_dir}/bin/clio -u ${mainnet_url} get code ${contract_code} -a ${devtools_dir}/bin/mainnet.abi &>/dev/null
     if [[ $? -eq 0 ]]; then
-      hash=$(jq -c -S ${jq_net_filter} bin/mainnet.abi | openssl sha256 | awk -F'= ' '{print $2}')
+      hash=$(jq -c -S ${jq_net_filter} ${devtools_dir}/bin/mainnet.abi | openssl sha256 | awk -F'= ' '{print $2}')
       abi_hashes+=($hash)
       echo $'\e[0;39m' ${hash}
     else
@@ -131,7 +132,7 @@ do_compare_abiwasm_hashout() {
     fi
 
     echo -n $'\e[0;36m' ' LocalNet:'
-    code=$(./bin/clio -u ${localhost_url} get code ${contract_code} 2>/dev/null)
+    code=$(${devtools_dir}/bin/clio -u ${localhost_url} get code ${contract_code} 2>/dev/null)
     if [[ $? -eq 0 ]]; then
       hash=$(echo ${code} | awk -F': ' '{print $2}')
       wasm_hashes+=($hash)
@@ -141,7 +142,7 @@ do_compare_abiwasm_hashout() {
     fi
 
     echo -n $'\e[0;36m' ' TestNet: '
-    code=$(./bin/clio -u ${testnet_url} get code ${contract_code} 2>/dev/null)
+    code=$(${devtools_dir}/bin/clio -u ${testnet_url} get code ${contract_code} 2>/dev/null)
     if [[ $? -eq 0 ]]; then
       hash=$(echo ${code} | awk -F': ' '{print $2}')
       wasm_hashes+=($hash)
@@ -151,7 +152,7 @@ do_compare_abiwasm_hashout() {
     fi
 
     echo -n $'\e[0;36m' ' MainNet: '
-    code=$(./bin/clio -u ${mainnet_url} get code ${contract_code} 2>/dev/null)
+    code=$(${devtools_dir}/bin/clio -u ${mainnet_url} get code ${contract_code} 2>/dev/null)
     if [[ $? -eq 0 ]]; then
       hash=$(echo ${code} | awk -F': ' '{print $2}')
       wasm_hashes+=($hash)
@@ -161,7 +162,7 @@ do_compare_abiwasm_hashout() {
     fi
 
     # Clean up output files
-    rm -f bin/localnet.abi bin/testnet.abi bin/mainnet.abi
+    rm -f ${devtools_dir}/bin/localnet.abi ${devtools_dir}/bin/testnet.abi ${devtools_dir}/bin/mainnet.abi
 
     # Output hash difference between the net pairs; localnet/testnet, testnet/mainnet
     lt_list=()
@@ -308,11 +309,11 @@ function do_abi() {
   echo -n $'\e[0;31m'
   printf "%.20s" " ${contract}:                     "
 
-  ./bin/clio -u ${url} get code ${contract_code} -a bin/${net}.abi &>/dev/null
+  ${devtools_dir}/bin/clio -u ${url} get code ${contract_code} -a ${devtools_dir}/bin/${net}.abi &>/dev/null
   if [[ $? -eq 0 ]]; then
-    hash=$(jq -c -S ${jq_net_filter} bin/${net}.abi | openssl sha256 | awk -F'= ' '{print $2}')
+    hash=$(jq -c -S ${jq_net_filter} ${devtools_dir}/bin/${net}.abi | openssl sha256 | awk -F'= ' '{print $2}')
     echo $'\e[0;39m' "${hash}"
-    rm bin/${net}.abi
+    rm ${devtools_dir}/bin/${net}.abi
   else
     echo -e "\e[0m \e[41m!!! Contract not found !!!\e[0m"
   fi
@@ -328,11 +329,11 @@ function do_abi_markup() {
 
   echo -n "| ${contract} |"
 
-  ./bin/clio -u ${url} get code ${contract_code} -a bin/${net}.abi &>/dev/null
+  ${devtools_dir}/bin/clio -u ${url} get code ${contract_code} -a ${devtools_dir}/bin/${net}.abi &>/dev/null
   if [[ $? -eq 0 ]]; then
-    hash=$(jq -c -S ${jq_net_filter} bin/${net}.abi | openssl sha256 | awk -F'= ' '{print $2}')
+    hash=$(jq -c -S ${jq_net_filter} ${devtools_dir}/bin/${net}.abi | openssl sha256 | awk -F'= ' '{print $2}')
     echo " ${hash} |  |"
-    rm bin/${net}.abi
+    rm ${devtools_dir}/bin/${net}.abi
   else
     echo -e "\e[0m \e[41m!!! Contract not found !!!\e[0m |  |"
   fi
@@ -346,7 +347,7 @@ function do_wasm() {
   echo -n $'\e[0;31m'
   printf "%.20s" " ${contract}:                     "
     
-  code=$(./bin/clio -u ${url} get code ${contract_code} 2>/dev/null)
+  code=$(${devtools_dir}/bin/clio -u ${url} get code ${contract_code} 2>/dev/null)
   if [[ $? -eq 0 ]]; then
     hash=$(echo ${code} | awk -F': ' '{print $2}')
     echo $'\e[0;39m' "${hash}"
@@ -361,7 +362,7 @@ function do_wasm_markup() {
   local contract_code=$3
 
   echo -n "| ${contract} |"
-  code=$(./bin/clio -u ${url} get code ${contract_code} 2>/dev/null)
+  code=$(${devtools_dir}/bin/clio -u ${url} get code ${contract_code} 2>/dev/null)
   if [[ $? -eq 0 ]]; then
     hash=$(echo ${code} | awk -F': ' '{print $2}')
     echo " ${hash} |  |"
