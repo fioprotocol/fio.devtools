@@ -379,16 +379,21 @@ function do_wasm_markup() {
 # Get options passed on command line. Note that several booleans are used, i.e. DO_COMPARE,
 # to allow processing of command line args before actual execution BUT only one command, i.e.
 # do_compare_abiwasm_hashout, will be executed for every execution of this script.
-while getopts 'cdimnh' opt; do
+while getopts 'cmnixh' opt; do
   case "$opt" in
     c)
       echo "Generating hashes of each type (file, *net), for side-by-side comparison..."
       DO_COMPARE=true
       ;;
 
-    d)
-      echo "Turning debug on"
-      DEBUG=true
+    m)
+      echo "Generating *Net hashes in markup format..."
+      DO_HASH_GEN_MARKUP=true
+      ;;
+
+    n)
+      echo "Generating *Net hashes..."
+      DO_HASH_GEN=true
       ;;
 
     i)
@@ -402,21 +407,18 @@ while getopts 'cdimnh' opt; do
       echo "MainNet URL:         ${mainnet_url}"
       ;;
 
-    m)
-      echo "Generating *Net hashes in markup format..."
-      DO_HASH_GEN_MARKUP=true
-      ;;
-
-    n)
-      echo "Generating *Net hashes..."
-      DO_HASH_GEN=true
+    x)
+      echo "Turning debug on"
+      DEBUG=true
       ;;
 
     ?|h)
-      echo "Usage: $(basename $0) [-c] [-d] [-i] [-m] [-n]"
+      echo "Usage: $(basename $0) [OPTION]..."
+      echo "Generate SHA256 hash for each contract"
       echo
-      echo -e "-d\tExecutes 'set -x' to display all executed instructions"
       echo -e "-i\tDisplay runtime information"
+      echo -e "-x\tExecutes 'set -x' to display all executed instructions"
+      echo
       echo -e "-c\tGenerate hashes of each type (file, *net), for side-by-side comparison"
       echo -e "-m\tGenerate hashes for each network (localhost, TestNet, MainNet) in markup format"
       echo -e "-n\tGenerate hashes for each network (localhost, TestNet, MainNet)"
