@@ -4,6 +4,11 @@ DIR=$(realpath "$(dirname "${BASH_SOURCE[0]}")")
 devtools_dir=$(realpath ${DIR}/../..)
 contracts_dir=$(realpath ${DIR}/../../../fio.contracts/build/contracts)
 
+DO_COMPARE=false
+DO_HASH_GEN=false
+DO_HASH_GEN_MARKUP=false
+DEBUG=false
+
 # Notes
 # Use jq -S to sort file output (alphabetically) . Same file content but
 #   different order will produce a different hash
@@ -171,7 +176,7 @@ do_compare_abiwasm_hashout() {
       lt_list=("${abi_hashes[@]:1:2}")
       if ! unique_values "${lt_list[@]}"; then
         echo
-        echo -e "\e[41m LocalNet/TestNet ABI Hashes DIFFER!\e[0m"
+        echo -e " \e[41m${contract}: LocalNet/TestNet ABI Hashes DIFFER!\e[0m"
         echo -n $'\e[0;31m  LocalNet:'
         echo $'\e[0;39m' ${lt_list[0]}
         echo -n $'\e[0;31m  TestNet: '
@@ -180,7 +185,7 @@ do_compare_abiwasm_hashout() {
       tm_list=("${abi_hashes[@]:2:3}")
       if ! unique_values "${tm_list[@]}"; then
         echo
-        echo -e "\e[41m TestNet/MainNet ABI Hashes DIFFER!\e[0m"
+        echo -e " \e[41m${contract}: TestNet/MainNet ABI Hashes DIFFER!\e[0m"
         echo -n $'\e[0;31m  TestNet: '
         echo $'\e[0;39m' ${tm_list[0]}
         echo -n $'\e[0;31m  MainNet: '
@@ -191,7 +196,7 @@ do_compare_abiwasm_hashout() {
       lt_list=("${wasm_hashes[@]:1:2}")
       if ! unique_values "${lt_list[@]}"; then
         echo
-        echo -e "\e[41m LocalNet/TestNet WASM Hashes DIFFER!\e[0m"
+        echo -e " \e[41m${contract}: LocalNet/TestNet WASM Hashes DIFFER!\e[0m"
         echo -n $'\e[0;31m  LocalNet:'
         echo $'\e[0;39m' ${lt_list[0]}
         echo -n $'\e[0;31m  TestNet: '
@@ -200,7 +205,7 @@ do_compare_abiwasm_hashout() {
       tm_list=("${wasm_hashes[@]:2:3}")
       if ! unique_values "${tm_list[@]}"; then
         echo
-        echo -e "\e[41m TestNet/MainNet WASM Hashes DIFFER!\e[0m"
+        echo -e " \e[41m${contract}: TestNet/MainNet WASM Hashes DIFFER!\e[0m"
         echo -n $'\e[0;31m  TestNet: '
         echo $'\e[0;39m' ${tm_list[0]}
         echo -n $'\e[0;31m  MainNet: '
@@ -371,21 +376,40 @@ function do_wasm_markup() {
   fi
 }
 
-while getopts 'cmnh' opt; do
+# Get options passed on command line. Note that several booleans are used, i.e. DO_COMPARE,
+# to allow processing of command line args before actual execution BUT only one command, i.e.
+# do_compare_abiwasm_hashout, will be executed for every execution of this script.
+while getopts 'cdimnh' opt; do
   case "$opt" in
     c)
       echo "Generating hashes of each type (file, *net), for side-by-side comparison..."
-      do_compare_abiwasm_hashout
+      DO_COMPARE=true
+      ;;
+
+    d)
+      echo "Turning debug on"
+      DEBUG=true
+      ;;
+
+    i)
+      echo
+      echo "Runtime Information:"
+      echo "DevTools Directory:  ${devtools_dir}"
+      echo "Contracts Directory: ${contracts_dir}"
+      echo "Current Contracts:   ${contracts[@]}"
+      echo "LocalNet URL:        ${localhost_url}"
+      echo "TestNet URL:         ${testnet_url}"
+      echo "MainNet URL:         ${mainnet_url}"
       ;;
 
     m)
       echo "Generating *Net hashes in markup format..."
-      do_net_abiwasm_hashout markup
+      DO_HASH_GEN_MARKUP=true
       ;;
 
     n)
       echo "Generating *Net hashes..."
-      do_net_abiwasm_hashout
+      DO_HASH_GEN=true
       ;;
 
     ?|h)
@@ -399,3 +423,14 @@ while getopts 'cmnh' opt; do
   esac
 done
 shift "$(($OPTIND -1))"
+
+if $DEBUG; then
+  set -x
+fi
+if $DO_COMPARE; then
+  do_compare_abiwasm_hashout
+elif $DO_HASH_GEN; then
+  do_net_abiwasm_hashout
+elif $DO_HASH_GEN_MARKUP; then
+  do_net_abiwasm_hashout markup
+fi
