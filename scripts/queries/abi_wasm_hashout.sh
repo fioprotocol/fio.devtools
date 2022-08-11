@@ -93,6 +93,7 @@ do_compare_abiwasm_hashout() {
       abi_hashes+=($hash)
       echo $'\e[0;39m' ${hash}
     else
+      abi_hashes+=(" ")
       echo -e "\e[0m \e[41m!!! Contract not found !!!\e[0m"
     fi
 
@@ -103,6 +104,7 @@ do_compare_abiwasm_hashout() {
       abi_hashes+=($hash)
       echo $'\e[0;39m' ${hash}
     else
+      abi_hashes+=(" ")
       echo -e "\e[0m \e[41m!!! Contract not found !!!\e[0m"
     fi
 
@@ -113,6 +115,7 @@ do_compare_abiwasm_hashout() {
       abi_hashes+=($hash)
       echo $'\e[0;39m' ${hash}
     else
+      abi_hashes+=(" ")
       echo -e "\e[0m \e[41m!!! Contract not found !!!\e[0m"
     fi
 
@@ -123,6 +126,7 @@ do_compare_abiwasm_hashout() {
       abi_hashes+=($hash)
       echo $'\e[0;39m' ${hash}
     else
+      abi_hashes+=(" ")
       echo -e "\e[0m \e[41m!!! Contract not found !!!\e[0m"
     fi
 
@@ -133,6 +137,7 @@ do_compare_abiwasm_hashout() {
       wasm_hashes+=($hash)
       echo $'\e[0;39m' ${hash}
     else
+      wasm_hashes+=(" ")
       echo -e "\e[0m \e[41m!!! Contract not found !!!\e[0m"
     fi
 
@@ -143,6 +148,7 @@ do_compare_abiwasm_hashout() {
       wasm_hashes+=($hash)
       echo $'\e[0;39m' ${hash}
     else
+      wasm_hashes+=(" ")
       echo -e "\e[0m \e[41m!!! Contract not found !!!\e[0m"
     fi
 
@@ -153,6 +159,7 @@ do_compare_abiwasm_hashout() {
       wasm_hashes+=($hash)
       echo $'\e[0;39m' ${hash}
     else
+      wasm_hashes+=(" ")
       echo -e "\e[0m \e[41m!!! Contract not found !!!\e[0m"
     fi
 
@@ -163,16 +170,34 @@ do_compare_abiwasm_hashout() {
       wasm_hashes+=($hash)
       echo $'\e[0;39m' ${hash}
     else
+      #wasm_hashes+=("0----------------------------------------------------------------0")
+      wasm_hashes+=(" ")
       echo -e "\e[0m \e[41m!!! Contract not found !!!\e[0m"
     fi
 
     # Clean up output files
     rm -f ${devtools_dir}/bin/localnet.abi ${devtools_dir}/bin/testnet.abi ${devtools_dir}/bin/mainnet.abi
 
-    # Output hash difference between the net pairs; localnet/testnet, testnet/mainnet
+    # Output hash difference between the net pairs; localnet/testnet, testnet/mainnet, etc
+    # Possible hash differencing
+    # 1) Show any diffs between any source (file, localnet, testnet, mainnet) - TBD
+    # 2) Show any diffs between file and localnet - Implemented
+    # 3) Show any diffs between localnet and testnet - Implemented
+    # 4) Show any diffs between testnet and mainnet - Implemented
+    fltm_list=()
+    fl_list=()
     lt_list=()
     tm_list=()
     if [[ "$(count_unique "${abi_hashes[@]}")" -ne 1 ]]; then
+      fl_list=("${abi_hashes[@]:0:1}")
+      if ! unique_values "${fl_list[@]}"; then
+        echo
+        echo -e " \e[41m${contract}: File/LocalNet ABI Hashes DIFFER!\e[0m"
+        echo -n $'\e[0;31m  File:     '
+        echo $'\e[0;39m' ${fl_list[0]}
+        echo -n $'\e[0;31m  LocalNet: '
+        echo $'\e[0;39m' ${fl_list[1]}
+      fi
       lt_list=("${abi_hashes[@]:1:2}")
       if ! unique_values "${lt_list[@]}"; then
         echo
@@ -193,6 +218,15 @@ do_compare_abiwasm_hashout() {
       fi
     fi
     if [[ "$(count_unique "${wasm_hashes[@]}")" -ne 1 ]]; then
+      fl_list=("${wasm_hashes[@]:0:1}")
+      if ! unique_values "${fl_list[@]}"; then
+        echo
+        echo -e " \e[41m${contract}: File/LocalNet WASM Hashes DIFFER!\e[0m"
+        echo -n $'\e[0;31m  File:'
+        echo $'\e[0;39m' ${fl_list[0]}
+        echo -n $'\e[0;31m  LocalNet: '
+        echo $'\e[0;39m' ${fl_list[1]}
+      fi
       lt_list=("${wasm_hashes[@]:1:2}")
       if ! unique_values "${lt_list[@]}"; then
         echo
