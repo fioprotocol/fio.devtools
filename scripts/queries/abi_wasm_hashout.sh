@@ -97,7 +97,7 @@ do_compare_abiwasm_hashout() {
     fi
 
     echo -n $'\e[0;36m' ' LocalNet:'
-    ${devtools_dir}/bin/clio -u ${localhost_url} get code ${contract_code} -a ${devtools_dir}/bin/localnet.abi >/dev/null
+    ${devtools_dir}/bin/clio -u ${localhost_url} get abi ${contract_code} -f ${devtools_dir}/bin/localnet.abi &>/dev/null
     if [[ $? -eq 0 ]]; then
       hash=$(jq -c -S ${jq_net_filter} ${devtools_dir}/bin/localnet.abi | openssl sha256 | awk -F'= ' '{print $2}')
       abi_hashes+=($hash)
@@ -107,7 +107,7 @@ do_compare_abiwasm_hashout() {
     fi
 
     echo -n $'\e[0;36m' ' TestNet: '
-    ${devtools_dir}/bin/clio -u ${testnet_url} get code ${contract_code} -a ${devtools_dir}/bin/testnet.abi >/dev/null
+    ${devtools_dir}/bin/clio -u ${testnet_url} get abi ${contract_code} -f ${devtools_dir}/bin/testnet.abi &>/dev/null
     if [[ $? -eq 0 ]]; then
       hash=$(jq -c -S ${jq_net_filter} ${devtools_dir}/bin/testnet.abi | openssl sha256 | awk -F'= ' '{print $2}')
       abi_hashes+=($hash)
@@ -117,7 +117,7 @@ do_compare_abiwasm_hashout() {
     fi
 
     echo -n $'\e[0;36m' ' MainNet: '
-    ${devtools_dir}/bin/clio -u ${mainnet_url} get code ${contract_code} -a ${devtools_dir}/bin/mainnet.abi &>/dev/null
+    ${devtools_dir}/bin/clio -u ${mainnet_url} get abi ${contract_code} -f ${devtools_dir}/bin/mainnet.abi &>/dev/null
     if [[ $? -eq 0 ]]; then
       hash=$(jq -c -S ${jq_net_filter} ${devtools_dir}/bin/mainnet.abi | openssl sha256 | awk -F'= ' '{print $2}')
       abi_hashes+=($hash)
@@ -314,7 +314,7 @@ function do_abi() {
   echo -n $'\e[0;31m'
   printf "%.20s" " ${contract}:                     "
 
-  ${devtools_dir}/bin/clio -u ${url} get code ${contract_code} -a ${devtools_dir}/bin/${net}.abi &>/dev/null
+  ${devtools_dir}/bin/clio -u ${url} get abi ${contract_code} -f ${devtools_dir}/bin/${net}.abi &>/dev/null
   if [[ $? -eq 0 ]]; then
     hash=$(jq -c -S ${jq_net_filter} ${devtools_dir}/bin/${net}.abi | openssl sha256 | awk -F'= ' '{print $2}')
     echo $'\e[0;39m' "${hash}"
@@ -334,7 +334,7 @@ function do_abi_markup() {
 
   echo -n "| ${contract} |"
 
-  ${devtools_dir}/bin/clio -u ${url} get code ${contract_code} -a ${devtools_dir}/bin/${net}.abi &>/dev/null
+  ${devtools_dir}/bin/clio -u ${url} get abi ${contract_code} -f ${devtools_dir}/bin/${net}.abi &>/dev/null
   if [[ $? -eq 0 ]]; then
     hash=$(jq -c -S ${jq_net_filter} ${devtools_dir}/bin/${net}.abi | openssl sha256 | awk -F'= ' '{print $2}')
     echo " ${hash} |  |"
@@ -399,12 +399,18 @@ while getopts 'cmnixh' opt; do
     i)
       echo
       echo "Runtime Information:"
-      echo "DevTools Directory:  ${devtools_dir}"
-      echo "Contracts Directory: ${contracts_dir}"
-      echo "Current Contracts:   ${contracts[@]}"
-      echo "LocalNet URL:        ${localhost_url}"
-      echo "TestNet URL:         ${testnet_url}"
-      echo "MainNet URL:         ${mainnet_url}"
+      echo "DevTools Directory:        ${devtools_dir}"
+      echo "Contracts Directory:       ${contracts_dir}"
+      echo "Current Contracts:         ${contracts[@]}"
+      echo "LocalNet URL:              ${localhost_url}"
+      echo "TestNet URL:               ${testnet_url}"
+      echo "MainNet URL:               ${mainnet_url}"
+      echo
+      echo "Cmd to get ABI:            ${devtools_dir}/bin/clio -u ${localhost_url} get abi <contract> -f ${devtools_dir}/bin/localnet.abi"
+      echo "Cmd to get ABI (alt):      ${devtools_dir}/bin/clio -u ${localhost_url} get code <contract> -a ${devtools_dir}/bin/localnet.abi"
+      echo "Cmd to get WASM Code Hash: ${devtools_dir}/bin/clio -u ${localhost_url} get code <contract>"
+      echo "Cmd to generate hash:      openssl sha256 ${devtools_dir}/bin/localnet.abi"
+      echo "Cmd to process abi/wasm:   jq -c -S '(.)' ${devtools_dir}/bin/localnet.abi"
       ;;
 
     x)
