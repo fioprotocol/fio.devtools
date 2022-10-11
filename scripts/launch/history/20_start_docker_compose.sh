@@ -4,8 +4,8 @@ cd $(dirname $0)
 
 # should be set by caller to allow connecting to different machine, but assume it's the local system if that doesn't work ....
 IP=$1
-[ -z $IP ] && IP=$(curl --connect-timeout=1 -s 169.254.169.254/latest/meta-data/local-ipv4) # get ip from aws metadata
-[ -z $IP ] && IP=$(ip route |grep default |head -1 |cut -d' ' -f9) # get first local interface base on default route
+[ -z $IP ] && IP=$(curl --connect-timeout 1 -s 169.254.169.254/latest/meta-data/local-ipv4) # get ip from aws metadata
+[ -z $IP ] && IP=$(ip route | grep default |head -1 |cut -d' ' -f9) # get first local interface base on default route
 [ -z $IP ] && echo "*** could not determine IP address to provide for p2p networking for containers. This is probably an error in the script. ***" && exit 1
 
 PORT=$2
