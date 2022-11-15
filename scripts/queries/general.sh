@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if [ -z "$1" ]; then
-    read -p $'\n1. Tables 2. Compare ABI/WASM Hashes 3. Output ABI/WASM Hashes\nChoose(#):' mChoice
+    read -p $'\n1. Tables 2. Compare ABI/WASM Hashes 3. Output ABI/WASM Hashes 4. ABI/WASM Hash Info\nChoose(#):' mChoice
 else
     mChoice=$1
 fi
@@ -14,6 +14,9 @@ elif [ $mChoice == 2 ]; then
     exit
 elif [ $mChoice == 3 ]; then
     scripts/queries/abi_wasm_hashout.sh -o
+    exit
+elif [ $mChoice == 4 ]; then
+    scripts/queries/abi_wasm_hashout.sh -i
     exit
 else
     echo "Unknown option: $mChoice! Exiting..."
