@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"register_fio_domain","type":"0","suf_amount":"800000000000"}' --permission fio.fee@active
+./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"register_fio_domain","type":"0","suf_amount":"000000000000"}' --permission fio.fee@active
 ./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"register_fio_address","type":"0","suf_amount":"40000000000"}' --permission fio.fee@active
 ./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"renew_fio_domain","type":"0","suf_amount":"800000000000"}' --permission fio.fee@active
 ./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"renew_fio_address","type":"0","suf_amount":"40000000000"}' --permission fio.fee@active
