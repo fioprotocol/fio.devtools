@@ -8,7 +8,7 @@
 
 
 host='localhost:8889'
-echo "EDEDEDEDED adding actions"
+echo " adding actions"
 sleep 10
 
 # we run the first 15 so that we can test after the fork deadline, and prove the new logic is being used
@@ -30,6 +30,9 @@ sleep 10
 ./clio -u http://$host push action eosio addaction '{"action":"addgenlocked","contract":"eosio","actor":"eosio"}' --permission eosio
 # added for FIP-6 and FIP-21
 ./clio -u http://$host push action eosio addaction '{"action":"updtotstkinc","contract":"eosio","actor":"eosio"}' --permission eosio
+#FIP-38 begin
+./clio -u http://$host push action eosio addaction '{"action":"newfioacc","contract":"eosio","actor":"eosio"}' --permission eosio
+#FIP-38 end
 ./clio -u http://$host push action eosio addaction '{"action":"setnolimits","contract":"eosio","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"approve","contract":"eosio.msig","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"cancel","contract":"eosio.msig","actor":"eosio"}' --permission eosio
