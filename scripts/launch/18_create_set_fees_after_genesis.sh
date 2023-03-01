@@ -17,7 +17,7 @@
 ./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"new_fio_chain_account","type":"0","suf_amount":"2000000000"}' --permission fio.fee@active
 #FIP-38 end
 #FIP-39 begin update_encrypt_key
-./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"update_encrypt_key","type":"0","suf_amount":"40000000000"}' --permission fio.fee@active
+./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"update_encrypt_key","type":"1","suf_amount":"40000000000"}' --permission fio.fee@active
 #FIP-39 end
 ./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"new_funds_request","type":"1","suf_amount":"1200000000"}' --permission fio.fee@active
 ./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"reject_funds_request","type":"1","suf_amount":"600000000"}' --permission fio.fee@active
