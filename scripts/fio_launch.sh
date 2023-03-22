@@ -97,9 +97,13 @@ if [ $mChoice == 1 ]; then
         else
             echo 'No wasm file found at $PWD/build/contracts/fio.escrow'
     fi
-#    echo "EDEDEDEDEDED just checked for escrow wasm file!!!"
-#    sleep 10
-
+    #FIP-40
+    if [ -f ../fio.contracts/build/contracts/fio.perms/fio.perms.wasm ]; then
+            fio_perms_name_path="$oldpath/../../fio.contracts/build/contracts/fio.perms"
+        else
+            echo 'No wasm file found at $PWD/build/contracts/fio.perms'
+    fi
+    
     if [ -f ../fio.contracts/build/contracts/fio.treasury/fio.treasury.wasm ]; then
             fio_treasury_name_path="$oldpath/../../fio.contracts/build/contracts/fio.treasury"
         else
@@ -189,6 +193,8 @@ if [ $mChoice == 1 ]; then
     export fio_tpid_name_path
     export fio_staking_name_path
     export fio_escrow_name_path
+    #FIP-40
+    export fio_perms_name_path
     export fio_treasury_name_path
     export eosio_wrap_name_path
     export fio_oracle_name_path
@@ -315,6 +321,8 @@ elif [ $mChoice == 2 ]; then
     cp ./contracts/fio.address/fio.address.abi ./build/contracts/fio.address/fio.address.abi
     cp ./contracts/fio.fee/fio.fee.abi ./build/contracts/fio.fee/fio.fee.abi
     cp ./contracts/fio.escrow/fio.escrow.abi ./build/contracts/fio.escrow/fio.escrow.abi
+    #FIP-40
+    cp ./contracts/fio.perms/fio.perms.abi ./build/contracts/fio.perms/fio.perms.abi
     cp ./contracts/fio.oracle/fio.oracle.abi ./build/contracts/fio.oracle/fio.oracle.abi
     cp ./contracts/fio.request.obt/fio.request.obt.abi ./build/contracts/fio.request.obt/fio.request.obt.abi
     cp ./contracts/fio.staking/fio.staking.abi ./build/contracts/fio.staking/fio.staking.abi

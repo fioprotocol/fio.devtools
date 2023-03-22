@@ -55,6 +55,14 @@ if [ -f ../fio.contracts/build/contracts/fio.escrow/fio.escrow.wasm ]; then
     else
         echo 'No wasm file found at $PWD/build/contracts/fio.escrow'
 fi
+#FIP-40
+if [ -f ../fio.contracts/build/contracts/fio.perms/fio.perms.wasm ]; then
+        fio_perms_name_path="$oldpath/../../fio.contracts/build/contracts/fio.perms"
+    else
+        echo 'No wasm file found at $PWD/build/contracts/fio.perms'
+fi
+#FIP-40
+
 
 if [ -f ../fio.contracts/build/contracts/fio.treasury/fio.treasury.wasm ]; then
         fio_treasury_name_path="$oldpath/../../fio.contracts/build/contracts/fio.treasury"
@@ -98,3 +106,5 @@ sleep 1.5s
 ./clio -u http://localhost:8879 set contract -j fio.oracle $fio_oracle_name_path fio.oracle.wasm fio.oracle.abi --permission fio.oracle@active
 ./clio -u http://localhost:8879 set contract -j fio.staking $fio_staking_name_path fio.staking.wasm fio.staking.abi --permission fio.staking@active
 ./clio -u http://localhost:8879 set contract -j fio.escrow $fio_escrow_name_path fio.escrow.wasm fio.escrow.abi --permission fio.escrow@active
+#FIP-40
+./clio -u http://localhost:8879 set contract -j fio.perms $fio_perms_name_path fio.perms.wasm fio.perms.abi --permission fio.perms@active
