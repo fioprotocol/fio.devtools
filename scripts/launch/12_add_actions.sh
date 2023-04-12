@@ -93,6 +93,7 @@ sleep 10
 #FIP-40 fio.perms
 ./clio -u http://$host push action eosio addaction '{"action":"addperm","contract":"fio.perms","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"remperm","contract":"fio.perms","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"clearperm","contract":"fio.perms","actor":"eosio"}' --permission eosio
 
 ## admin action only called from fio.address::burnexpired
 ./clio -u http://$host push action eosio addaction '{"action":"cxburned","contract":"fio.escrow","actor":"eosio"}' --permission eosio
