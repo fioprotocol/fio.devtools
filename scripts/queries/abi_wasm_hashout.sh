@@ -18,7 +18,7 @@ DEBUG=false
 
 declare -a contracts
 contracts=(eosio.msig eosio.wrap fio.system fio.address fio.escrow fio.fee fio.oracle)
-contracts+=(fio.request.obt fio.staking fio.token fio.tpid fio.treasury)
+contracts+=(fio.perms fio.request.obt fio.staking fio.token fio.tpid fio.treasury)
 
 localhost_url="http://localhost:8889"
 testnet_url="http://testnet.fioprotocol.io"
@@ -96,7 +96,7 @@ do_compare_abiwasm_hashout() {
     #   "variants":[]
     jq_file_filter='del(.____comment)'
     jq_net_filter='del(.error_messages)'
-    if [[ ${contract} == 'fio.address' ||  ${contract} == 'fio.treasury' ]]; then
+    if [[ ${contract} == 'fio.address' ||  ${contract} == 'fio.treasury' || ${contract} == 'fio.perms' ]]; then
       jq_file_filter='.'
       jq_net_filter='.'
     elif [[ ${contract} == 'fio.fee' ]]; then
