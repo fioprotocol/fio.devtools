@@ -16,6 +16,8 @@ echo $'Deleting Logs...\n'
 rm -rf node1.txt
 rm -rf node2.txt
 rm -rf node3.txt
+# uncomment this when running history node locally.
+#rm -rf node4.txt
 rm -rf walletkey.ini
 
 cd ~/fio/$vChoice/bin
@@ -23,6 +25,8 @@ echo $'Deleting Node Data...\n'
 rm -rf ~/node1
 rm -rf ~/node2
 rm -rf ~/node3
+# uncomment this when running history node locally.
+#rm -rf ~/node4
 
 echo $'Deleting Chain Data...\n'
 if [ -d ~/Library/Application\ Support/eosio/nodeos ]; then rm -rf ~/Library/Application\ Support/eosio/nodeos; fi # Mac OS
