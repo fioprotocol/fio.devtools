@@ -16,7 +16,7 @@ Lauching fio.devtools:
     
 For quicker startups, use the current version of FIO when executing the script:
 
-    ./start.sh 3.0
+    ./start.sh 3.5
     
 The local startup requires that `option 3` be applied first so that a user can launch a clean instance of the local chain in the future. After nuking all previous data, the user can use `option 2` so the contracts are updated and built successfully. This will also copy over a base version of the current contracts deployed on mainnet to ensure successful updating of the current set of contracts in the `fio.contracts` directory. Once complete, launching FIO can be done with `option 1`. 
 
