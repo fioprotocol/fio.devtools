@@ -32,10 +32,18 @@ function unique_values() {
   return 0
 }
 
+function unique_values2() {
+  typeset i
+  for i do
+    [ "$1" != "$i" ] || return 0
+  done
+  return 1
+}
+
 function count_unique() {
   local LC_ALL=C
 
-  if [ "$#" -eq 0 ] ; then 
+  if [ "$#" -eq 0 ] ; then
     echo 0
   else
     echo "$(printf "%s\000" "$@" |
@@ -170,13 +178,21 @@ do_compare_abiwasm_hashout() {
       fi
     fi
 
+    # Note: Even with exit code==0 the hash may still be bad; test and handle it.
+    # Couple of ways; posiz regex below,
+    # Using grep as grep -E '[0]+' or grep -E '[0]{64}'
     if [[ ${exclude} != 'localnet' ]]; then
       echo -n $'\e[0;36m' ' LocalNet:'
       code=$(${devtools_dir}/bin/clio -u ${localhost_url} get code ${contract_code} 2>/dev/null)
       if [[ $? -eq 0 ]]; then
         hash=$(echo ${code} | awk -F': ' '{print $2}')
-        wasm_hashes+=($hash)
-        echo $'\e[0;39m' ${hash}
+        if [[ $hash =~ ^[0]+$ ]]; then
+          wasm_hashes+=(" ")
+          echo -e "\e[0m \e[41m!!! Contract not found* !!!\e[0m"
+        else
+          wasm_hashes+=($hash)
+          echo $'\e[0;39m' ${hash}
+        fi
       else
         wasm_hashes+=(" ")
         echo -e "\e[0m \e[41m!!! Contract not found !!!\e[0m"
@@ -187,8 +203,13 @@ do_compare_abiwasm_hashout() {
     code=$(${devtools_dir}/bin/clio -u ${testnet_url} get code ${contract_code} 2>/dev/null)
     if [[ $? -eq 0 ]]; then
       hash=$(echo ${code} | awk -F': ' '{print $2}')
-      wasm_hashes+=($hash)
-      echo $'\e[0;39m' ${hash}
+      if [[ $hash =~ ^[0]+$ ]]; then
+        wasm_hashes+=(" ")
+        echo -e "\e[0m \e[41m!!! Contract not found* !!!\e[0m"
+      else
+        wasm_hashes+=($hash)
+        echo $'\e[0;39m' ${hash}
+      fi
     else
       wasm_hashes+=(" ")
       echo -e "\e[0m \e[41m!!! Contract not found !!!\e[0m"
@@ -198,13 +219,9 @@ do_compare_abiwasm_hashout() {
     code=$(${devtools_dir}/bin/clio -u ${mainnet_url} get code ${contract_code} 2>/dev/null)
     if [[ $? -eq 0 ]]; then
       hash=$(echo ${code} | awk -F': ' '{print $2}')
-
-      # The hash may still be bad; test and handle it.
-      # Couple of ways; posiz regex below,
-      # Using grep as grep -E '[0]+' or grep -E '[0]{64}'
       if [[ $hash =~ ^[0]+$ ]]; then
         wasm_hashes+=(" ")
-        echo -e "\e[0m \e[41m!!! Contract not found !!!\e[0m"
+        echo -e "\e[0m \e[41m!!! Contract not found* !!!\e[0m"
       else
         wasm_hashes+=($hash)
         echo $'\e[0;39m' ${hash}
@@ -230,22 +247,26 @@ do_compare_abiwasm_hashout() {
       echo
       echo -e " \e[41mABI Hash Differences:\e[0m"
       c_list=("${abi_hashes[@]:0:2}")
-      if ! unique_values "${c_list[@]}"; then
-        if [[ ${exclude} == 'file' ]]; then
-          echo -e " \e[41m${contract}: LocalNet/TestNet ABI Hashes DIFFER!\e[0m"
-          echo -n $'\e[0;31m  LocalNet:'
-          echo $'\e[0;39m' ${c_list[0]}
-          echo -n $'\e[0;31m  TestNet: '
-          echo $'\e[0;39m' ${c_list[1]}
-          echo
-        elif [[ ${exclude} == 'localnet' ]]; then
-          echo -e " \e[41m${contract}: File/TestNet ABI Hashes DIFFER!\e[0m"
-          echo -n $'\e[0;31m  File:     '
-          echo $'\e[0;39m' ${c_list[0]}
-          echo -n $'\e[0;31m  TestNet: '
-          echo $'\e[0;39m' ${c_list[1]}
-          echo
-        else
+      if [[ -n ${exclude} ]]; then
+        if ! unique_values "${c_list[@]}"; then
+          if [[ ${exclude} == 'file' ]]; then
+            echo -e " \e[41m${contract}: LocalNet/TestNet ABI Hashes DIFFER!\e[0m"
+            echo -n $'\e[0;31m  LocalNet: '
+            echo $'\e[0;39m' ${c_list[0]}
+            echo -n $'\e[0;31m  TestNet:  '
+            echo $'\e[0;39m' ${c_list[1]}
+            echo
+          elif [[ ${exclude} == 'localnet' ]]; then
+            echo -e " \e[41m${contract}: File/TestNet ABI Hashes DIFFER!\e[0m"
+            echo -n $'\e[0;31m  File:    '
+            echo $'\e[0;39m' ${c_list[0]}
+            echo -n $'\e[0;31m  TestNet: '
+            echo $'\e[0;39m' ${c_list[1]}
+            echo
+          fi
+        fi
+      else
+        if ! unique_values "${c_list[@]}"; then
           echo -e " \e[41m${contract}: File/LocalNet ABI Hashes DIFFER!\e[0m"
           echo -n $'\e[0;31m  File:     '
           echo $'\e[0;39m' ${c_list[0]}
@@ -253,37 +274,50 @@ do_compare_abiwasm_hashout() {
           echo $'\e[0;39m' ${c_list[1]}
           echo
         fi
-      fi
-      c_list=("${abi_hashes[@]:2:2}")
-      if ! unique_values "${c_list[@]}"; then
-        echo -e " \e[41m${contract}: TestNet/MainNet ABI Hashes DIFFER!\e[0m"
-        echo -n $'\e[0;31m  TestNet: '
-        echo $'\e[0;39m' ${c_list[0]}
-        echo -n $'\e[0;31m  MainNet: '
-        echo $'\e[0;39m' ${c_list[1]}
-        echo
+        c_list=("${abi_hashes[@]:1:2}")
+        if ! unique_values "${c_list[@]}"; then
+          echo -e " \e[41m${contract}: LocalNet/TestNet ABI Hashes DIFFER!\e[0m"
+          echo -n $'\e[0;31m  LocalNet: '
+          echo $'\e[0;39m' ${c_list[0]}
+          echo -n $'\e[0;31m  TestNet:  '
+          echo $'\e[0;39m' ${c_list[1]}
+          echo
+        fi
+        c_list=("${abi_hashes[@]:2:2}")
+        if ! unique_values "${c_list[@]}"; then
+          echo -e " \e[41m${contract}: TestNet/MainNet ABI Hashes DIFFER!\e[0m"
+          echo -n $'\e[0;31m  TestNet: '
+          echo $'\e[0;39m' ${c_list[0]}
+          echo -n $'\e[0;31m  MainNet: '
+          echo $'\e[0;39m' ${c_list[1]}
+          echo
+        fi
       fi
     fi
     if [[ "$(count_unique "${wasm_hashes[@]}")" -ne 1 ]]; then
       echo
       echo -e " \e[41mWASM Hash Differences:\e[0m"
       c_list=("${wasm_hashes[@]:0:2}")
-      if ! unique_values "${c_list[@]}"; then
-        if [[ ${exclude} == 'file' ]]; then
-          echo -e " \e[41m${contract}: LocalNet/TestNet WASM Hashes DIFFER!\e[0m"
-          echo -n $'\e[0;31m  LocalNet:'
-          echo $'\e[0;39m' ${c_list[0]}
-          echo -n $'\e[0;31m  TestNet: '
-          echo $'\e[0;39m' ${c_list[1]}
-          echo
-        elif [[ ${exclude} == 'localnet' ]]; then
-          echo -e " \e[41m${contract}: File/TestNet WASM Hashes DIFFER!\e[0m"
-          echo -n $'\e[0;31m  File:    '
-          echo $'\e[0;39m' ${c_list[0]}
-          echo -n $'\e[0;31m  TestNet: '
-          echo $'\e[0;39m' ${c_list[1]}
-          echo
-        else
+      if [[ -n ${exclude} ]]; then
+        if ! unique_values "${c_list[@]}"; then
+          if [[ ${exclude} == 'file' ]]; then
+            echo -e " \e[41m${contract}: LocalNet/TestNet WASM Hashes DIFFER!\e[0m"
+            echo -n $'\e[0;31m  LocalNet: '
+            echo $'\e[0;39m' ${c_list[0]}
+            echo -n $'\e[0;31m  TestNet:  '
+            echo $'\e[0;39m' ${c_list[1]}
+            echo
+          elif [[ ${exclude} == 'localnet' ]]; then
+            echo -e " \e[41m${contract}: File/TestNet WASM Hashes DIFFER!\e[0m"
+            echo -n $'\e[0;31m  File:    '
+            echo $'\e[0;39m' ${c_list[0]}
+            echo -n $'\e[0;31m  TestNet: '
+            echo $'\e[0;39m' ${c_list[1]}
+            echo
+          fi
+        fi
+      else
+        if ! unique_values "${c_list[@]}"; then
           echo -e " \e[41m${contract}: File/LocalNet WASM Hashes DIFFER!\e[0m"
           echo -n $'\e[0;31m  File:     '
           echo $'\e[0;39m' ${c_list[0]}
@@ -291,15 +325,24 @@ do_compare_abiwasm_hashout() {
           echo $'\e[0;39m' ${c_list[1]}
           echo
         fi
-      fi
-      c_list=("${wasm_hashes[@]:2:2}")
-      if ! unique_values "${c_list[@]}"; then
-        echo -e " \e[41m${contract}: TestNet/MainNet WASM Hashes DIFFER!\e[0m"
-        echo -n $'\e[0;31m  TestNet: '
-        echo $'\e[0;39m' ${c_list[0]}
-        echo -n $'\e[0;31m  MainNet: '
-        echo $'\e[0;39m' ${c_list[1]}
-        echo
+        c_list=("${wasm_hashes[@]:1:2}")
+        if ! unique_values "${c_list[@]}"; then
+          echo -e " \e[41m${contract}: LocalNet/TestNet WASM Hashes DIFFER!\e[0m"
+          echo -n $'\e[0;31m  LocalNet: '
+          echo $'\e[0;39m' ${c_list[0]}
+          echo -n $'\e[0;31m  TestNet:  '
+          echo $'\e[0;39m' ${c_list[1]}
+          echo
+        fi
+        c_list=("${wasm_hashes[@]:2:2}")
+        if ! unique_values "${c_list[@]}"; then
+          echo -e " \e[41m${contract}: TestNet/MainNet WASM Hashes DIFFER!\e[0m"
+          echo -n $'\e[0;31m  TestNet: '
+          echo $'\e[0;39m' ${c_list[0]}
+          echo -n $'\e[0;31m  MainNet: '
+          echo $'\e[0;39m' ${c_list[1]}
+          echo
+        fi
       fi
     fi
   done
@@ -389,7 +432,7 @@ do_net_abiwasm_hashout() {
       do_wasm $url $contract $contract_code
     else
       do_wasm_markup $url $contract $contract_code
-    fi    
+    fi
   done
 }
 
@@ -441,7 +484,7 @@ function do_wasm() {
 
   echo -n $'\e[0;31m'
   printf "%.20s" " ${contract}:                     "
-    
+
   code=$(${devtools_dir}/bin/clio -u ${url} get code ${contract_code} 2>/dev/null)
   if [[ $? -eq 0 ]]; then
     hash=$(echo ${code} | awk -F': ' '{print $2}')
@@ -568,7 +611,7 @@ while getopts 'cmoirxh' opt; do
       echo -e "\tclio -u <URL> get code <Contract>, and openssl"
       echo
       echo -e "-o\tGenerate hashes for each network (localhost, TestNet, MainNet)"
-      echo -e "\tretrieved using the commands clio -u <URL> get code <Contract>, and"
+      echo -e "\tusing the commands clio -u <URL> get abi <Contract>, and"
       echo -e "\tclio -u <URL> get code <Contract>, and openssl"
       echo
       ;;
