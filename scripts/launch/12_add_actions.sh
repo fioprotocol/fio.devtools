@@ -33,6 +33,11 @@ sleep 10
 #FIP-38 begin
 ./clio -u http://$host push action eosio addaction '{"action":"newfioacc","contract":"eosio","actor":"eosio"}' --permission eosio
 #FIP-38 end
+########### testing only do not deliver setvoting action to operations
+./clio -u http://$host push action eosio addaction '{"action":"setvoting","contract":"eosio","actor":"eosio"}' --permission eosio
+########### audit machine, auditvote action
+./clio -u http://$host push action eosio addaction '{"action":"auditvote","contract":"eosio","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"resetaudit","contract":"eosio","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"setnolimits","contract":"eosio","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"approve","contract":"eosio.msig","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"cancel","contract":"eosio.msig","actor":"eosio"}' --permission eosio
