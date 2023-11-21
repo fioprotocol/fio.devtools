@@ -32,14 +32,6 @@ function unique_values() {
   return 0
 }
 
-function unique_values2() {
-  typeset i
-  for i do
-    [ "$1" != "$i" ] || return 0
-  done
-  return 1
-}
-
 function count_unique() {
   local LC_ALL=C
 
