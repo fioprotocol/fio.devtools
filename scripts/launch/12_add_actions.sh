@@ -24,6 +24,7 @@ sleep 10
 ./clio -u http://$host push action eosio addaction '{"action":"paystake","contract":"fio.treasury","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"modgenlocked","contract":"eosio","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"clrgenlocked","contract":"eosio","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"ovrwrtgenlck","contract":"eosio","actor":"eosio"}' --permission eosio
 # added for FIP-6 and FIP-21
 ./clio -u http://$host push action eosio addaction '{"action":"trnsloctoks","contract":"fio.token","actor":"eosio"}' --permission eosio
 # added for FIP-6 and FIP-21
