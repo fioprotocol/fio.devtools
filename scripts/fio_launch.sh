@@ -248,8 +248,7 @@ if [ $mChoice == 1 ]; then
         $oldpath/launch/08_token_issue.sh
 
         if [ $restartneeded == 0 ]; then
-            echo Setting up inline permissions
-            echo Adding eosio code to fio.token and fio.system.
+            echo Setting up inline permissions incl eosio.code on contracts
             $oldpath/launch/09_set_permissions.sh
         fi
 
