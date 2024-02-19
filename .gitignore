@@ -1,3 +1,6 @@
+.idea/
+
 bin/
 walletkey.ini
-.idea/
+clio
+node*.txt

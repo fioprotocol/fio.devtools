@@ -226,9 +226,10 @@ if [ $mChoice == 1 ]; then
     #else
     #    tChoice=$2
     #fi
-    #Start Both Nodes
+    #Start Nodes
     # launch dev nodes listening on all interfaces to allow docker nodes to connect
-    $oldpath/launch/03_start_test_nodes.sh
+    # Provide '2' to start with increased max transaction time
+    $oldpath/launch/03_start_test_nodes.sh 2
 
     if [ $restartneeded == 0 ]; then
         #Create Accounts
@@ -250,6 +251,8 @@ if [ $mChoice == 1 ]; then
         if [ $restartneeded == 0 ]; then
             echo Setting up inline permissions incl eosio.code on contracts
             $oldpath/launch/09_set_permissions.sh
+            #manually execute from cmd line; bash ./scripts/launch/09_update_permissions.sh
+            #$oldpath/launch/09_update_permissions.sh
         fi
 
         echo regdomain
