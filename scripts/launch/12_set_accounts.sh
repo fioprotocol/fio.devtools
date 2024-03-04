@@ -17,15 +17,15 @@ echo 5spujqoyq4ie
 #we do these 3 lines to create a record in voter_info for adam:dapix, then we set that record to NOT proxy,
 #then we give that record some votes...after doing this we can run the register_proxy signing script and this
 #tests the logic when there is already a record in the voters table for this account....
-./clio -u http://localhost:8889 push action eosio regproxy '{"fio_address":"adam@dapixdev","actor":"htjonrkf1lgs","max_fee":"40000000000"}' --permission htjonrkf1lgs@active
-./clio -u http://localhost:8889 push action eosio unregproxy '{"fio_address":"adam@dapixdev","actor":"htjonrkf1lgs","max_fee":"40000000000"}' --permission htjonrkf1lgs@active
-./clio -u http://localhost:8889 push action eosio regproxy '{"fio_address":"casey@dapixdev","actor":"r41zuwovtn44","max_fee":"40000000000"}' --permission r41zuwovtn44@active
-./clio -u http://localhost:8889 push action eosio unregproxy '{"fio_address":"casey@dapixdev","actor":"r41zuwovtn44","max_fee":"40000000000"}' --permission r41zuwovtn44@active
-./clio -u http://localhost:8889 push action eosio regproxy '{"fio_address":"ed@dapixdev","actor":"euwdcp13zlrj","max_fee":"40000000000"}' --permission euwdcp13zlrj@active
-./clio -u http://localhost:8889 push action eosio unregproxy '{"fio_address":"ed@dapixdev","actor":"euwdcp13zlrj","max_fee":"40000000000"}' --permission euwdcp13zlrj@active
+#./clio -u http://localhost:8889 push action eosio regproxy '{"fio_address":"adam@dapixdev","actor":"htjonrkf1lgs","max_fee":"40000000000"}' --permission htjonrkf1lgs@active
+#./clio -u http://localhost:8889 push action eosio unregproxy '{"fio_address":"adam@dapixdev","actor":"htjonrkf1lgs","max_fee":"40000000000"}' --permission htjonrkf1lgs@active
+#./clio -u http://localhost:8889 push action eosio regproxy '{"fio_address":"casey@dapixdev","actor":"r41zuwovtn44","max_fee":"40000000000"}' --permission r41zuwovtn44@active
+#./clio -u http://localhost:8889 push action eosio unregproxy '{"fio_address":"casey@dapixdev","actor":"r41zuwovtn44","max_fee":"40000000000"}' --permission r41zuwovtn44@active
+#./clio -u http://localhost:8889 push action eosio regproxy '{"fio_address":"ed@dapixdev","actor":"euwdcp13zlrj","max_fee":"40000000000"}' --permission euwdcp13zlrj@active
+#./clio -u http://localhost:8889 push action eosio unregproxy '{"fio_address":"ed@dapixdev","actor":"euwdcp13zlrj","max_fee":"40000000000"}' --permission euwdcp13zlrj@active
 
 echo voting as ED
-./clio -u http://localhost:8889 push action eosio voteproducer '{"producers":["bp1@dapixdev"],"fio_address":"ed@dapixdev","actor":"euwdcp13zlrj","max_fee":"40000000000"}' -p euwdcp13zlrj@active
+#./clio -u http://localhost:8889 push action eosio voteproducer '{"producers":["bp1@dapixdev"],"fio_address":"ed@dapixdev","actor":"euwdcp13zlrj","max_fee":"40000000000"}' -p euwdcp13zlrj@active
 echo voted as ED
 sleep 2
 
