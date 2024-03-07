@@ -23,10 +23,7 @@ echo 5spujqoyq4ie
 #./clio -u http://localhost:8889 push action eosio unregproxy '{"fio_address":"casey@dapixdev","actor":"r41zuwovtn44","max_fee":"40000000000"}' --permission r41zuwovtn44@active
 #./clio -u http://localhost:8889 push action eosio regproxy '{"fio_address":"ed@dapixdev","actor":"euwdcp13zlrj","max_fee":"40000000000"}' --permission euwdcp13zlrj@active
 #./clio -u http://localhost:8889 push action eosio unregproxy '{"fio_address":"ed@dapixdev","actor":"euwdcp13zlrj","max_fee":"40000000000"}' --permission euwdcp13zlrj@active
-
-echo voting as ED
 #./clio -u http://localhost:8889 push action eosio voteproducer '{"producers":["bp1@dapixdev"],"fio_address":"ed@dapixdev","actor":"euwdcp13zlrj","max_fee":"40000000000"}' -p euwdcp13zlrj@active
-echo voted as ED
 sleep 2
 
 ./clio -u http://localhost:8889 push action fio.address regaddress '{"fio_address":"fio@faucet","owner_fio_public_key":"","max_fee":"40000000000","actor":"qhh25sqpktwh","tpid":""}' --permission qhh25sqpktwh@active
