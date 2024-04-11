@@ -16,7 +16,14 @@
 #Import private key of existing locked token holder
 ./clio wallet import --private-key 5JUuQdUJu1zexeeR6bvvsDFwJ9X9mY2mcdJFBkR9RqDxRqEVy3X  -n fio
 
+sleep 5
+# give this account a fio address, useful for calls to the API.
+./clio -u http://localhost:8889 push action fio.address regaddress '{"fio_address":"stakercahf@dapixdev","owner_fio_public_key":"FIO795GoHVWkeopWnPBjFgaDi21ychgNmqweHKyg21RCjkwP3woTx","max_fee":"40000000000","actor":"c21a5et1cahf","tpid":""}' --permission c21a5et1cahf@active
 
+#Vote as pre existing locked token holder
+./clio -u http://localhost:8889 push action eosio voteproducer '{"producers":["bp1@dapixdev"],"fio_address":"stakercahf@dapixdev","actor":"c21a5et1cahf","max_fee":"40000000000"}' -p c21a5et1cahf@active
+sleep 5
+#Stake as pre ex
 #Stake some fio
 ./clio -u http://localhost:8889 push action fio.staking stakefio '{"fio_address":"","amount":10000000000,"max_fee":400000000000, "tpid":"","actor":"c21a5et1cahf"}' -p c21a5et1cahf@active
 
