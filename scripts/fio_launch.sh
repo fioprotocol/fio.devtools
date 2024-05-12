@@ -308,11 +308,11 @@ if [ $mChoice == 1 ]; then
 elif [ $mChoice == 2 ]; then
     echo Extract Base Contracts...
     cd ../fio.devtools/scripts/baseContracts
-    unzip fio.contracts-2.5.x.zip
+    unzip -u fio.contracts-2.5.x.zip
     echo
 
     echo Building Development Contracts
-    cd ../../../../../fio.contracts
+    cd ../../../fio.contracts
     pwd
     ./build.sh -f ${localChain}
     echo COPYING ABI FILES FROM contracts TO ./build/contracts!
