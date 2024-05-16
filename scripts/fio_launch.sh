@@ -19,7 +19,7 @@ echo $'\n\n                   Welcome to the Local Test Environment'
 
 restartneeded=0
 oldpath=$PWD/scripts
-basepath=$PWD/scripts/baseContracts
+basepath=$PWD/bin/baseContracts
 export oldpath
 export basepath
 
@@ -307,7 +307,7 @@ if [ $mChoice == 1 ]; then
 
 elif [ $mChoice == 2 ]; then
     echo Extract Base Contracts...
-    cd ../fio.devtools/scripts/baseContracts
+    cd ../fio.devtools/bin/baseContracts
     unzip -u fio.contracts-2.5.x.zip
     echo
 
