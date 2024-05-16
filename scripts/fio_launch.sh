@@ -314,7 +314,7 @@ elif [ $mChoice == 2 ]; then
     echo Building Development Contracts
     cd ../../../fio.contracts
     pwd
-    ./build.sh -f ${localChain}
+    ./build.sh -c ${localChain}
     echo COPYING ABI FILES FROM contracts TO ./build/contracts!
     cp ./contracts/fio.address/fio.address.abi ./build/contracts/fio.address/fio.address.abi
     cp ./contracts/fio.fee/fio.fee.abi ./build/contracts/fio.fee/fio.fee.abi
