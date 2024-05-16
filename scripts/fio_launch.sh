@@ -308,7 +308,8 @@ if [ $mChoice == 1 ]; then
 elif [ $mChoice == 2 ]; then
     echo Extract Base Contracts...
     cd ../fio.devtools/bin/baseContracts
-    unzip -u fio.contracts-2.5.x.zip
+    rm -rf fio.contracts
+    unzip fio.contracts-2.5.x.zip
     echo
 
     echo Building Development Contracts
