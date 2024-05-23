@@ -257,6 +257,15 @@ do_compare_abiwasm_hashout() {
             echo
           fi
         fi
+        c_list=("${abi_hashes[@]:1:2}")
+        if ! unique_values "${c_list[@]}"; then
+          echo -e " \e[41m${contract}: TestNet/MainNet ABI Hashes DIFFER!\e[0m"
+          echo -n $'\e[0;31m  TestNet: '
+          echo $'\e[0;39m' ${c_list[0]}
+          echo -n $'\e[0;31m  MainNet: '
+          echo $'\e[0;39m' ${c_list[1]}
+          echo
+        fi
       else
         if ! unique_values "${c_list[@]}"; then
           echo -e " \e[41m${contract}: File/LocalNet ABI Hashes DIFFER!\e[0m"
@@ -307,6 +316,15 @@ do_compare_abiwasm_hashout() {
             echo $'\e[0;39m' ${c_list[1]}
             echo
           fi
+        fi
+        c_list=("${wasm_hashes[@]:1:2}")
+        if ! unique_values "${c_list[@]}"; then
+          echo -e " \e[41m${contract}: TestNet/MainNet WASM Hashes DIFFER!\e[0m"
+          echo -n $'\e[0;31m  TestNet: '
+          echo $'\e[0;39m' ${c_list[0]}
+          echo -n $'\e[0;31m  MainNet: '
+          echo $'\e[0;39m' ${c_list[1]}
+          echo
         fi
       else
         if ! unique_values "${c_list[@]}"; then
