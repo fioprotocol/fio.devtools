@@ -1,6 +1,11 @@
-.idea/
-
-bin/
-walletkey.ini
 clio
 node*.txt
+walletkey.ini
+
+bin/cleos.sh
+bin/clio
+bin/fio-wallet
+bin/nodeos
+bin/baseContracts/fio.contracts
+
+.idea/

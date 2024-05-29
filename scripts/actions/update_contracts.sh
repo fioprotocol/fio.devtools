@@ -21,7 +21,7 @@ else
 fi
 #Fio Name Directory Check
 if [ -f ../fio.contracts/build/contracts/fio.address/fio.address.wasm ]; then
-    fio_contract_name_path="$oldpath/../../fio.contracts/build/contracts/fio.address"
+    fio_addr_contract_name_path="$oldpath/../../fio.contracts/build/contracts/fio.address"
 else
     echo 'No wasm file found at $PWD/build/contracts/fio.address'
 fi
@@ -33,53 +33,53 @@ else
 fi
 
 if [ -f ../fio.contracts/build/contracts/fio.request.obt/fio.request.obt.wasm ]; then
-        fio_reqobt_name_path="$oldpath/../../fio.contracts/build/contracts/fio.request.obt"
-    else
-        echo 'No wasm file found at $PWD/build/contracts/fio.request.obt'
+    fio_reqobt_name_path="$oldpath/../../fio.contracts/build/contracts/fio.request.obt"
+else
+    echo 'No wasm file found at $PWD/build/contracts/fio.request.obt'
 fi
 
 if [ -f ../fio.contracts/build/contracts/fio.tpid/fio.tpid.wasm ]; then
-        fio_tpid_name_path="$oldpath/../../fio.contracts/build/contracts/fio.tpid"
-    else
-        echo 'No wasm file found at $PWD/build/contracts/fio.tpid'
+    fio_tpid_name_path="$oldpath/../../fio.contracts/build/contracts/fio.tpid"
+else
+    echo 'No wasm file found at $PWD/build/contracts/fio.tpid'
 fi
 
 if [ -f ../fio.contracts/build/contracts/fio.staking/fio.staking.wasm ]; then
-        fio_staking_name_path="$oldpath/../../fio.contracts/build/contracts/fio.staking"
-    else
-        echo 'No wasm file found at $PWD/build/contracts/fio.staking'
+    fio_staking_name_path="$oldpath/../../fio.contracts/build/contracts/fio.staking"
+else
+    echo 'No wasm file found at $PWD/build/contracts/fio.staking'
 fi
 
 if [ -f ../fio.contracts/build/contracts/fio.escrow/fio.escrow.wasm ]; then
-        fio_escrow_name_path="$oldpath/../../fio.contracts/build/contracts/fio.escrow"
-    else
-        echo 'No wasm file found at $PWD/build/contracts/fio.escrow'
+    fio_escrow_name_path="$oldpath/../../fio.contracts/build/contracts/fio.escrow"
+else
+    echo 'No wasm file found at $PWD/build/contracts/fio.escrow'
 fi
 #FIP-40
 if [ -f ../fio.contracts/build/contracts/fio.perms/fio.perms.wasm ]; then
-        fio_perms_name_path="$oldpath/../../fio.contracts/build/contracts/fio.perms"
-    else
-        echo 'No wasm file found at $PWD/build/contracts/fio.perms'
+    fio_perms_name_path="$oldpath/../../fio.contracts/build/contracts/fio.perms"
+else
+    echo 'No wasm file found at $PWD/build/contracts/fio.perms'
 fi
 #FIP-40
 
 
 if [ -f ../fio.contracts/build/contracts/fio.treasury/fio.treasury.wasm ]; then
-        fio_treasury_name_path="$oldpath/../../fio.contracts/build/contracts/fio.treasury"
-    else
-        echo 'No wasm file found at $PWD/build/contracts/fio.treasury'
+    fio_treasury_name_path="$oldpath/../../fio.contracts/build/contracts/fio.treasury"
+else
+    echo 'No wasm file found at $PWD/build/contracts/fio.treasury'
 fi
 
 if [ -f ../fio.contracts/build/contracts/eosio.wrap/eosio.wrap.wasm ]; then
-           eosio_wrap_name_path="$oldpath/../../fio.contracts/build/contracts/eosio.wrap"
-        else
-            echo 'No wasm file found at $PWD/build/contracts/eosio.wrap'
+    eosio_wrap_name_path="$oldpath/../../fio.contracts/build/contracts/eosio.wrap"
+else
+    echo 'No wasm file found at $PWD/build/contracts/eosio.wrap'
 fi
 
 if [ -f ../fio.contracts/build/contracts/fio.oracle/fio.oracle.wasm ]; then
-           fio_oracle_name_path="$oldpath/../../fio.contracts/build/contracts/fio.oracle"
-        else
-            echo 'No wasm file found at $PWD/build/contracts/fio.oracle'
+    fio_oracle_name_path="$oldpath/../../fio.contracts/build/contracts/fio.oracle"
+else
+    echo 'No wasm file found at $PWD/build/contracts/fio.oracle'
 fi
 
 cd ~/fio/$vChoice/bin
@@ -96,7 +96,7 @@ sleep 1.5
 sleep 1.5
 ./clio -u http://localhost:8879 set contract fio.tpid $fio_tpid_name_path fio.tpid.wasm fio.tpid.abi
 ./clio -u http://localhost:8879 set contract eosio.msig $eosio_msig_contract_name_path eosio.msig.wasm eosio.msig.abi
-./clio -u http://localhost:8879 set contract -j fio.address $fio_contract_name_path fio.address.wasm fio.address.abi --permission fio.address@active
+./clio -u http://localhost:8879 set contract -j fio.address $fio_addr_contract_name_path fio.address.wasm fio.address.abi --permission fio.address@active
 ./clio -u http://localhost:8879 set contract -j fio.reqobt $fio_reqobt_name_path fio.request.obt.wasm fio.request.obt.abi --permission fio.reqobt@active
 sleep 1.5
 ./clio -u http://localhost:8879 set contract -j fio.fee $fio_fee_name_path fio.fee.wasm fio.fee.abi --permission fio.fee@active
