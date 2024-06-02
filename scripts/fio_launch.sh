@@ -23,7 +23,7 @@ basepath=$PWD/bin/baseContracts
 export oldpath
 export basepath
 
-export localChain=$(realpath ~/fio/$vChoice)
+export fio_install_dir=$(realpath ~/fio/$vChoice)
 
 if [ -f scripts/walletkey.ini ]; then
     echo $'\n                        *****Restart Detected*****'
@@ -315,7 +315,7 @@ elif [ $mChoice == 2 ]; then
     echo Building Development Contracts
     cd ../../../fio.contracts
     pwd
-    ./build.sh -c ${localChain}
+    ./build.sh -a ${fio_install_dir}
     echo COPYING ABI FILES FROM contracts TO ./build/contracts!
     cp ./contracts/fio.address/fio.address.abi ./build/contracts/fio.address/fio.address.abi
     cp ./contracts/fio.fee/fio.fee.abi ./build/contracts/fio.fee/fio.fee.abi
