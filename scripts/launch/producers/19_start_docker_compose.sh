@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
+#set -x
 
+# Make sure we are in scripts dir
 cd $(dirname $0)
+SCRIPT_DIR=$(pwd)
+
+# Get devtools working directory
+cd $(dirname "${BASH_SOURCE[0]}")/../../..
+DEVTOOLS_DIR=$(pwd)
+
+# cd back to producers script dir
+cd ${SCRIPT_DIR}
 
 # should be set by caller to allow connecting to different machine, but assume it's the local system if that doesn't work ....
 IP=$1
@@ -81,7 +91,7 @@ echo
 echo "registering producers:"
 sleep 1
 
-keos_pass="$HOME/fio.devtools/walletkey.ini"
+keos_pass="$DEVTOOLS_DIR/walletkey.ini"
 if [ ! -f "$keos_pass" ]; then
   echo "Couldn't find keos password!"
   read -p "Please enter path to file with keos password: " keos_pass
