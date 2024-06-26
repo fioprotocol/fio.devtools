@@ -341,9 +341,11 @@ elif [ $mChoice == 4 ]; then
 
     nodeos_dev_p2p=""
     nodeos_dev_port=""
-    read -p "IP address for nodeos P2p [$(ip route | grep default | head -1 | cut -d' ' -f9)]: " nodeos_dev_p2p
+    echo
+    echo "Enter your P2P Nodeos Connection Parameters (default: local nodeos);"
+    read -p "P2P Nodeos IP address [$(ip route | grep default | head -1 | cut -d' ' -f9)]: " nodeos_dev_p2p
     [ -z "${nodeos_dev_p2p}" ] && nodeos_dev_p2p=$(ip route | grep default | head -1 | cut -d' ' -f9)
-    read -p "Port for nodeos P2p [8889]:" nodeos_dev_port
+    read -p "P2P Nodeos Port [8889]:" nodeos_dev_port
     [ -z "${nodeos_dev_port}"] && nodeos_dev_port=8889
     $oldpath/launch/producers/19_start_docker_compose.sh "${nodeos_dev_p2p}" "${nodeos_dev_port}"
 
@@ -356,9 +358,11 @@ elif [ $mChoice == 6 ]; then
 
     nodeos_dev_p2p=""
     nodeos_dev_port=""
-    read -p "IP address for nodeos P2p [$(ip route | grep default | head -1 | cut -d' ' -f9)]: " nodeos_dev_p2p
+    echo
+    echo "Enter your P2P Nodeos Connection Parameters (default: local nodeos);"
+    read -p "P2P Nodeos IP address [$(ip route | grep default | head -1 | cut -d' ' -f9)]: " nodeos_dev_p2p
     [ -z "${nodeos_dev_p2p}" ] && nodeos_dev_p2p=$(ip route | grep default | head -1 | cut -d' ' -f9)
-    read -p "Port for nodeos P2p [8889]:" nodeos_dev_port
+    read -p "P2P Nodeos Port [8889]:" nodeos_dev_port
     [ -z "${nodeos_dev_port}"] && nodeos_dev_port=8889
     $oldpath/launch/history/20_start_docker_compose.sh "${nodeos_dev_p2p}" "${nodeos_dev_port}"
 
@@ -372,7 +376,7 @@ elif [ $mChoice == 7 ]; then
         scripts/actions/reg_oracles.sh
     fi
 else
-    echo "Unkown option: $mChoice! Exiting..."
+    echo "Unknown option: $mChoice! Exiting..."
     exit 1
 fi
 

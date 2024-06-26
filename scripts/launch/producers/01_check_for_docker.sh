@@ -56,13 +56,8 @@ function prereqs() {
 }
 
 # ensure pre-requisites are met:
-uname |grep -q Linux || {
+uname | grep -q Linux || {
   echo "*** this script is only meant to work on linux. ***";
-  prereqs;
-}
-
-id |grep -q docker || {
-  echo "*** this user is not in the 'docker' group. ***";
   prereqs;
 }
 
@@ -71,10 +66,17 @@ hash docker || {
   echo "*** did not find docker-compose ***";
   prereqs;
 }
+
 hash docker-compose || {
   echo "*** docker-compose is not installed ***"
   prereqs;
 }
+
+id | grep -q docker || {
+  echo "*** this user is not in the 'docker' group. ***";
+  prereqs;
+}
+
 hash jq || {
   echo "*** jq is not installed ***"
   prereqs;
