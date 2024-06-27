@@ -45,10 +45,14 @@ function prereqs() {
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
     echo
-    echo "Install docker and jq..."
+    echo "Install docker..."
     sudo apt-get update
     sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
     sudo usermod -a -G docker $(whoami)
+    echo
+    echo "Install jq..."
+    sudo apt-get update
+    sudo apt-get install jq
     echo
     echo "NOTE: It's recommended to exit the script and either a) execute the command 'newgrp -' or"
     echo "b) log out and back in. Doing so will load the new docker permissions into the user's environment."
@@ -81,4 +85,3 @@ hash jq || {
   echo "*** jq is not installed ***"
   prereqs;
 }
-
