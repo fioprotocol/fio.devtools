@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:##VERSION##
 
 RUN apt-get update && apt-get -y upgrade && apt-get install -y openssl curl jq iproute2 && groupadd fio && useradd -g fio -m fio
 COPY ./bin/* /home/fio/bin/

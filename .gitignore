@@ -1,3 +1,5 @@
+.idea/
+
 clio
 node*.txt
 walletkey.ini
@@ -8,4 +10,10 @@ bin/fio-wallet
 bin/nodeos
 bin/baseContracts/fio.contracts
 
-.idea/
+scripts/launch/history/container/Dockerfile
+scripts/launch/history/container/bin/*
+scripts/launch/history/container/etc/*
+
+scripts/launch/producers/container/Dockerfile
+scripts/launch/producers/container/bin/*
+scripts/launch/producers/container/etc/*
