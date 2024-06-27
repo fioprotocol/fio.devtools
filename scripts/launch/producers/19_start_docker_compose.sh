@@ -27,6 +27,7 @@ $clio get info >/dev/null || exit 1
 
 # Build up container
 # set ubuntu version in dockerfile
+rm -f container/Dockerfile
 sed -e "1,+0 s/##VERSION##/`lsb_release -r | awk '{print $2}'`/g" container/Dockerfile.tmpl > container/Dockerfile
 
 # copy in fio executables
