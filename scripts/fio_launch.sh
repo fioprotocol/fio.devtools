@@ -31,7 +31,7 @@ if [ -f scripts/walletkey.ini ]; then
 fi
 
 if [ -z "$1" ]; then
-    read -p $'\n1. Local Blockchain 2. Update/Build Contracts 3. Nuke All 4. Launch 21 BPs \n5. Queries 6. History (docker) 7. Post Actions\nChoose(#):' mChoice
+    read -p $'\n1. Local Blockchain 2. Update/Build Contracts 3. Nuke All 4. Queries \n5. Launch 21 BPs 6. Launch History 7. Post Actions\nChoose(#):' mChoice
 else
     mChoice=$1
 fi
@@ -337,6 +337,10 @@ elif [ $mChoice == 3 ]; then
     exit 1
 
 elif [ $mChoice == 4 ]; then
+    scripts/queries/general.sh
+    exit 1
+
+elif [ $mChoice == 5 ]; then
     scripts/launch/producers/01_check_for_docker.sh
 
     nodeos_dev_p2p=""
@@ -348,10 +352,6 @@ elif [ $mChoice == 4 ]; then
     read -p "P2P Nodeos Port [8889]:" nodeos_dev_port
     [ -z "${nodeos_dev_port}"] && nodeos_dev_port=8889
     $oldpath/launch/producers/19_start_docker_compose.sh "${nodeos_dev_p2p}" "${nodeos_dev_port}"
-
-elif [ $mChoice == 5 ]; then
-    scripts/queries/general.sh
-    exit 1
 
 elif [ $mChoice == 6 ]; then
     scripts/launch/producers/01_check_for_docker.sh
