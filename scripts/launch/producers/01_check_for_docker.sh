@@ -85,4 +85,3 @@ hash jq || {
   echo "*** jq is not installed ***"
   prereqs;
 }
-
