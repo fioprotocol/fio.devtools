@@ -16,6 +16,12 @@ clio="$HOME/fio/$vChoice/bin/clio -u http://${IP}:${PORT}"
 $clio get info >/dev/null || exit 1
 [[ -f $HOME/fio/$vChoice/bin/nodeos ]] || { echo "did not find nodeos binarys, giving up" ; kill 0; }
 
+# Build up container
+# set ubuntu version in dockerfile
+rm -f container/Dockerfile
+sed -e "1,+0 s/##VERSION##/`lsb_release -r | awk '{print $2}'`/g" container/Dockerfile.tmpl > container/Dockerfile
+
+# copy in fio executables
 cp $HOME/fio/$vChoice/bin/* ./container/bin/
 
 rm -f ./container/etc/config.ini

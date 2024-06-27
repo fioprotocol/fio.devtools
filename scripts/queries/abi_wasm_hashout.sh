@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+# Notes
+# Use jq -S to sort file output (alphabetically) . Same file content but
+#   different order will produce a different hash
+# clio get code output format: code hash: <hash>
+# openssl dgst -sha256 <file> == openssl sha256 <file> == sha256sum <file>
+# openssl sha256 output format: SHA256(${devtools_dir}/bin/localnet.abi)= <hash>
+
 DIR=$(realpath "$(dirname "${BASH_SOURCE[0]}")")
 devtools_dir=$(realpath ${DIR}/../..)
 contracts_dir=$(realpath ${DIR}/../../../fio.contracts/build/contracts)
@@ -9,13 +16,6 @@ DO_HASH_GEN=false
 DO_HASH_GEN_MARKUP=false
 DEBUG=false
 
-# Notes
-# Use jq -S to sort file output (alphabetically) . Same file content but
-#   different order will produce a different hash
-# clio get code output format: code hash: <hash>
-# openssl dgst -sha256 <file> == openssl sha256 <file> == sha256sum <file>
-# openssl sha256 output format: SHA256(${devtools_dir}/bin/localnet.abi)= <hash>
-
 declare -a contracts
 contracts=(eosio.msig eosio.wrap fio.system fio.address fio.escrow fio.fee fio.oracle)
 contracts+=(fio.perms fio.request.obt fio.staking fio.token fio.tpid fio.treasury)
@@ -23,6 +23,29 @@ contracts+=(fio.perms fio.request.obt fio.staking fio.token fio.tpid fio.treasur
 localhost_url="http://localhost:8889"
 testnet_url="http://testnet.fioprotocol.io"
 mainnet_url="https://fio.greymass.com"
+
+function prereqs() {
+    echo
+    echo "The following are required to run this script (ubuntu-specific):"
+    echo "  - jq is needed for json processing. To install jq:"
+    echo "  -   sudo apt-get update"
+    echo "  -   sudo apt-get jq"
+    echo
+    read -p "Would you like to install package(s) now? [y/N] " RUN_SETUP
+    [ "$RUN_SETUP" == "y" ] || [ "$RUN_SETUP" == "Y" ] || kill 0
+    echo "Update apt package index..."
+    sudo apt-get update
+    echo
+    echo "Installing jq..."
+    sudo apt-get jq
+}
+
+function check_jq() {
+  hash jq &> /dev/null || {
+    echo "*** jq is not installed ***"
+    prereqs;
+  }
+}
 
 function unique_values() {
   typeset i
@@ -43,6 +66,9 @@ function count_unique() {
         grep --null-data --count .)"
   fi
 }
+
+# check prereqs
+check_jq
 
 # Clean up any pre-existing output files
 rm -f ${devtools_dir}/bin/localnet.abi ${devtools_dir}/bin/testnet.abi ${devtools_dir}/bin/mainnet.abi
