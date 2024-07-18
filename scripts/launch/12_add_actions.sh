@@ -51,6 +51,10 @@ sleep 10
 ./clio -u http://$host push action eosio addaction '{"action":"addbundles","contract":"fio.address","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"burnaddress","contract":"fio.address","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"burnexpired","contract":"fio.address","actor":"eosio"}' --permission eosio
+#BD-4650
+./clio -u http://$host push action eosio addaction '{"action":"fipxlviiilck","contract":"eosio","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"fipxlviii","contract":"fio.token","actor":"eosio"}' --permission eosio
+
 #BD-4580
 ./clio -u http://$host push action eosio addaction '{"action":"burndomain","contract":"fio.address","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"xferdomain","contract":"fio.address","actor":"eosio"}' --permission eosio
