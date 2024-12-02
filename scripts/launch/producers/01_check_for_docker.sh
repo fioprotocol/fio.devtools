@@ -24,7 +24,7 @@ function prereqs() {
     echo
     echo "  - Note: jq is also needed for json processing. To install jq:"
     echo "  -   sudo apt-get update"
-    echo "  -   sudo apt-get jq"
+    echo "  -   sudo apt-get install jq"
     echo
     read -p "Would you like to install packages and set permissions now? [y/N] " RUN_SETUP
     [ "$RUN_SETUP" == "y" ] || [ "$RUN_SETUP" == "Y" ] || kill 0
@@ -71,10 +71,14 @@ hash docker || {
   prereqs;
 }
 
-hash docker-compose || {
-  echo "*** docker-compose is not installed ***"
-  prereqs;
-}
+if [ -x "$(command -v docker-compose)" ]; then
+    echo "SUCCESS: docker-compose (v1) is installed."
+elif $(docker compose &>/dev/null) && [ $? -eq 0 ]; then
+    echo "SUCCESS: docker compose (v2) is installed."
+else
+    echo "ERROR: neither \"docker-compose\" nor \"docker compose\" appear to be installed."
+    prereqs 
+fi
 
 id | grep -q docker || {
   echo "*** this user is not in the 'docker' group. ***";
