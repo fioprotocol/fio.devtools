@@ -3,7 +3,7 @@
 function prereqs() {
     echo
     echo "The following are required to run this script (ubuntu-specific):"
-    echo "  - docker, and docker-compose must be installed. To install docker, first configure the docker repository:"
+    echo "  - docker must be installed. To install docker, first configure the docker repository:"
     echo "  -   sudo apt-get update"
     echo "  -   sudo apt-get install ca-certificates curl gnupg lsb-release"
     echo "  -   sudo mkdir -p /etc/apt/keyrings"
@@ -12,7 +12,7 @@ function prereqs() {
     echo "  -     $(lsb_release -cs) stable\" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null"
     echo
     echo "  - Install docker:"
-    echo "  -   sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin"
+    echo "  -   sudo apt-get -y install docker-ce docker-ce-cli containerd.io"
     echo
     echo "  - Configure user with ability to run docker commands:"
     echo "  -   sudo usermod -aG docker $USER"
@@ -29,7 +29,7 @@ function prereqs() {
     read -p "Would you like to install packages and set permissions now? [y/N] " RUN_SETUP
     [ "$RUN_SETUP" == "y" ] || [ "$RUN_SETUP" == "Y" ] || kill 0
     echo "Removing old versions of docker..."
-    sudo apt-get -y remove docker docker-engine docker.io containerd runc
+    for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get -y remove $pkg; done
     echo
     echo "Update apt package index..."
     sudo apt-get update
@@ -47,7 +47,7 @@ function prereqs() {
     echo
     echo "Install docker..."
     sudo apt-get update
-    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     sudo usermod -a -G docker $(whoami)
     echo
     echo "Install jq..."
@@ -67,16 +67,14 @@ uname | grep -q Linux || {
 
 # ensure tools are present:
 hash docker || {
-  echo "*** did not find docker-compose ***";
+  echo "*** did not find docker ***";
   prereqs;
 }
 
-if [ -x "$(command -v docker-compose)" ]; then
-    echo "SUCCESS: docker-compose (v1) is installed."
-elif $(docker compose &>/dev/null) && [ $? -eq 0 ]; then
+if $(docker compose &>/dev/null) && [ $? -eq 0 ]; then
     echo "SUCCESS: docker compose (v2) is installed."
 else
-    echo "ERROR: neither \"docker-compose\" nor \"docker compose\" appear to be installed."
+    echo "ERROR: \"docker compose plugin\" does not appear to be installed."
     prereqs 
 fi
 

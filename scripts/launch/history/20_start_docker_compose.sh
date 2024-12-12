@@ -51,7 +51,7 @@ if [[ $hChoice == 1 || $hChoice == 2 ]]; then
   popd
 
   echo "HOST=${IP}" > .env
-  echo "running docker-compose down to ensure no leftovers from earlier runs... please wait"
+  echo "running docker compose down to ensure no leftovers from earlier runs... please wait"
   docker compose down >/dev/null 2>&1
   docker compose up -d || exit 1
 
@@ -76,7 +76,7 @@ if [[ $hChoice == 1 || $hChoice == 2 ]]; then
   echo
   docker ps
   echo
-  echo -e "Done.\n\tdocker compose launched from ./scripts/launch/history/, \n\tto view logs run: 'cd scripts/launch/history; docker-compose logs -f --tail 10'\n"
+  echo -e "Done.\n\tdocker compose launched from ./scripts/launch/history/, \n\tto view logs run: 'cd scripts/launch/history; docker compose logs -f --tail 10'\n"
   echo "   ******************************************"
   echo "   * History API is available at port 8080  *"
   echo "   ******************************************"

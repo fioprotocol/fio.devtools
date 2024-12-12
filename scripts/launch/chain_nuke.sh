@@ -38,8 +38,7 @@ echo 'Chain Data Delete Complete'
 cd ~/fio/$vChoice/bin
 ./nodeos --hard-replay
 
-#uname |grep -q Linux && hash docker-compose >/dev/null && id |grep -q docker && \
-uname |grep -q Linux && id |grep -q docker && \
+uname | grep -q Linux && [[ $(docker compose ls -q | wc -l) -ge 1 ]] && \
 {
     echo $'Deleting any docker containers...\n';
     pushd $oldpath/launch/producers >/dev/null;
@@ -50,5 +49,4 @@ uname |grep -q Linux && id |grep -q docker && \
     popd >/dev/null;
     docker rmi -f $(docker images -q -f dangling=true) 2>/dev/null
 }
-
 echo $'\nNUKE COMPLETE - WELCOME TO YOUR NEW BUILD'
