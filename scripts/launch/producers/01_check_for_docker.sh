@@ -12,7 +12,7 @@ function prereqs() {
     echo "  -     $(lsb_release -cs) stable\" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null"
     echo
     echo "  - Install docker:"
-    echo "  -   sudo apt-get -y install docker-ce docker-ce-cli containerd.io"
+    echo "  -   sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin"
     echo
     echo "  - Configure user with ability to run docker commands:"
     echo "  -   sudo usermod -aG docker $USER"
@@ -20,7 +20,7 @@ function prereqs() {
     echo "  - Log out and back in to pick up new permissions"
     echo
     echo "  - Note that old versions of docker may exist and should be removed. To do this run the command:"
-    echo "  -   sudo apt-get remove docker docker-engine docker.io containerd runc"
+    echo "  -   sudo apt-get remove docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc"
     echo
     echo "  - Note: jq is also needed for json processing. To install jq:"
     echo "  -   sudo apt-get update"
