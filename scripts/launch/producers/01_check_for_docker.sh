@@ -26,6 +26,8 @@ function prereqs() {
     echo "  -   sudo apt-get update"
     echo "  -   sudo apt-get install jq"
     echo
+    echo " For any details, see https://docs.docker.com/engine/install/ubuntu."
+    echo
     read -p "Would you like to install packages and set permissions now? [y/N] " RUN_SETUP
     [ "$RUN_SETUP" == "y" ] || [ "$RUN_SETUP" == "Y" ] || kill 0
     echo "Removing old versions of docker..."
@@ -47,12 +49,12 @@ function prereqs() {
     echo
     echo "Install docker..."
     sudo apt-get update
-    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     sudo usermod -a -G docker $(whoami)
     echo
     echo "Install jq..."
     sudo apt-get update
-    sudo apt-get install jq
+    sudo apt-get -y install jq
     echo
     echo "NOTE: It's recommended to exit the script and either a) execute the command 'newgrp -' or"
     echo "b) log out and back in. Doing so will load the new docker permissions into the user's environment."
