@@ -51,23 +51,23 @@ if [[ $hChoice == 1 || $hChoice == 2 ]]; then
   popd
 
   echo "HOST=${IP}" > .env
-  echo "running docker-compose down to ensure no leftovers from earlier runs... please wait"
-  docker-compose down >/dev/null 2>&1
-  docker-compose up -d || exit 1
+  echo "running docker compose down to ensure no leftovers from earlier runs... please wait"
+  docker compose down >/dev/null 2>&1
+  docker compose up -d || exit 1
 
   echo "waiting for sync to begin"
   waiting=0
   failed=0
   while true; do
     sleep 2
-    docker-compose logs --tail 50 |grep -q on_incoming_block && break
+    docker compose logs --tail 50 |grep -q on_incoming_block && break
     echo "not syncing, continuing to wait"
     waiting=$(expr ${waiting} + 1)
     if [ $waiting -ge 30 ]; then
-      [ $failed -ge 3 ] && { echo "containers failed to synchronize. cleaning up and exiting."; docker-compose down; kill 0;}
+      [ $failed -ge 3 ] && { echo "containers failed to synchronize. cleaning up and exiting."; docker compose down; kill 0;}
       echo "*** failed. retrying. ***"
-      docker-compose down
-      docker-compose up -d
+      docker compose down
+      docker compose up -d
       waiting=0
       failed=$(expr failed + 1)
     fi
@@ -76,7 +76,7 @@ if [[ $hChoice == 1 || $hChoice == 2 ]]; then
   echo
   docker ps
   echo
-  echo -e "Done.\n\tdocker compose launched from ./scripts/launch/history/, \n\tto view logs run: 'cd scripts/launch/history; docker-compose logs -f --tail 10'\n"
+  echo -e "Done.\n\tdocker compose launched from ./scripts/launch/history/, \n\tto view logs run: 'cd scripts/launch/history; docker compose logs -f --tail 10'\n"
   echo "   ******************************************"
   echo "   * History API is available at port 8080  *"
   echo "   ******************************************"
