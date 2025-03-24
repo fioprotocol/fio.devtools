@@ -302,8 +302,10 @@ if [ $mChoice == 1 ]; then
     sleep 10
     echo Setting Development Contracts over v2.0.0
     $oldpath/launch/19_bind_dev_contracts.sh
-    # sleep 10
-    # $oldpath/launch/20_debug_staking.sh
+    #BD-3962 -- get fio balance gets errors in local dev testing.
+    sleep 5
+    $oldpath/launch/21_stake_local_testnet.sh
+   # $oldpath/launch/20_debug_staking.sh
 
 elif [ $mChoice == 2 ]; then
     echo Extract Base Contracts...
