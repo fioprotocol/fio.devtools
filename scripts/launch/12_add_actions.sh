@@ -8,7 +8,7 @@
 
 
 host='localhost:8889'
-echo "EDEDEDEDED adding actions"
+echo " adding actions"
 sleep 10
 
 # we run the first 15 so that we can test after the fork deadline, and prove the new logic is being used
@@ -24,12 +24,19 @@ sleep 10
 ./clio -u http://$host push action eosio addaction '{"action":"paystake","contract":"fio.treasury","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"modgenlocked","contract":"eosio","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"clrgenlocked","contract":"eosio","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"ovrwrtgenlck","contract":"eosio","actor":"eosio"}' --permission eosio
 # added for FIP-6 and FIP-21
 ./clio -u http://$host push action eosio addaction '{"action":"trnsloctoks","contract":"fio.token","actor":"eosio"}' --permission eosio
 # added for FIP-6 and FIP-21
 ./clio -u http://$host push action eosio addaction '{"action":"addgenlocked","contract":"eosio","actor":"eosio"}' --permission eosio
 # added for FIP-6 and FIP-21
 ./clio -u http://$host push action eosio addaction '{"action":"updtotstkinc","contract":"eosio","actor":"eosio"}' --permission eosio
+#FIP-38 begin
+./clio -u http://$host push action eosio addaction '{"action":"newfioacc","contract":"eosio","actor":"eosio"}' --permission eosio
+#FIP-38 end
+########### audit machine, auditvote action
+./clio -u http://$host push action eosio addaction '{"action":"auditvote","contract":"eosio","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"resetaudit","contract":"eosio","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"setnolimits","contract":"eosio","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"approve","contract":"eosio.msig","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"cancel","contract":"eosio.msig","actor":"eosio"}' --permission eosio
@@ -44,8 +51,17 @@ sleep 10
 ./clio -u http://$host push action eosio addaction '{"action":"addbundles","contract":"fio.address","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"burnaddress","contract":"fio.address","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"burnexpired","contract":"fio.address","actor":"eosio"}' --permission eosio
+#BD-4650
+./clio -u http://$host push action eosio addaction '{"action":"fipxlviiilck","contract":"eosio","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"fipxlviii","contract":"fio.token","actor":"eosio"}' --permission eosio
+
+#BD-4580
+./clio -u http://$host push action eosio addaction '{"action":"burndomain","contract":"fio.address","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"xferdomain","contract":"fio.address","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"xferaddress","contract":"fio.address","actor":"eosio"}' --permission eosio
+#FIP-39 begin
+./clio -u http://$host push action eosio addaction '{"action":"updcryptkey","contract":"fio.address","actor":"eosio"}' --permission eosio
+#FIP-39 end
 ./clio -u http://$host push action eosio addaction '{"action":"setfeemult","contract":"fio.fee","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"bundlevote","contract":"fio.fee","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"setfeevote","contract":"fio.fee","actor":"eosio"}' --permission eosio
@@ -84,10 +100,16 @@ sleep 10
 ./clio -u http://$host push action eosio addaction '{"action":"cxlistdomain","contract":"fio.escrow","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"setmrkplcfg","contract":"fio.escrow","actor":"eosio"}' --permission eosio
 ./clio -u http://$host push action eosio addaction '{"action":"xferescrow","contract":"fio.address","actor":"eosio"}' --permission eosio
+#FIP-40 fio.perms
+./clio -u http://$host push action eosio addaction '{"action":"addperm","contract":"fio.perms","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"remperm","contract":"fio.perms","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"clearperm","contract":"fio.perms","actor":"eosio"}' --permission eosio
 
 ## admin action only called from fio.address::burnexpired
 ./clio -u http://$host push action eosio addaction '{"action":"cxburned","contract":"fio.escrow","actor":"eosio"}' --permission eosio
 
 # required for unit testing
 ./clio -u http://$host push action eosio addaction '{"action":"modexpire","contract":"fio.address","actor":"eosio"}' --permission eosio
+./clio -u http://$host push action eosio addaction '{"action":"regdomadd","contract":"fio.address","actor":"eosio"}' --permission eosio
+
 

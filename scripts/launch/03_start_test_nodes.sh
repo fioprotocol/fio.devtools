@@ -17,10 +17,14 @@ if [ -z "$1" ]; then
 	read -p $'\n1. Default 2. Increased Transaction Time\nChoose(#):' tChoice
 else
     tChoice=$1
+    sleep 1.0
 fi
 
 #start the bios node, this starts up, and eventually goes into dormancy.
+echo
 if [ $tChoice == 1 ]; then
+    echo "Starting nodeos with default Max Transaction Time..."
+    echo
     mkdir -p $HOME/node1
     pushd $HOME/node1 >/dev/null
     "${NODEOS_BIN}" --http-server-address localhost:8879 --p2p-listen-endpoint 0.0.0.0:9876 --config-dir=$HOME/node1 --http-validate-host=0 --logconf=$oldpath/launch/logging.json --enable-stale-production --producer-name eosio --plugin eosio::chain_api_plugin --plugin eosio::net_api_plugin  --contracts-console 2> $oldpath/../node1.txt &
@@ -42,6 +46,8 @@ if [ $tChoice == 1 ]; then
     popd >/dev/null
 fi
 if [ $tChoice == 2 ]; then
+    echo "Starting nodeos with Max Transaction Time set to 6000..."
+    echo
     mkdir -p $HOME/node1
     pushd $HOME/node1 >/dev/null
     "${NODEOS_BIN}" --max-transaction-time=6000 --http-server-address localhost:8879 --p2p-listen-endpoint 0.0.0.0:9876 --config-dir=$HOME/node1 --http-validate-host=0 --logconf=$oldpath/launch/logging.json --enable-stale-production --producer-name eosio --plugin eosio::chain_api_plugin --plugin eosio::net_api_plugin  --contracts-console 2> $oldpath/../node1.txt &

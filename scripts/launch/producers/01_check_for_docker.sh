@@ -3,7 +3,7 @@
 function prereqs() {
     echo
     echo "The following are required to run this script (ubuntu-specific):"
-    echo "  - docker, and docker-compose must be installed. To install docker, first configure the docker repository:"
+    echo "  - docker must be installed. To install docker, first configure the docker repository:"
     echo "  -   sudo apt-get update"
     echo "  -   sudo apt-get install ca-certificates curl gnupg lsb-release"
     echo "  -   sudo mkdir -p /etc/apt/keyrings"
@@ -12,7 +12,7 @@ function prereqs() {
     echo "  -     $(lsb_release -cs) stable\" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null"
     echo
     echo "  - Install docker:"
-    echo "  -   sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin"
+    echo "  -   sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin"
     echo
     echo "  - Configure user with ability to run docker commands:"
     echo "  -   sudo usermod -aG docker $USER"
@@ -20,16 +20,18 @@ function prereqs() {
     echo "  - Log out and back in to pick up new permissions"
     echo
     echo "  - Note that old versions of docker may exist and should be removed. To do this run the command:"
-    echo "  -   sudo apt-get remove docker docker-engine docker.io containerd runc"
+    echo "  -   sudo apt-get remove docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc"
     echo
     echo "  - Note: jq is also needed for json processing. To install jq:"
     echo "  -   sudo apt-get update"
-    echo "  -   sudo apt-get jq"
+    echo "  -   sudo apt-get install jq"
+    echo
+    echo " For any details, see https://docs.docker.com/engine/install/ubuntu."
     echo
     read -p "Would you like to install packages and set permissions now? [y/N] " RUN_SETUP
     [ "$RUN_SETUP" == "y" ] || [ "$RUN_SETUP" == "Y" ] || kill 0
     echo "Removing old versions of docker..."
-    sudo apt-get -y remove docker docker-engine docker.io containerd runc
+    for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get -y remove $pkg; done
     echo
     echo "Update apt package index..."
     sudo apt-get update
@@ -45,10 +47,14 @@ function prereqs() {
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
     echo
-    echo "Install docker and jq..."
+    echo "Install docker..."
     sudo apt-get update
-    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+    sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     sudo usermod -a -G docker $(whoami)
+    echo
+    echo "Install jq..."
+    sudo apt-get update
+    sudo apt-get -y install jq
     echo
     echo "NOTE: It's recommended to exit the script and either a) execute the command 'newgrp -' or"
     echo "b) log out and back in. Doing so will load the new docker permissions into the user's environment."
@@ -56,27 +62,30 @@ function prereqs() {
 }
 
 # ensure pre-requisites are met:
-uname |grep -q Linux || {
+uname | grep -q Linux || {
   echo "*** this script is only meant to work on linux. ***";
-  prereqs;
-}
-
-id |grep -q docker || {
-  echo "*** this user is not in the 'docker' group. ***";
   prereqs;
 }
 
 # ensure tools are present:
 hash docker || {
-  echo "*** did not find docker-compose ***";
+  echo "*** did not find docker ***";
   prereqs;
 }
-hash docker-compose || {
-  echo "*** docker-compose is not installed ***"
+
+if $(docker compose &>/dev/null) && [ $? -eq 0 ]; then
+    echo "SUCCESS: docker compose (v2) is installed."
+else
+    echo "ERROR: \"docker compose plugin\" does not appear to be installed."
+    prereqs 
+fi
+
+id | grep -q docker || {
+  echo "*** this user is not in the 'docker' group. ***";
   prereqs;
 }
+
 hash jq || {
   echo "*** jq is not installed ***"
   prereqs;
 }
-

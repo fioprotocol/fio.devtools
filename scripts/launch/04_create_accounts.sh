@@ -19,6 +19,8 @@ echo creating dev account for escrow and marketplace
 #Private key: 5JXkawfVHHZuTAdZrVpdkg4mUNfUytuw8uDUBWcAvb8YMK5R4yY
 #FIO Internal Account (actor name): i4wplnm2ogsd
 ./clio -u http://localhost:8879 create account eosio fio.escrow FIO7isxEua78KPVbGzKemH4nj2bWE52gqj8Hkac3tc7jKNvpfWzYS FIO7isxEua78KPVbGzKemH4nj2bWE52gqj8Hkac3tc7jKNvpfWzYS
+######### FIP-40 fio.perms
+./clio -u http://localhost:8879 create account eosio fio.perms FIO7isxEua78KPVbGzKemH4nj2bWE52gqj8Hkac3tc7jKNvpfWzYS FIO7isxEua78KPVbGzKemH4nj2bWE52gqj8Hkac3tc7jKNvpfWzYS
 sleep 2
 
 #Set Contracts..done using the bios node
@@ -28,7 +30,7 @@ sleep 1.5
 sleep 10
 ./clio -u http://localhost:8879 set contract eosio.msig $eosio_msig_contract_base_path eosio.msig.wasm eosio.msig.abi
 
-./clio -u http://localhost:8879 set contract -j fio.address $fio_contract_base_path fio.address.wasm fio.address.abi --permission fio.address@active
+./clio -u http://localhost:8879 set contract -j fio.address $fio_addr_contract_base_path fio.address.wasm fio.address.abi --permission fio.address@active
 sleep 2s
 
 echo creating dev account for escrow and marketplace
@@ -38,5 +40,5 @@ echo creating dev account for escrow and marketplace
 #FIO Internal Account (actor name): i4wplnm2ogsd
 
 ./clio -u http://localhost:8879 create account eosio fio.oracle FIO7isxEua78KPVbGzKemH4nj2bWE52gqj8Hkac3tc7jKNvpfWzYS FIO7isxEua78KPVbGzKemH4nj2bWE52gqj8Hkac3tc7jKNvpfWzYS
-./clio -u http://localhost:8879 set contract fio.address $fio_contract_base_path fio.address.wasm fio.address.abi --permission fio.address@active
+./clio -u http://localhost:8879 set contract fio.address $fio_addr_contract_base_path fio.address.wasm fio.address.abi --permission fio.address@active
 sleep 2

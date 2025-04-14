@@ -13,6 +13,12 @@
 ./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"remove_pub_address","type":"1","suf_amount":"600000000"}' --permission fio.fee@active
 ./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"remove_all_pub_addresses","type":"1","suf_amount":"600000000"}' --permission fio.fee@active
 ./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"transfer_tokens_pub_key","type":"0","suf_amount":"2000000000"}' --permission fio.fee@active
+#FIP-38 begin new_fio_chain_account
+./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"new_fio_chain_account","type":"0","suf_amount":"2000000000"}' --permission fio.fee@active
+#FIP-38 end
+#FIP-39 begin update_encrypt_key
+./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"update_encrypt_key","type":"1","suf_amount":"40000000000"}' --permission fio.fee@active
+#FIP-39 end
 ./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"new_funds_request","type":"1","suf_amount":"1200000000"}' --permission fio.fee@active
 ./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"reject_funds_request","type":"1","suf_amount":"600000000"}' --permission fio.fee@active
 ./clio -u http://localhost:8879 push action -f fio.fee createfee '{"end_point":"cancel_funds_request","type":"1","suf_amount":"600000000"}' --permission fio.fee@active
@@ -50,3 +56,11 @@
 ./clio -u http://localhost:8889 push action -f fio.fee createfee '{"end_point":"cancel_list_domain","type":"0","suf_amount":"1000000000"}' --permission fio.fee@active
 ./clio -u http://localhost:8889 push action -f fio.fee createfee '{"end_point":"buy_domain","type":"0","suf_amount":"2000000000"}' --permission fio.fee@active
 ./clio -u http://localhost:8889 push action -f fio.fee createfee '{"end_point":"set_marketplace_config","type":"0","suf_amount":"500000000"}' --permission fio.fee@active
+
+./clio -u http://localhost:8889 push action -f fio.fee createfee '{"end_point":"register_fio_domain_address","type":"0","suf_amount":"800000000000"}' --permission fio.fee@active
+#FIP-40 fees
+./clio -u http://localhost:8889 push action -f fio.fee createfee '{"end_point":"add_fio_permission","type":"0","suf_amount":"500000000"}' --permission fio.fee@active
+# for perf testing only ./clio -u http://localhost:8889 push action -f fio.fee createfee '{"end_point":"add_fio_permission","type":"0","suf_amount":"0"}' --permission fio.fee@active
+./clio -u http://localhost:8889 push action -f fio.fee createfee '{"end_point":"remove_fio_permission","type":"0","suf_amount":"200000000"}' --permission fio.fee@active
+./clio -u http://localhost:8889 push action -f fio.fee createfee '{"end_point":"audit_vote","type":"0","suf_amount":"5400000000"}' --permission fio.fee@active
+

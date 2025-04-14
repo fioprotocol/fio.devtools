@@ -16,15 +16,18 @@
 GLOBALPATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 DEBUG=false #true sends debug output to log/debug.log file
 
+rm -f clio
 if [ -f bin/clio ]; then
-    rm -rf bin/clio;
-    rm -rf bin/nodeos;
-    rm -rf bin/fio-wallet;
+    rm -f bin/clio;
+    rm -f bin/nodeos;
+    rm -f bin/fio-wallet;
 fi
 
 cp ../fio/build/bin/clio ./bin/clio
 cp ../fio/build/bin/nodeos ./bin/nodeos
 cp ../fio/build/bin/fio-wallet ./bin/fio-wallet
+
+ln -s bin/clio clio
 
 echo -n $'\E[0;31m'
 cat << "EOF"

@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
+#set -x
 
+# Make sure we are in scripts dir
 cd $(dirname $0)
+SCRIPT_DIR=$(pwd)
+
+# Get devtools working directory
+cd $(dirname "${BASH_SOURCE[0]}")/../../..
+DEVTOOLS_DIR=$(pwd)
+
+# cd back to producers script dir
+cd ${SCRIPT_DIR}
 
 # should be set by caller to allow connecting to different machine, but assume it's the local system if that doesn't work ....
 IP=$1
@@ -15,6 +25,12 @@ clio="$HOME/fio/$vChoice/bin/clio -u http://${IP}:${PORT}"
 $clio get info >/dev/null || exit 1
 [ -f $HOME/fio/$vChoice/bin/nodeos ] || { echo "did not find nodeos binarys, giving up" ; kill 0; }
 
+# Build up container
+# set ubuntu version in dockerfile
+rm -f container/Dockerfile
+sed -e "1,+0 s/##VERSION##/`lsb_release -r | awk '{print $2}'`/g" container/Dockerfile.tmpl > container/Dockerfile
+
+# copy in fio executables
 cp $HOME/fio/$vChoice/bin/* ./container/bin/
 
 # create a genesis.json from on-chain data
@@ -44,8 +60,8 @@ cat keys.csv | while read key; do
   LOOP=$(expr $LOOP + 1)
 done
 
-echo "running docker-compose down to ensure no leftovers from earlier runs... please wait"
-docker-compose down >/dev/null 2>&1
+echo "running docker compose down to ensure no leftovers from earlier runs... please wait"
+docker compose down >/dev/null 2>&1
 
 echo
 echo "*************************************************************************"
@@ -54,21 +70,21 @@ echo "                Press Enter to continue without waiting.                 "
 echo "*************************************************************************"
 echo
 read -t 15
-docker-compose up -d || exit 1
+docker compose up -d || exit 1
 
 echo "waiting for sync to begin"
 waiting=0
 failed=0
 while true; do
   sleep 2
-  docker-compose logs --tail 50 |grep -q on_incoming_block && break
+  docker compose logs --tail 50 |grep -q on_incoming_block && break
   echo "not syncing, continuing to wait"
   waiting=$(expr ${waiting} + 1)
   if [ $waiting -ge 30 ]; then
-    [ $failed -ge 3 ] && { echo "containers failed to synchronize. cleaning up and exiting."; docker-compose down; kill 0;}
+    [ $failed -ge 3 ] && { echo "containers failed to synchronize. cleaning up and exiting."; docker compose down; kill 0;}
     echo "*** failed. retrying. ***"
-    docker-compose down
-    docker-compose up -d
+    docker compose down
+    docker compose up -d
     waiting=0
     failed=$(expr failed + 1)
   fi
@@ -81,7 +97,7 @@ echo
 echo "registering producers:"
 sleep 1
 
-keos_pass="$HOME/fio.devtools/walletkey.ini"
+keos_pass="$DEVTOOLS_DIR/walletkey.ini"
 if [ ! -f "$keos_pass" ]; then
   echo "Couldn't find keos password!"
   read -p "Please enter path to file with keos password: " keos_pass
@@ -124,5 +140,5 @@ cat keys.csv | while read key; do
 done
 
 echo
-echo -e "Done. docker compose launched from ./scripts/launch/producers/, \nto view logs run: 'cd scripts/launch/producers; docker-compose logs -f --tail 10'"
+echo -e "Done. docker compose launched from ./scripts/launch/producers/, \nto view logs run: 'cd scripts/launch/producers; docker compose logs -f --tail 10'"
 echo

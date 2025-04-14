@@ -8,9 +8,11 @@ sleep 1.5
 ./clio -u http://localhost:8879 set contract fio.tpid $fio_tpid_name_path fio.tpid.wasm fio.tpid.abi
 ./clio -u http://localhost:8879 set contract fio.staking $fio_staking_name_path fio.staking.wasm fio.staking.abi
 ./clio -u http://localhost:8879 set contract fio.escrow $fio_escrow_name_path fio.escrow.wasm fio.escrow.abi
+#FIP-40
+./clio -u http://localhost:8879 set contract fio.perms $fio_perms_name_path fio.perms.wasm fio.perms.abi
 
 ./clio -u http://localhost:8879 set contract eosio.msig $eosio_msig_contract_name_path eosio.msig.wasm eosio.msig.abi
-./clio -u http://localhost:8879 set contract fio.address $fio_contract_name_path fio.address.wasm fio.address.abi --permission fio.address@active
+./clio -u http://localhost:8879 set contract fio.address $fio_addr_contract_name_path fio.address.wasm fio.address.abi --permission fio.address@active
 
 # Bind more fio contracts
 ./clio -u http://localhost:8879 set contract -j fio.reqobt $fio_reqobt_name_path fio.request.obt.wasm fio.request.obt.abi --permission fio.reqobt@active
